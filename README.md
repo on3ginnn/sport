@@ -1,6 +1,6 @@
 # Django project
 
-## By Sakhbiev Damir
+## DREAM TEAM №3
 
 [![pipeline status](https://gitlab.crja72.ru/django/2024/spring/course/projects/team-3/badges/main/pipeline.svg)](https://gitlab.crja72.ru/django/2024/spring/course/projects/team-3/-/commits/main)
 

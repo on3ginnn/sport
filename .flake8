@@ -1,0 +1,4 @@
+[flake8]
+import-order-style = google
+inline-quotes = double
+exclude = .venv,venv,*/migrations/*,.git,__pycache__
