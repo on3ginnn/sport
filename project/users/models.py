@@ -1,5 +1,4 @@
 import django.contrib.auth
-import django.contrib.auth.models
 
 
 __all__ = []
