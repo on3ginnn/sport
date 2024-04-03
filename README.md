@@ -108,13 +108,13 @@
 * production
 
     ```bash
-    сd lyceum
+    сd project
     python manage.py runserver
     ```
 
 * test
 
     ```bash
-    сd lyceum
+    сd project
     python manage.py test
     ```
