@@ -2,9 +2,6 @@ stages:
   - linting
   - test
 
-services:
-  - postgres
-
 flake8:
   stage: linting
   image: registry.gitlab.com/pipeline-components/flake8:latest
@@ -21,6 +18,14 @@ black:
 django_test:
   stage: test
   image: python:3.10
+  services:
+    - postgres
+  variables:
+    POSTGRES_DB: postgres
+    POSTGRES_USER: postgres
+    Host: postgres
+    POSTGRES_HOST_AUTH_METHOD: trust
+
   script:
     - pip install -r requirements/prod.txt
     - pip install parameterized==0.9.0
