@@ -1,0 +1,22 @@
+{% load static %}
+
+<header>
+<nav class>
+  <div class="wrapper container">
+    <div class="logo"><a href="#">Logo</a></div>
+    <input type="radio" name="slider" id="menu-btn">
+    <input type="radio" name="slider" id="close-btn">
+    <ul class="nav-links">
+    <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
+    <li><a href="{% url 'homepage:main' %}">Home</a></li>
+    <li><a href="{% url 'about:main' %}">About</a></li>
+    <li><a href="#">Feedback</a></li>
+    </ul>
+    <div class="nav-btn" onclick="nav_btn_click(this)">
+      <div class="bar"></div>
+      <div class="bar1"></div>
+      <div class="bar2"></div>
+    </div>
+  </div>
+</nav>      
+</header>

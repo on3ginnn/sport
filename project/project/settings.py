@@ -18,7 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "ABOBA")
 
-DEBUG = true_load("DJANGO_DEBUG", False)
+DEBUG = True
 
 ALLOWED_HOSTS = list(
     map(str.strip, os.getenv("DJANGO_ALLOWED_HOSTS", "*").split(",")),
@@ -32,7 +32,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "about.apps.AboutConfig",
     "users.apps.UsersConfig",
+    "homepage.apps.HomepageConfig",
 ]
 
 MIDDLEWARE = [
@@ -50,7 +52,7 @@ ROOT_URLCONF = "project.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -68,9 +70,13 @@ WSGI_APPLICATION = "project.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.getenv("DJANGO_DATABASE_NAME"),
+        "USER": os.getenv("DJANGO_DATABASE_USER"),
+        "PASSWORD": os.getenv("DJANGO_DATABASE_PASSWORD"),
+        "HOST": "localhost",
+        "PORT": "",
+    },
 }
 
 
@@ -110,6 +116,12 @@ USE_TZ = True
 
 
 STATIC_URL = "static/"
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static_dev",
+]
+
+STATIC_ROOT = BASE_DIR.parent / "static"
 
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

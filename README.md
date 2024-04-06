@@ -88,11 +88,16 @@
     python manage.py migrate
     ```
 
-5. Load fixtures
-    * python
+### Postgres installation
+
+* linux
 
     ```bash
-    python manage.py loaddata fixtures/data.json
+    sudo apt install libpq-dev postgresql postgresql-contrib
+    sudo -u postgres psql
+    CREATE DATABASE myproject;
+    CREATE USER myprojectuser WITH PASSWORD 'password';
+    GRANT ALL PRIVILEGES ON DATABASE myproject TO myprojectuser;
     ```
 
 ### Static collection
