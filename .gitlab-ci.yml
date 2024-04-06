@@ -3,7 +3,7 @@ stages:
   - test
 
 services:
-    - postgresql:latest
+  - postgres
 
 flake8:
   stage: linting
