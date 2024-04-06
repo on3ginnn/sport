@@ -29,5 +29,6 @@ django_test:
   script:
     - pip install -r requirements/prod.txt
     - pip install parameterized==0.9.0
+    - export PG_HOST=postgres
     - cd project
     - python manage.py test
