@@ -2,8 +2,8 @@ stages:
   - linting
   - test
 
-variables:
-  POSTGRES_HOST_AUTH_METHOD: trust
+services:
+    - postgresql
 
 flake8:
   stage: linting
