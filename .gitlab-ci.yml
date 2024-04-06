@@ -2,6 +2,9 @@ stages:
   - linting
   - test
 
+variables:
+  POSTGRES_HOST_AUTH_METHOD: trust
+
 flake8:
   stage: linting
   image: registry.gitlab.com/pipeline-components/flake8:latest
