@@ -2,14 +2,6 @@ stages:
   - linting
   - test
 
-services:
-    - postgres:14.11
-
-variables:
-  POSTGRES_DB: test
-  POSTGRES_USER: test
-  POSTGRES_PASSWORD: ""
-
 flake8:
   stage: linting
   image: registry.gitlab.com/pipeline-components/flake8:latest
@@ -27,7 +19,6 @@ django_test:
   stage: test
   image: python:3.10
   script:
-    - export DATABASE_URL=postgres://postgres:@postgres:5432/test
     - pip install -r requirements/prod.txt
     - pip install parameterized==0.9.0
     - cd project
