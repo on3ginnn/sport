@@ -99,6 +99,33 @@
     CREATE USER myprojectuser WITH PASSWORD 'password';
     GRANT ALL PRIVILEGES ON DATABASE myproject TO myprojectuser;
     ```
+* windows
+
+    1. Install PostgreSQL:  
+        ```url
+        https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
+        ```  
+    2. In project root:
+        ```bash
+        pip install psycopg2
+        ```  
+    3. Create DB with SQL Shell (psql):  
+        If problem with encoding:  
+        ```bash
+        psql \! chcp 1251
+        ```
+
+        ```bash
+        CREATE DATABASE myproject;
+        CREATE USER myprojectuser WITH PASSWORD 'password';
+        GRANT ALL PRIVILEGES ON DATABASE myproject TO myprojectuser;
+        \\c myproject
+        GRANT ALL ON schema public TO myprojectuser;
+        ```  
+    4. In project root:
+        ```bash
+        python manage.py migrate
+        ```  
 
 ### Static collection
 
