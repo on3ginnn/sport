@@ -90,7 +90,8 @@
 
 ### Postgres installation
 
-* linux
+1. Installation
+    * linux
 
     ```bash
     sudo apt install libpq-dev postgresql postgresql-contrib
@@ -98,6 +99,37 @@
     CREATE DATABASE myproject;
     CREATE USER myprojectuser WITH PASSWORD 'password';
     GRANT ALL PRIVILEGES ON DATABASE myproject TO myprojectuser;
+    ```
+
+2. Postgres interactive line
+    * linux
+
+    ```bash
+    sudo -u postgres psql
+    ```
+
+3. Create DB
+    * postgres
+
+    ```bash
+    CREATE DATABASE myproject;
+    ```
+
+4. Create DB_USER
+    * postgres
+
+    ```bash
+    CREATE USER myprojectuser WITH PASSWORD 'password';
+    GRANT ALL PRIVILEGES ON DATABASE myproject TO myprojectuser;
+    ```
+
+5. DB_USER setup
+    * postgres
+
+    ```bash
+    ALTER ROLE myprojectuser SET client_encoding TO 'utf8';
+    ALTER ROLE myprojectuser SET default_transaction_isolation TO 'read committed';
+    ALTER ROLE myprojectuser SET timezone TO 'UTC';
     ```
 
 ### Static collection
