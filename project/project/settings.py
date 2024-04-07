@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 
+from django.utils.translation import gettext_lazy as _
 from dotenv import load_dotenv
 
 
@@ -32,6 +33,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "sorl.thumbnail",
+    "django_cleanup.apps.CleanupConfig",
     "about.apps.AboutConfig",
     "users.apps.UsersConfig",
     "homepage.apps.HomepageConfig",
@@ -44,6 +47,7 @@ MIDDLEWARE = [
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
@@ -106,11 +110,13 @@ if DEBUG:
 
 AUTH_USER_MODEL = "users.User"
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "ru"
 
 TIME_ZONE = "UTC"
 
 USE_I18N = True
+
+USE_L10N = True
 
 USE_TZ = True
 
@@ -121,7 +127,17 @@ STATICFILES_DIRS = [
     BASE_DIR / "static_dev",
 ]
 
+LOCALE_PATHS = (BASE_DIR / "locale",)
+
+LANGUAGES = [
+    ("ru", _("Russian")),
+    ("en", _("English")),
+]
+
+
 STATIC_ROOT = BASE_DIR.parent / "static"
 
+MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_URL = "/media/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
