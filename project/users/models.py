@@ -82,7 +82,7 @@ class User(django.contrib.auth.models.AbstractUser):
 class Image(django.db.models.Model):
     def get_path_image(self, filename):
         ext = Path(filename).suffix
-        return f"users/{self.id}/{uuid.uuid4()}{ext}"
+        return f"users/{self.user_id}/{uuid.uuid4()}{ext}"
 
     user = django.db.models.ForeignKey(
         User,
@@ -99,8 +99,8 @@ class Image(django.db.models.Model):
     )
 
     class Meta:
-        verbose_name = "fdd"
-        verbose_name_plural = "dfd"
+        verbose_name = _("user_image")
+        verbose_name_plural = _("user_images")
 
     def __str__(self):
         return Path(self.image.path).stem

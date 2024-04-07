@@ -129,6 +129,7 @@
     ```
 
 ### Postgres installation (windows)
+
 1. Install PostgreSQL
 
     ```url
@@ -144,6 +145,7 @@
 3. Create DB with SQL Shell (psql)
 
     If problem with encoding:  
+
     ```bash
     psql \! chcp 1251
     ```

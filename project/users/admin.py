@@ -15,6 +15,21 @@ class ImageInline(AdminImageMixin, admin.TabularInline):
 @admin.register(users.models.User)
 class UserAdmin(UserAdmin):
     list_display = (users.models.User.username.field.name,)
+    list_add_fields = [
+        users.models.User.birthday.field.name,
+        users.models.User.bio.field.name,
+        users.models.User.tg_link.field.name,
+        users.models.User.inst_link.field.name,
+        users.models.User.rating.field.name,
+    ]
+    fieldsets = UserAdmin.fieldsets + (
+        (
+            None,
+            {
+                "fields": list_add_fields,
+            },
+        ),
+    )
     inlines = (ImageInline,)
 
 
