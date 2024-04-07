@@ -70,9 +70,9 @@ WSGI_APPLICATION = "project.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("PG_DB_NAME", ""),
-        "USER": os.getenv("PG_USER", ""),
+        "ENGINE": os.getenv("PG_ENGINE", "django.db.backends.postgresql"),
+        "NAME": os.getenv("PG_DB_NAME", "postgres"),
+        "USER": os.getenv("PG_USER", "postgres"),
         "PASSWORD": os.getenv("PG_PASSWORD", ""),
         "HOST": os.getenv("PG_HOST", "localhost"),
         "PORT": os.getenv("PG_PORT", "5432"),
