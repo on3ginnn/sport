@@ -88,14 +88,33 @@
     python manage.py migrate
     ```
 
-### Postgres installation
+### Postgres installation (linux)
 
-* linux
+1. Installation
+    * linux
 
     ```bash
     sudo apt install libpq-dev postgresql postgresql-contrib
+    ```
+
+2. Postgres interactive line
+    * linux
+
+    ```bash
     sudo -u postgres psql
+    ```
+
+3. Create DB
+    * postgres
+
+    ```bash
     CREATE DATABASE myproject;
+    ```
+
+4. Create DB_USER
+    * postgres
+
+    ```bash
     CREATE USER myprojectuser WITH PASSWORD 'password';
     GRANT ALL PRIVILEGES ON DATABASE myproject TO myprojectuser;
     ```
@@ -126,6 +145,46 @@
         ```bash
         python manage.py migrate
         ```  
+
+5. DB_USER setup
+    * postgres
+
+    ```bash
+    ALTER ROLE myprojectuser SET client_encoding TO 'utf8';
+    ALTER ROLE myprojectuser SET default_transaction_isolation TO 'read committed';
+    ALTER ROLE myprojectuser SET timezone TO 'UTC';
+    ```
+
+### Postgres installation (windows)
+1. Install PostgreSQL
+
+    ```url
+    https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
+    ```  
+2. In project root
+
+    ```bash
+    pip install psycopg2
+    ```  
+3. Create DB with SQL Shell (psql)
+
+    If problem with encoding:  
+    ```bash
+    psql \! chcp 1251
+    ```
+
+    ```bash
+    CREATE DATABASE myproject;
+    CREATE USER myprojectuser WITH PASSWORD 'password';
+    GRANT ALL PRIVILEGES ON DATABASE myproject TO myprojectuser;
+    \c myproject
+    GRANT ALL ON schema public TO myprojectuser;
+    ```  
+4. In project root
+
+    ```bash
+    python manage.py migrate
+    ```  
 
 ### Static collection
 
