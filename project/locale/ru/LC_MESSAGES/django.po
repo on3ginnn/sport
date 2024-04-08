@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-07 21:21+0300\n"
+"POT-Creation-Date: 2024-04-08 14:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,11 +19,28 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
-#: project/settings.py:131
+
+#: feedback/models.py:11
+msgid "new_status"
+msgstr ""
+
+#: feedback/models.py:12
+msgid "pending_status"
+msgstr ""
+
+#: feedback/models.py:13
+msgid "complete_status"
+msgstr ""
+
+#: feedback/views.py:41
+msgid "message_form_success"
+msgstr ""
+
+#: project/settings.py:134
 msgid "Russian"
 msgstr ""
 
-#: project/settings.py:132
+#: project/settings.py:135
 msgid "English"
 msgstr ""
 
@@ -35,68 +52,104 @@ msgstr ""
 msgid "about_text"
 msgstr ""
 
+#: templates/feedback/feedback.html:6
+msgid "feedback_title"
+msgstr ""
+
 #: templates/homepage/index.html:6
 msgid "homepage_title"
 msgstr ""
 
-#: users/models.py:18
+#: templates/includes/form.html:37
+msgid "submit"
+msgstr ""
+
+#: users/admin.py:28
+msgid "profile"
+msgstr ""
+
+#: users/models.py:20
 msgid "username"
 msgstr ""
 
-#: users/models.py:22
+#: users/models.py:24
 msgid "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
 msgstr ""
 
-#: users/models.py:29
+#: users/models.py:31
 msgid "A user with that username already exists."
 msgstr ""
 
-#: users/models.py:33
+#: users/models.py:35
 msgid "biography"
 msgstr ""
 
-#: users/models.py:35
+#: users/models.py:37
 msgid "bio_field_help"
 msgstr ""
 
-#: users/models.py:39
+#: users/models.py:43
 msgid "birthday"
 msgstr ""
 
-#: users/models.py:40
+#: users/models.py:44
 msgid "birthday_field_help"
 msgstr ""
 
-#: users/models.py:46
+#: users/models.py:50
 msgid "avatar"
 msgstr ""
 
-#: users/models.py:47
+#: users/models.py:51
 msgid "avatar_field_help"
 msgstr ""
 
-#: users/models.py:53
+#: users/models.py:57
 msgid "tg_link"
 msgstr ""
 
-#: users/models.py:55
+#: users/models.py:59
 msgid "tg_link_field_help"
 msgstr ""
 
-#: users/models.py:59
+#: users/models.py:65
 msgid "inst_link"
 msgstr ""
 
-#: users/models.py:61
+#: users/models.py:67
 msgid "inst_link_field_help"
 msgstr ""
 
-#: users/models.py:65
+#: users/models.py:73
 msgid "rating"
 msgstr ""
 
-#: users/models.py:66
+#: users/models.py:74
 msgid "rating_field_help"
+msgstr ""
+
+#: users/models.py:90
+msgid "user"
+msgstr ""
+
+#: users/models.py:91
+msgid "user_field_help"
+msgstr ""
+
+#: users/models.py:96
+msgid "image"
+msgstr ""
+
+#: users/models.py:98
+msgid "image_field_help"
+msgstr ""
+
+#: users/models.py:102
+msgid "user_image"
+msgstr ""
+
+#: users/models.py:103
+msgid "user_images"
 msgstr ""
 
 #: users/validators.py:13
@@ -109,16 +162,4 @@ msgstr ""
 
 #: users/validators.py:25
 msgid "inst_link_validation_error"
-msgstr ""
-
-#: feedback/models.py:11
-msgid "new_status"
-msgstr ""
-
-#: feedback/models.py:12
-msgid "pending_status"
-msgstr ""
-
-#: feedback/models.py:13
-msgid "complete_status"
 msgstr ""

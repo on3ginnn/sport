@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
+from django.utils.translation import gettext as _
 from sorl.thumbnail.admin import AdminImageMixin
 
 import users.models
@@ -24,7 +25,7 @@ class UserAdmin(UserAdmin):
     ]
     fieldsets = UserAdmin.fieldsets + (
         (
-            None,
+            _("profile"),
             {
                 "fields": list_add_fields,
             },
@@ -35,4 +36,4 @@ class UserAdmin(UserAdmin):
 
 @admin.register(users.models.Image)
 class ImageAdmin(admin.ModelAdmin):
-    list_display = (users.models.Image.image.field.name,)
+    list_display = (users.models.Image.user.field.name,)
