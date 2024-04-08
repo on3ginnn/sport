@@ -49,14 +49,14 @@ class DBUserTests(TestCase):
     @parameterized.parameterized.expand(
         [
             ("t.me/testt", True),
-            (f"telegram.me/{'t' * 32}", True),
+            ("telegram.me/" + "t" * 32, True),
             ("telegram.me/testt", True),
             ("telegram.me/tesTT", True),
             ("t.me/test_", True),
             ("t.me/test", False),
             ("t.me/test@", False),
             ("telegram.me/test", False),
-            (f"telegram.me/{'t' * 33}", False),
+            ("telegram.me/" + "t" * 33, False),
             ("t.me", False),
             ("telegram.me", False),
             ("test", False),
@@ -95,11 +95,11 @@ class DBUserTests(TestCase):
     @parameterized.parameterized.expand(
         [
             ("instagram.com/t", True),
-            (f"instagram.com/{'t' * 255}", True),
+            ("instagram.com/" + "t" * 255, True),
             ("instagram.com/t-t-t__", True),
             ("instagram.com/t-t-__@", False),
             ("instagram.com/T", False),
-            (f"instagram.com/{'t' * 256}", False),
+            ("instagram.com/" + "t" * 256, False),
         ]
     )
     def test_inst_link_validator(self, inst_link, is_valid):
