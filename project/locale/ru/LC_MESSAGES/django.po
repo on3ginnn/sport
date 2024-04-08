@@ -103,6 +103,22 @@ msgstr ""
 msgid "birthday_validation_error"
 msgstr ""
 
-#: users/validators.py:19 users/validators.py:25
+#: users/validators.py:19
 msgid "tg_link_validation_error"
+msgstr ""
+
+#: users/validators.py:25
+msgid "inst_link_validation_error"
+msgstr ""
+
+#: feedback/models.py:11
+msgid "new_status"
+msgstr ""
+
+#: feedback/models.py:12
+msgid "pending_status"
+msgstr ""
+
+#: feedback/models.py:13
+msgid "complete_status"
 msgstr ""

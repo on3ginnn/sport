@@ -7,10 +7,14 @@
     <input type="radio" name="slider" id="menu-btn">
     <input type="radio" name="slider" id="close-btn">
     <ul class="nav-links">
-    <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
-    <li><a href="{% url 'homepage:main' %}">Home</a></li>
-    <li><a href="{% url 'about:main' %}">About</a></li>
-    <li><a href="#">Feedback</a></li>
+      <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
+      <li><a href="{% url 'homepage:main' %}">Home</a></li>
+      <li><a href="{% url 'about:main' %}">About</a></li>
+      <li>
+        <a href="{% url 'feedback:feedback' %}">
+          Feedback
+        </a>
+      </li>
     </ul>
     <div class="nav-btn" onclick="nav_btn_click(this)">
       <div class="bar"></div>

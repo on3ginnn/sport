@@ -96,12 +96,30 @@
     ```bash
     sudo apt install libpq-dev postgresql postgresql-contrib
     ```
+    
+    * windows(Install PostgreSQL)
+
+    ```url
+    https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
+    ```  
 
 2. Postgres interactive line
     * linux
 
     ```bash
     sudo -u postgres psql
+    ```
+
+    * windows
+
+    ```bash
+    run SQL Shell (psql)
+    ```  
+
+    If problem with encoding:  
+
+    ```bash
+    psql \! chcp 1251
     ```
 
 3. Create DB
@@ -119,8 +137,8 @@
     GRANT ALL PRIVILEGES ON DATABASE myproject TO myprojectuser;
     ```
 
-5. DB_USER setup
-    * postgres
+5. DB setup
+    * postgres (windows and linux)
 
     ```bash
     ALTER ROLE myprojectuser SET client_encoding TO 'utf8';
@@ -128,40 +146,10 @@
     ALTER ROLE myprojectuser SET timezone TO 'UTC';
     ```
 
-### Postgres installation (windows)
-
-1. Install PostgreSQL
-
-    ```url
-    https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
-    ```  
-
-2. In project root
-
+    * postgres (in windows)
     ```bash
-    pip install psycopg2
-    ```  
-
-3. Create DB with SQL Shell (psql)
-
-    If problem with encoding:  
-
-    ```bash
-    psql \! chcp 1251
-    ```
-
-    ```bash
-    CREATE DATABASE myproject;
-    CREATE USER myprojectuser WITH PASSWORD 'password';
-    GRANT ALL PRIVILEGES ON DATABASE myproject TO myprojectuser;
     \c myproject
     GRANT ALL ON schema public TO myprojectuser;
-    ```  
-
-4. In project root
-
-    ```bash
-    python manage.py migrate
     ```  
 
 ### Static collection

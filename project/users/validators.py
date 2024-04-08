@@ -22,4 +22,4 @@ def tg_link_validator(value):
 def inst_link_validator(value):
     pattern = r"^instagram\.com\/[a-z0-9-_]{1,255}"
     if re.search(pattern, value) is None:
-        raise ValidationError(_("tg_link_validation_error"))
+        raise ValidationError(_("inst_link_validation_error"))

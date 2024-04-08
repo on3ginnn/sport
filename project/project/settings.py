@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     "about.apps.AboutConfig",
     "users.apps.UsersConfig",
     "homepage.apps.HomepageConfig",
+    "feedback.apps.FeedbackConfig",
+    "streetsport.apps.StreetsportConfig",
 ]
 
 MIDDLEWARE = [
@@ -70,7 +72,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "project.wsgi.application"
-
 
 DATABASES = {
     "default": {
