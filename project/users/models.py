@@ -57,7 +57,7 @@ class User(django.contrib.auth.models.AbstractUser):
         _("tg_link"),
         validators=[users.validators.tg_link_validator],
         help_text=_("tg_link_field_help"),
-        max_length=32,
+        max_length=44,
         blank=True,
         null=True,
     )
@@ -65,7 +65,7 @@ class User(django.contrib.auth.models.AbstractUser):
         _("inst_link"),
         validators=[users.validators.inst_link_validator],
         help_text=_("inst_link_field_help"),
-        max_length=32,
+        max_length=269,
         blank=True,
         null=True,
     )

@@ -14,12 +14,12 @@ def birthday_validator(value):
 
 
 def tg_link_validator(value):
-    pattern = r"^(t|telegram)\.me\/[a-z0-9_]{5,32}"
+    pattern = r"^(t|telegram)\.me\/[a-z0-9_]{5,32}$"
     if re.search(pattern, value, re.IGNORECASE) is None:
         raise ValidationError(_("tg_link_validation_error"))
 
 
 def inst_link_validator(value):
-    pattern = r"^instagram\.com\/[a-z0-9-_]{1,255}"
+    pattern = r"^instagram\.com\/[a-z0-9-_]{1,255}$"
     if re.search(pattern, value) is None:
         raise ValidationError(_("inst_link_validation_error"))
