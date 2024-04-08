@@ -68,14 +68,12 @@ class FormTests(TestCase):
             (
                 {
                     "content-text": "some text",
-                    "author-name": "",
                     "author-mail": "test@test.com",
                 },
             ),
             (
                 {
                     "content-text": "some text",
-                    "author-name": "Vasya",
                     "author-mail": "test@test.com",
                 },
             ),
@@ -99,7 +97,6 @@ class FormTests(TestCase):
             self.assertTrue(
                 Feedback.objects.filter(
                     author__mail=data["author-mail"],
-                    author__name=data["author-name"] or None,
                     text=data["content-text"],
                 ).exists(),
                 "Uncorrect feedback created",
