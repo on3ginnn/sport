@@ -3,7 +3,7 @@ import uuid
 
 import django.contrib.auth
 import django.db
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 import sorl
 
 import users.validators
@@ -35,7 +35,6 @@ class User(django.contrib.auth.models.AbstractUser):
         _("biography"),
         max_length=4000,
         help_text=_("bio_field_help"),
-        unique=False,
         blank=True,
         null=True,
     )
