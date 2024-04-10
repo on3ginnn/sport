@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     "homepage.apps.HomepageConfig",
     "feedback.apps.FeedbackConfig",
     "streetsport.apps.StreetsportConfig",
-    "djcelery_email",
 ]
 
 MIDDLEWARE = [
