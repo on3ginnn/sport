@@ -25,6 +25,7 @@ django_test:
   variables:
     POSTGRES_DB: postgres
     POSTGRES_USER: postgres
+    REDIS_URL: redis://redis:6379/0
     Host: postgres
     POSTGRES_HOST_AUTH_METHOD: trust
 

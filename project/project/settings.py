@@ -21,6 +21,8 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "ABOBA")
 
 DEBUG = true_load("DJANGO_DEBUG", False)
 
+REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379/0")
+
 ALLOWED_HOSTS = list(
     map(str.strip, os.getenv("DJANGO_ALLOWED_HOSTS", "*").split(",")),
 )
@@ -156,5 +158,5 @@ SERVER_EMAIL = EMAIL_HOST_USER
 EMAIL_ADMIN = EMAIL_HOST_USER
 
 
-CELERY_BROKER_URL = "redis://django_test:6379"
-CELERY_RESULT_BACKEND = "redis://django_test:6379"
+CELERY_BROKER_URL = REDIS_URL
+CELERY_RESULT_BACKEND = REDIS_URL
