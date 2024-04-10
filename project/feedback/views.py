@@ -35,7 +35,7 @@ class FeedbackCreateView(django.views.generic.CreateView):
         send_mail(
             subject="Feedback",
             message=content_form.cleaned_data["text"],
-            from_email=settings.EMAIL_HOST,
+            from_email=settings.EMAIL_ADMIN,
             recipient_list=[author_form.cleaned_data["mail"]],
         )
         messages.success(self.request, _("message_form_success"))
