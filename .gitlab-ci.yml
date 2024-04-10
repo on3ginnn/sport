@@ -20,6 +20,8 @@ django_test:
   image: python:3.10
   services:
     - postgres
+    - redis:latest
+
   variables:
     POSTGRES_DB: postgres
     POSTGRES_USER: postgres
