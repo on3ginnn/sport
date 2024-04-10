@@ -96,7 +96,7 @@
     ```bash
     sudo apt install libpq-dev postgresql postgresql-contrib
     ```
-    
+
     * windows(Install PostgreSQL)
 
     ```url
@@ -147,6 +147,7 @@
     ```
 
     * postgres (in windows)
+
     ```bash
     \c myproject
     GRANT ALL ON schema public TO myprojectuser;

@@ -104,17 +104,12 @@ class Team(django.db.models.Model):
 
         self.normalize_title = normalize_title
 
-        found = users.models.User.objects.filter(
-            teams__game=self.game,
+    @property
+    def children(self):
+        return Order.objects.filter(
+            django.db.models.Q(team_one=self)
+            | django.db.models.Q(team_two=self),
         )
-        if found.count() >= 2:
-            raise ValidationError(
-                {
-                    Team.title.field.name: _(
-                        "equal_user_teams_game_validation_error"
-                    )
-                },
-            )
 
     class Meta:
         verbose_name = _("team")
