@@ -1,8 +1,10 @@
+celery==5.3.6
 Django==4.2.9
 django-betterforms==2.0.0
 django-cleanup==8.1.0
 pillow==10.2.0
-python-slugify==8.0.4
-python-dotenv==1.0.1
 psycopg2-binary==2.9.9
+python-dotenv==1.0.1
+python-slugify==8.0.4
+redis==5.0.3
 sorl-thumbnail==12.10.0

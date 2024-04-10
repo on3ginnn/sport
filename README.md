@@ -161,6 +161,24 @@
     python manage.py collectstatic
     ```
 
+### Celery
+
+1. Install and run redis
+    * linux
+
+    ```bash
+    sudo apt install redis
+    redis-server
+    ```
+
+2. Run celery worker
+    * python
+
+    ```bash
+    cd project
+    python -m celery -A project worker
+    ```
+
 ### Start
 
 * production
