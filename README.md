@@ -88,7 +88,7 @@
     python manage.py migrate
     ```
 
-### Postgres installation (linux)
+### Postgres installation
 
 1. Installation
     * linux
