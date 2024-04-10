@@ -156,5 +156,5 @@ SERVER_EMAIL = EMAIL_HOST_USER
 EMAIL_ADMIN = EMAIL_HOST_USER
 
 
-CELERY_BROKER_URL = "redis://postgres:6379"
-CELERY_RESULT_BACKEND = "redis://postgres:6379"
+CELERY_BROKER_URL = "redis://django_test:6379"
+CELERY_RESULT_BACKEND = "redis://django_test:6379"
