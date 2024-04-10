@@ -1,4 +1,6 @@
+from django.conf import settings
 from django.contrib import messages
+from django.core.mail import send_mail
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
@@ -8,7 +10,6 @@ from feedback.forms import (
     FeedbackMultiForm,
 )
 from feedback.models import FeedbackFile
-import feedback.tasks
 
 __all__ = []
 
@@ -31,9 +32,12 @@ class FeedbackCreateView(django.views.generic.CreateView):
         for file in files:
             FeedbackFile(file=file, feedback=feedback_instance).save()
 
-        feedback.tasks.send_feedback_email_task.delay(
-            author_form.cleaned_data["mail"],
-            content_form.cleaned_data["text"],
+        send_mail(
+            subject="Feedback",
+            message=content_form.cleaned_data["text"],
+            from_email=settings.EMAIL_ADMIN,
+            recipient_list=[author_form.cleaned_data["mail"]],
         )
+
         messages.success(self.request, _("message_form_success"))
         return redirect(self.success_url)
