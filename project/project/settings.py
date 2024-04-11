@@ -23,6 +23,8 @@ DEBUG = true_load("DJANGO_DEBUG", False)
 
 REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379/0")
 
+DEFAULT_USER_IS_ACTIVE = os.getenv("DJANGO_DEFAULT_USER_IS_ACTIVE", DEBUG)
+
 ALLOWED_HOSTS = list(
     map(str.strip, os.getenv("DJANGO_ALLOWED_HOSTS", "*").split(",")),
 )

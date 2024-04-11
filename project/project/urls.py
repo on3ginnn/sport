@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+import django.contrib.auth.urls
 from django.urls import include, path
 
 urlpatterns = [
@@ -24,8 +25,17 @@ urlpatterns = [
         name="feedback",
     ),
     path(
+        "auth/",
+        include(("users.urls")),
+        name="users",
+    ),
+    path(
         "admin/",
         admin.site.urls,
+    ),
+    path(
+        "auth/",
+        django.urls.include(django.contrib.auth.urls),
     ),
 ]
 
