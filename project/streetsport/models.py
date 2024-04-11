@@ -2,9 +2,11 @@ import re
 
 from django.core.exceptions import ValidationError
 import django.db
+import django.db.models
 from django.utils.translation import gettext as _
 from slugify import slugify
 
+import streetsport.validators
 import users.models
 
 
@@ -42,6 +44,10 @@ class Game(django.db.models.Model):
             )
 
         self.normalize_title = normalize_title
+
+    class Meta:
+        verbose_name = _("game")
+        verbose_name_plural = _("games")
 
 
 class Team(django.db.models.Model):
@@ -133,6 +139,13 @@ class Order(django.db.models.Model):
         related_name="orders_two",
         related_query_name="orders_two",
     )
+    start = django.db.models.DateTimeField(
+        _("start"),
+        help_text=_("start_field_help"),
+        validators=[streetsport.validators.start_validator],
+        null=True,
+        blank=True,
+    )
     description = django.db.models.TextField(
         _("description"),
         max_length=4000,
@@ -154,3 +167,7 @@ class Order(django.db.models.Model):
             raise ValidationError(
                 {Order.team_two.field.name: _("team_equal_validation_error")},
             )
+
+    class Meta:
+        verbose_name = _("order")
+        verbose_name_plural = _("orders")
