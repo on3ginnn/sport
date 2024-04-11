@@ -20,12 +20,14 @@ django_test:
   image: python:3.10
   services:
     - postgres
-    - redis:latest
+    - rabbitmq:latest
 
   variables:
     POSTGRES_DB: postgres
     POSTGRES_USER: postgres
-    REDIS_URL: redis://redis:6379/0
+    RABBITMQ_DEFAULT_USER: guest
+    RABBITMQ_DEFAULT_PASS: guest
+    AMQP_URL: 'amqp://guest:guest@rabbitmq:5672'
     Host: postgres
     POSTGRES_HOST_AUTH_METHOD: trust
 
