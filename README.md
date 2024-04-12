@@ -179,7 +179,7 @@
     [download and install latest version](https://www.rabbitmq.com/docs/install-windows#downloads)
 
     ```bash
-    run this by double-click: \*:\\\*\\rabbitmq_server-\*.\*.\*\\sbin\\rabbitmq-server.bat
+    run this by double-click: *:\*\rabbitmq_server-*.*.*\sbin\rabbitmq-server.bat
     ```
 
 3. Run celery worker
