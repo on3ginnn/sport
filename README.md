@@ -165,9 +165,7 @@
 1. Install Erlang
     * windows
 
-    ```bash
     [download and install latest version](https://www.erlang.org/downloads)
-    ```
 
 2. Install RabbitMQ
     * linux
@@ -178,8 +176,9 @@
 
     * windows
 
-    ```bash
     [download and install latest version](https://www.rabbitmq.com/docs/install-windows#downloads)
+
+    ```bash
     run this by double-click: \*:\\\*\\rabbitmq_server-\*.\*.\*\\sbin\\rabbitmq-server.bat
     ```
 
