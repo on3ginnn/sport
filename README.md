@@ -163,12 +163,11 @@
 
 ### Celery
 
-1. Install and run redis
+1. Install RabbitMQ
     * linux
 
     ```bash
-    sudo apt install redis
-    redis-server
+    sudo apt install rabbitmq-server
     ```
 
 2. Run celery worker

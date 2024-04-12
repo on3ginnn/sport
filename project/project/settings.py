@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 
+from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from dotenv import load_dotenv
 
@@ -140,6 +141,8 @@ LANGUAGES = [
     ("en", _("English")),
 ]
 
+LOGIN_REDIRECT_URL = reverse_lazy("users:login")
+LOGOUT_REDIRECT_URL = reverse_lazy("homepage:main")
 
 STATIC_ROOT = BASE_DIR.parent / "static"
 

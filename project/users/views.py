@@ -48,7 +48,9 @@ class SignupFormView(django.views.generic.FormView):
 
 
 class ActivateRedirectView(django.views.generic.RedirectView):
+    django.views.generic.TemplateView
     url = reverse_lazy("homepage:main")
+    template_name = "users/signup.html"
 
     def get_redirect_url(self, *args, **kwargs):
         try:
@@ -56,7 +58,16 @@ class ActivateRedirectView(django.views.generic.RedirectView):
         except signing.BadSignature:
             raise Http404
 
-        users.forms.SignUpForm(data).save()
+        form = users.forms.SignUpForm(data)
+        if not form.is_valid():
+            django.contrib.messages.success(
+                self.request,
+                _("message_activate_error"),
+            )
+            return super().get_redirect_url(*args, **kwargs)
+
+        user = form.save()
+        login(self.request, user)
         django.contrib.messages.success(
             self.request,
             _("message_activate_success"),
