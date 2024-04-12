@@ -45,7 +45,7 @@
 1. Clone the repo
 
    ```bash
-   git clone git@gitlab.crja72.ru:django/2024/spring/course/students/199049-sahbievdg-course-1112.git
+   git clone git@gitlab.crja72.ru:django/2024/spring/course/projects/team-3.git
    ```
 
 2. Install requirements
@@ -162,20 +162,40 @@
     ```
 
 ### Celery
+1. Install Erlang
+    * windows
 
-1. Install RabbitMQ
+    ```bash
+    [download and install latest version](https://www.erlang.org/downloads)
+    ```
+
+2. Install RabbitMQ
     * linux
 
     ```bash
     sudo apt install rabbitmq-server
     ```
 
-2. Run celery worker
-    * python
+    * windows
+
+    ```bash
+    [download and install latest version](https://www.rabbitmq.com/docs/install-windows#downloads)
+    run this by double-click: \*:\\\*\\rabbitmq_server-\*.\*.\*\\sbin\\rabbitmq-server.bat
+    ```
+
+3. Run celery worker
+    * linux
 
     ```bash
     cd project
     python -m celery -A project worker
+    ```
+
+    * windows
+
+    ```bash
+    cd project
+    celery -A project worker -l info --pool=solo
     ```
 
 ### Start
