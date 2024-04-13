@@ -92,7 +92,7 @@ urlpatterns = [
         name="signup",
     ),
     path(
-        "activate/<username>/",
+        "activate/<token>/",
         users.views.ActivateRedirectView.as_view(),
         name="activate",
     ),

@@ -148,7 +148,8 @@ LANGUAGES = [
     ("en", _("English")),
 ]
 
-LOGIN_REDIRECT_URL = reverse_lazy("users:login")
+LOGIN_URL = reverse_lazy("users:login")
+LOGIN_REDIRECT_URL = reverse_lazy("homepage:main")
 LOGOUT_REDIRECT_URL = reverse_lazy("homepage:main")
 
 STATIC_ROOT = BASE_DIR.parent / "static"

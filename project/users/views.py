@@ -54,7 +54,7 @@ class ActivateRedirectView(django.views.generic.RedirectView):
 
     def get_redirect_url(self, *args, **kwargs):
         try:
-            data = signing.loads(kwargs.get("username"))
+            data = signing.loads(kwargs.get("token"))
         except signing.BadSignature:
             raise Http404
 
