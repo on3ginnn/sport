@@ -68,7 +68,7 @@ class User(django.contrib.auth.models.AbstractUser):
         blank=True,
         null=True,
     )
-    rating = django.db.models.PositiveIntegerField(
+    rating = django.db.models.PositiveSmallIntegerField(
         _("rating"),
         help_text=_("rating_field_help"),
         default=0,

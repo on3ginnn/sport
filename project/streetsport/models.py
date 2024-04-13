@@ -2,7 +2,6 @@ import re
 
 from django.core.exceptions import ValidationError
 import django.db
-import django.db.models
 from django.utils.translation import gettext as _
 from slugify import slugify
 
@@ -91,7 +90,7 @@ class Team(django.db.models.Model):
         editable=False,
         help_text=_("normalize_title_field_help"),
     )
-    rating = django.db.models.PositiveIntegerField(
+    rating = django.db.models.PositiveSmallIntegerField(
         _("rating"),
         help_text=_("rating_field_help"),
         default=0,

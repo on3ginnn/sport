@@ -105,7 +105,6 @@
     pip install psycopg2
     ```  
 
-
 2. Postgres interactive line
     * linux
 
