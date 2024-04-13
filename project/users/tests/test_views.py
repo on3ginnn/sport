@@ -118,7 +118,7 @@ class TestUserViews(django.test.TestCase):
         }
         token = signing.dumps(data)
         self.client.get(django.urls.reverse("users:activate", args=[token]))
-        response = self.client.post(
+        response1 = self.client.post(
             django.urls.reverse("users:login"),
             {
                 "username": data["username"],
@@ -126,6 +126,17 @@ class TestUserViews(django.test.TestCase):
             },
         )
         self.assertRedirects(
-            response,
+            response1,
+            django.urls.reverse("homepage:main"),
+        )
+        response2 = self.client.post(
+            django.urls.reverse("users:login"),
+            {
+                "username": data["email"],
+                "password": data["password1"],
+            },
+        )
+        self.assertRedirects(
+            response2,
             django.urls.reverse("homepage:main"),
         )

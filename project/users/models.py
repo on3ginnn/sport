@@ -2,9 +2,7 @@ from pathlib import Path
 import uuid
 
 import django.contrib.auth
-import django.contrib.auth.models
 import django.db
-import django.db.models
 from django.utils.translation import gettext_lazy as _
 import sorl
 
@@ -13,10 +11,43 @@ import users.validators
 __all__ = []
 
 
+class UserManager(django.contrib.auth.models.UserManager):
+    CONONICAL_DOMAINS = {
+        "yandex.ru": "ya.ru",
+    }
+    DOTS = {
+        "ya.ry": "-",
+        "gmail.com": "",
+    }
+
+    @classmethod
+    def normalize_email(cls, email):
+        email = super().normalize_email(email).lower()
+        try:
+            email_name, domain_part = email.rsplit("@", 1)
+            email_name, *_ = email_name.split("+", 1)
+            domain_part = cls.CONONICAL_DOMAINS.get(domain_part, domain_part)
+            email_name = email_name.replace(
+                ".",
+                cls.DOTS.get(domain_part, "."),
+            )
+        except ValueError:
+            pass
+        else:
+            email = f"{email_name}@{domain_part}"
+
+        return email
+
+    def by_mail(self, email):
+        return self.get_queryset().get(email=self.normalize_email(email))
+
+
 class User(django.contrib.auth.models.AbstractUser):
     def get_path_image(self, filename):
         ext = Path(filename).suffix
         return f"users/{self.id}/avatar{ext}"
+
+    objects = UserManager()
 
     username = django.db.models.CharField(
         _("username"),
@@ -30,6 +61,13 @@ class User(django.contrib.auth.models.AbstractUser):
             "unique": _("A user with that username already exists."),
         },
     )
+
+    email = django.db.models.EmailField(
+        _("email address"),
+        blank=True,
+        unique=True,
+    )
+
     bio = django.db.models.TextField(
         _("biography"),
         max_length=4000,

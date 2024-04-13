@@ -123,6 +123,7 @@ if DEBUG:
     INTERNAL_IPS = os.getenv("DJANGO_INTERNAL_IPS", "127.0.0.1").split(",")
 
 AUTH_USER_MODEL = "users.User"
+AUTHENTICATION_BACKENDS = ["users.backends.EmailUsernameBackend"]
 
 LANGUAGE_CODE = "ru"
 
