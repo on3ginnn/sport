@@ -82,9 +82,9 @@ WSGI_APPLICATION = "project.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": os.getenv("PG_ENGINE", "django.db.backends.postgresql"),
-        "NAME": os.getenv("PG_DB_NAME", ""),
-        "USER": os.getenv("PG_USER", ""),
-        "PASSWORD": os.getenv("PG_PASSWORD", ""),
+        "NAME": os.getenv("PG_DB_NAME", "name"),
+        "USER": os.getenv("PG_USER", "user"),
+        "PASSWORD": os.getenv("PG_PASSWORD", "password"),
         "HOST": os.getenv("PG_HOST", "localhost"),
         "PORT": os.getenv("PG_PORT", "5432"),
     },
@@ -93,20 +93,28 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth."
-        "password_validation.UserAttributeSimilarityValidator",
+        "NAME": (
+            "django.contrib.auth."
+            "password_validation.UserAttributeSimilarityValidator"
+        ),
     },
     {
-        "NAME": "django.contrib.auth."
-        "password_validation.MinimumLengthValidator",
+        "NAME": (
+            "django.contrib.auth."
+            "password_validation.MinimumLengthValidator"
+        ),
     },
     {
-        "NAME": "django.contrib.auth."
-        "password_validation.CommonPasswordValidator",
+        "NAME": (
+            "django.contrib.auth."
+            "password_validation.CommonPasswordValidator"
+        ),
     },
     {
-        "NAME": "django.contrib.auth."
-        "password_validation.NumericPasswordValidator",
+        "NAME": (
+            "django.contrib.auth."
+            "password_validation.NumericPasswordValidator"
+        ),
     },
 ]
 
