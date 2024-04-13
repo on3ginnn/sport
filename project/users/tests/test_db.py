@@ -133,3 +133,18 @@ class DBUserTests(TestCase):
                     count,
                     msg=f"add no validate by username({username}) user",
                 )
+
+    def test_username_search(self):
+        users_ls = []
+        for i in range(10):
+            user = users.models.User.objects.create_user(
+                username=f"test{i}",
+                password="123",
+                email=f"test{i}@example.com",
+            )
+            users_ls.append(user)
+
+        self.assertQuerySetEqual(
+            users_ls,
+            users.models.User.objects.search_by_username("test"),
+        )

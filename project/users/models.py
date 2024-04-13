@@ -3,6 +3,7 @@ import uuid
 
 import django.contrib.auth
 import django.db
+import django.db.models
 from django.utils.translation import gettext_lazy as _
 import sorl
 
@@ -40,6 +41,15 @@ class UserManager(django.contrib.auth.models.UserManager):
 
     def by_mail(self, email):
         return self.get_queryset().get(email=self.normalize_email(email))
+
+    def search_by_username(self, username):
+        return (
+            self.get_queryset()
+            .filter(
+                username__unaccent__icontains=username,
+            )
+            .order_by(User.username.field.name)
+        )
 
 
 class User(django.contrib.auth.models.AbstractUser):

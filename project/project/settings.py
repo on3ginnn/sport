@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.postgres",
     "sorl.thumbnail",
     "django_cleanup.apps.CleanupConfig",
     "about.apps.AboutConfig",
