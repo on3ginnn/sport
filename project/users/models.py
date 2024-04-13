@@ -20,14 +20,11 @@ class User(django.contrib.auth.models.AbstractUser):
 
     username = django.db.models.CharField(
         _("username"),
-        max_length=150,
+        max_length=32,
         unique=True,
-        help_text=_(
-            "Required. 150 characters or fewer. Letters, "
-            "digits and @/./+/-/_ only."
-        ),
+        help_text=_("username_field_help"),
         validators=[
-            django.contrib.auth.models.AbstractUser.username_validator,
+            users.validators.UsernameValidator(),
         ],
         error_messages={
             "unique": _("A user with that username already exists."),
@@ -56,17 +53,9 @@ class User(django.contrib.auth.models.AbstractUser):
     )
     tg_link = django.db.models.CharField(
         _("tg_link"),
-        validators=[users.validators.tg_link_validator],
+        validators=[users.validators.TgLinkValidator()],
         help_text=_("tg_link_field_help"),
         max_length=44,
-        blank=True,
-        null=True,
-    )
-    inst_link = django.db.models.CharField(
-        _("inst_link"),
-        validators=[users.validators.inst_link_validator],
-        help_text=_("inst_link_field_help"),
-        max_length=269,
         blank=True,
         null=True,
     )

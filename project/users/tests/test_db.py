@@ -34,7 +34,7 @@ class DBUserTests(TestCase):
             )
 
         user = users.models.User(
-            username="test",
+            username="testt",
             password="test",
             birthday=now,
         )
@@ -66,7 +66,7 @@ class DBUserTests(TestCase):
         count = users.models.User.objects.count()
         if is_valid:
             user = users.models.User(
-                username="test",
+                username="testt",
                 password="test",
                 tg_link=tg_link,
             )
@@ -94,40 +94,42 @@ class DBUserTests(TestCase):
 
     @parameterized.parameterized.expand(
         [
-            ("instagram.com/t", True),
-            ("instagram.com/" + "t" * 255, True),
-            ("instagram.com/t-t-t__", True),
-            ("instagram.com/t-t-__@", False),
-            ("instagram.com/T", False),
-            ("instagram.com/" + "t" * 256, False),
+            ("testt", True),
+            ("test_test", True),
+            ("t" * 32, True),
+            ("tesTT", True),
+            ("T_T_T_T", True),
+            ("test!", False),
+            ("T__##3", False),
+            ("@TT1T", False),
+            ("t" * 33, False),
+            ("test", False),
         ]
     )
-    def test_inst_link_validator(self, inst_link, is_valid):
+    def test_username_validator(self, username, is_valid):
         count = users.models.User.objects.count()
         if is_valid:
             user = users.models.User(
-                username="test",
+                username=username,
                 password="test",
-                inst_link=inst_link,
             )
             user.full_clean()
             user.save()
             self.assertEqual(
                 users.models.User.objects.count(),
                 count + 1,
-                msg=f"no add validate by inst_link({inst_link}) user",
+                msg=f"no add validate by username({username}) user",
             )
         else:
             with self.assertRaises(ValidationError):
                 user = users.models.User(
-                    username="test",
+                    username=username,
                     password="test",
-                    inst_link=inst_link,
                 )
                 user.full_clean()
                 user.save()
                 self.assertEqual(
                     users.models.User.objects.count(),
                     count,
-                    msg=f"add no validate by inst_link({inst_link}) user",
+                    msg=f"add no validate by username({username}) user",
                 )

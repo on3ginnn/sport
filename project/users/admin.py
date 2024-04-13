@@ -20,7 +20,6 @@ class UserAdmin(UserAdmin):
         users.models.User.birthday.field.name,
         users.models.User.bio.field.name,
         users.models.User.tg_link.field.name,
-        users.models.User.inst_link.field.name,
         users.models.User.rating.field.name,
     ]
     fieldsets = UserAdmin.fieldsets + (
