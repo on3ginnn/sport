@@ -97,11 +97,14 @@
     sudo apt install libpq-dev postgresql postgresql-contrib
     ```
 
-    * windows(Install PostgreSQL)
+    * windows(Install PostgreSQL and psycopg2)
+
+    [install postgres](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads)
 
     ```url
-    https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
+    pip install psycopg2
     ```  
+
 
 2. Postgres interactive line
     * linux
