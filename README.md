@@ -165,7 +165,8 @@
     ```
 
 ### Celery
-1. Install Erlang
+
+1. Install Erlang for windows
     * windows
 
     [download and install latest version](https://www.erlang.org/downloads)
@@ -186,18 +187,11 @@
     ```
 
 3. Run celery worker
-    * linux
+    * python
 
     ```bash
     cd project
     python -m celery -A project worker
-    ```
-
-    * windows
-
-    ```bash
-    cd project
-    celery -A project worker -l info --pool=solo
     ```
 
 ### Start

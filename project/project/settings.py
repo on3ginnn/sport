@@ -159,12 +159,12 @@ MEDIA_URL = "/media/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 EMAIL_BACKEND = "djcelery_email.backends.CeleryEmailBackend"
-EMAIL_HOST = "smtp.yandex.ru"
-EMAIL_PORT = 465
-EMAIL_USE_SSL = True
+EMAIL_HOST = os.getenv("EMAIL_HOST", "smtp.yandex.ru")
+EMAIL_PORT = int(os.getenv("EMAIL_PORT", 465))
+EMAIL_USE_SSL = true_load("EMAIL_USE_SSL", True)
 
-EMAIL_HOST_USER = "Damir.DeBug@yandex.ru"
-EMAIL_HOST_PASSWORD = "aukqrygbsvpogpbs"
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER", "Damir.DeBug@yandex.ru")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD", "aukqrygbsvpogpbs")
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 SERVER_EMAIL = EMAIL_HOST_USER
