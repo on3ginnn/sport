@@ -1,9 +1,11 @@
+from pathlib import Path
 import re
 
 from django.core.exceptions import ValidationError
 import django.db
 from django.utils.translation import gettext as _
 from slugify import slugify
+import sorl
 
 import streetsport.validators
 import users.models
@@ -53,11 +55,22 @@ class Game(django.db.models.Model):
 
 
 class Team(django.db.models.Model):
+    def get_path_image(self, filename):
+        ext = Path(filename).suffix
+        return f"streetsport/team_{self.id}{ext}"
+
     title = django.db.models.CharField(
         _("title"),
         help_text=_("title_field_help"),
         max_length=50,
         unique=True,
+    )
+    avatar = sorl.thumbnail.ImageField(
+        _("avatar"),
+        help_text=_("avatar_field_help"),
+        upload_to=get_path_image,
+        null=True,
+        blank=True,
     )
     lead = django.db.models.ForeignKey(
         users.models.User,
