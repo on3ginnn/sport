@@ -1,21 +1,21 @@
-from django.contrib import admin
+import django.contrib
 
 import streetsport.models
 
 __all__ = []
 
 
-@admin.register(streetsport.models.Team)
-class TeamAdmin(admin.ModelAdmin):
+@django.contrib.admin.register(streetsport.models.Team)
+class TeamAdmin(django.contrib.admin.ModelAdmin):
     list_display = (streetsport.models.Team.title.field.name,)
     filter_horizontal = (streetsport.models.Team.teammates.field.name,)
 
 
-@admin.register(streetsport.models.Game)
-class GameAdmin(admin.ModelAdmin):
+@django.contrib.admin.register(streetsport.models.Game)
+class GameAdmin(django.contrib.admin.ModelAdmin):
     list_display = (streetsport.models.Game.title.field.name,)
 
 
-@admin.register(streetsport.models.Order)
-class OrderAdmin(admin.ModelAdmin):
+@django.contrib.admin.register(streetsport.models.Order)
+class OrderAdmin(django.contrib.admin.ModelAdmin):
     list_display = (streetsport.models.Order.start.field.name,)

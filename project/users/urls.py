@@ -1,11 +1,6 @@
-from django.contrib.auth import views
-from django.contrib.auth.forms import (
-    AuthenticationForm,
-    PasswordChangeForm,
-    PasswordResetForm,
-    SetPasswordForm,
-)
-from django.urls import path, reverse_lazy
+import django.contrib.auth.forms
+import django.contrib.auth.views
+import django.urls
 
 import users.forms
 import users.views
@@ -16,92 +11,94 @@ __all__ = []
 app_name = "users"
 
 urlpatterns = [
-    path(
+    django.urls.path(
         "profile/",
-        views.LoginView.as_view(
+        django.contrib.auth.views.LoginView.as_view(
             template_name="users/login.html",
             authentication_form=users.forms.custom_auth_form(
-                AuthenticationForm,
+                django.contrib.auth.forms.AuthenticationForm,
             ),
         ),
         name="profile",
     ),
-    path(
+    django.urls.path(
         "login/",
-        views.LoginView.as_view(
+        django.contrib.auth.views.LoginView.as_view(
             template_name="users/login.html",
             authentication_form=users.forms.custom_auth_form(
-                AuthenticationForm,
+                django.contrib.auth.forms.AuthenticationForm,
             ),
         ),
         name="login",
     ),
-    path(
+    django.urls.path(
         "logout/",
-        views.LogoutView.as_view(
+        django.contrib.auth.views.LogoutView.as_view(
             template_name="users/logout.html",
         ),
         name="logout",
     ),
-    path(
+    django.urls.path(
         "password_change/",
-        views.PasswordChangeView.as_view(
+        django.contrib.auth.views.PasswordChangeView.as_view(
             template_name="users/password_change.html",
             form_class=users.forms.custom_auth_form(
-                PasswordChangeForm,
+                django.contrib.auth.forms.PasswordChangeForm,
             ),
         ),
         name="password_change",
     ),
-    path(
+    django.urls.path(
         "password_change/done/",
-        views.PasswordChangeDoneView.as_view(
+        django.contrib.auth.views.PasswordChangeDoneView.as_view(
             template_name="users/password_change_done.html",
         ),
         name="password_change_done",
     ),
-    path(
+    django.urls.path(
         "password_reset/",
-        views.PasswordResetView.as_view(
+        django.contrib.auth.views.PasswordResetView.as_view(
             template_name="users/password_reset.html",
             form_class=users.forms.custom_auth_form(
-                PasswordResetForm,
+                django.contrib.auth.forms.PasswordResetForm,
             ),
-            success_url=reverse_lazy("users:password_reset_done"),
+            success_url=django.urls.reverse_lazy("users:password_reset_done"),
         ),
         name="password_reset",
     ),
-    path(
+    django.urls.path(
         "password_reset/done/",
-        views.PasswordResetDoneView.as_view(
+        django.contrib.auth.views.PasswordResetDoneView.as_view(
             template_name="users/password_reset_done.html",
         ),
         name="password_reset_done",
     ),
-    path(
+    django.urls.path(
         "reset/<uidb64>/<token>/",
-        views.PasswordResetConfirmView.as_view(
+        django.contrib.auth.views.PasswordResetConfirmView.as_view(
             form_class=users.forms.custom_auth_form(
-                SetPasswordForm,
+                django.contrib.auth.forms.SetPasswordForm,
             ),
             template_name="users/password_reset_confirm.html",
-            success_url=reverse_lazy("users:password_reset_complete"),
+            success_url=django.urls.reverse_lazy(
+                "users:password_reset_complete",
+            ),
         ),
         name="password_reset_confirm",
     ),
-    path(
+    django.urls.path(
         "reset/done/",
-        views.PasswordResetCompleteView.as_view(
+        django.contrib.auth.views.PasswordResetCompleteView.as_view(
             template_name="users/password_reset_complete.html",
         ),
         name="password_reset_complete",
     ),
-    path(
+    django.urls.path(
         "signup/",
         users.views.SignupFormView.as_view(),
         name="signup",
     ),
-    path(
+    django.urls.path(
         "activate/<token>/",
         users.views.ActivateRedirectView.as_view(),
         name="activate",

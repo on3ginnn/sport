@@ -1,14 +1,14 @@
 import os
-from pathlib import Path
+import pathlib
 
-from django.urls import reverse_lazy
+import django.urls
 from django.utils.translation import gettext_lazy as _
-from dotenv import load_dotenv
+import dotenv
 
 
 __all__ = []
 
-load_dotenv()
+dotenv.load_dotenv()
 
 
 def true_load(value: str, defoult: bool) -> bool:
@@ -16,7 +16,7 @@ def true_load(value: str, defoult: bool) -> bool:
     return env_value in ("", "true", "yes", "1", "y")
 
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = pathlib.Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "ABOBA")
 
@@ -83,8 +83,8 @@ WSGI_APPLICATION = "project.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": os.getenv("PG_ENGINE", "django.db.backends.postgresql"),
-        "NAME": os.getenv("PG_DB_NAME", "name"),
-        "USER": os.getenv("PG_USER", "user"),
+        "NAME": os.getenv("PG_DB_NAME", "myproject"),
+        "USER": os.getenv("PG_USER", "myprojectuser"),
         "PASSWORD": os.getenv("PG_PASSWORD", "password"),
         "HOST": os.getenv("PG_HOST", "localhost"),
         "PORT": os.getenv("PG_PORT", "5432"),
@@ -150,9 +150,9 @@ LANGUAGES = [
     ("en", _("English")),
 ]
 
-LOGIN_URL = reverse_lazy("users:login")
-LOGIN_REDIRECT_URL = reverse_lazy("homepage:main")
-LOGOUT_REDIRECT_URL = reverse_lazy("homepage:main")
+LOGIN_URL = django.urls.reverse_lazy("users:login")
+LOGIN_REDIRECT_URL = django.urls.reverse_lazy("homepage:main")
+LOGOUT_REDIRECT_URL = django.urls.reverse_lazy("homepage:main")
 
 STATIC_ROOT = BASE_DIR.parent / "static"
 

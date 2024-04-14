@@ -1,9 +1,11 @@
+import pathlib
 import re
 
-from django.core.exceptions import ValidationError
-import django.db
+import django.core.exceptions
+import django.db.models
 from django.utils.translation import gettext as _
-from slugify import slugify
+import slugify
+import sorl.thumbnail
 
 import streetsport.validators
 import users.models
@@ -14,7 +16,7 @@ __all__ = []
 
 def normalize_str(value):
     words = re.findall("[0-9а-яёa-z]+", value.lower())
-    return slugify("".join(words))
+    return slugify.slugify("".join(words))
 
 
 class Game(django.db.models.Model):
@@ -38,7 +40,7 @@ class Game(django.db.models.Model):
             normalize_title=normalize_title,
         )
         if found.values("id"):
-            raise ValidationError(
+            raise django.core.exceptions.ValidationError(
                 {Game.title.field.name: _("normalize_title_validation_error")},
             )
 
@@ -53,15 +55,26 @@ class Game(django.db.models.Model):
 
 
 class Team(django.db.models.Model):
+    def get_path_image(self, filename):
+        ext = pathlib.Path(filename).suffix
+        return f"streetsport/team_{self.id}{ext}"
+
     title = django.db.models.CharField(
         _("title"),
         help_text=_("title_field_help"),
         max_length=50,
         unique=True,
     )
+    avatar = sorl.thumbnail.ImageField(
+        _("avatar"),
+        help_text=_("avatar_field_help"),
+        upload_to=get_path_image,
+        null=True,
+        blank=True,
+    )
     lead = django.db.models.ForeignKey(
         users.models.User,
-        on_delete=django.db.models.CASCADE,
+        on_delete=django.db.models.SET_NULL,
         verbose_name=_("lead"),
         help_text=_("lead_field_help"),
         related_name="lead_teams",
@@ -106,14 +119,14 @@ class Team(django.db.models.Model):
             normalize_title=normalize_title,
         )
         if found.values("id"):
-            raise ValidationError(
+            raise django.core.exceptions.ValidationError(
                 {Team.title.field.name: _("normalize_title_validation_error")},
             )
 
         self.normalize_title = normalize_title
 
     @property
-    def children(self):
+    def orders(self):
         return Order.objects.filter(
             django.db.models.Q(team_one=self)
             | django.db.models.Q(team_two=self),
@@ -179,7 +192,7 @@ class Order(django.db.models.Model):
 
     def clean(self):
         if self.team_one == self.team_two:
-            raise ValidationError(
+            raise django.core.exceptions.ValidationError(
                 {Order.team_two.field.name: _("team_equal_validation_error")},
             )
 

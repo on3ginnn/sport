@@ -1,10 +1,10 @@
-from http import HTTPStatus
-from pathlib import Path
+import http
+import pathlib
 import shutil
 
-from django.conf import settings
-from django.core import signing
+import django.conf
 import django.core.mail
+import django.core.signing
 import django.test
 import django.urls
 import django.utils
@@ -12,7 +12,7 @@ import django.utils
 import users.models
 
 TEST_EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-TEST_EMAIL_FILE_PATH = settings.BASE_DIR / "send_mail"
+TEST_EMAIL_FILE_PATH = django.conf.settings.BASE_DIR / "send_mail"
 
 __all__ = []
 
@@ -25,7 +25,7 @@ class TestUserViews(django.test.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        if Path(TEST_EMAIL_FILE_PATH).exists():
+        if pathlib.Path(TEST_EMAIL_FILE_PATH).exists():
             shutil.rmtree(TEST_EMAIL_FILE_PATH)
 
         cls.user_model.objects.all().delete()
@@ -82,18 +82,20 @@ class TestUserViews(django.test.TestCase):
             data,
         )
         self.assertEqual(response.status_code, 302)
-        token = signing.dumps(data)
-        self.assertTrue(Path(TEST_EMAIL_FILE_PATH).exists())
-        with Path.open(next(Path(TEST_EMAIL_FILE_PATH).glob("*.log"))) as f:
+        token = django.core.signing.dumps(data)
+        self.assertTrue(pathlib.Path(TEST_EMAIL_FILE_PATH).exists())
+        with pathlib.Path.open(
+            next(pathlib.Path(TEST_EMAIL_FILE_PATH).glob("*.log")),
+        ) as f:
             self.assertIn(token, f.read())
 
         response = self.client.get(
-            django.urls.reverse("users:activate", args=[token])
+            django.urls.reverse("users:activate", args=[token]),
         )
         self.assertRedirects(
             response,
             django.urls.reverse("homepage:main"),
-            target_status_code=HTTPStatus.OK,
+            target_status_code=http.HTTPStatus.OK,
         )
         self.assertTrue(
             self.user_model.objects.filter(username="testinguser").exists(),
@@ -116,7 +118,7 @@ class TestUserViews(django.test.TestCase):
             "password1": "testpassword",
             "password2": "testpassword",
         }
-        token = signing.dumps(data)
+        token = django.core.signing.dumps(data)
         self.client.get(django.urls.reverse("users:activate", args=[token]))
         response1 = self.client.post(
             django.urls.reverse("users:login"),

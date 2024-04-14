@@ -1,11 +1,10 @@
-from pathlib import Path
+import pathlib
 import uuid
 
 import django.contrib.auth
-import django.db
 import django.db.models
 from django.utils.translation import gettext_lazy as _
-import sorl
+import sorl.thumbnail
 
 import users.validators
 
@@ -54,7 +53,7 @@ class UserManager(django.contrib.auth.models.UserManager):
 
 class User(django.contrib.auth.models.AbstractUser):
     def get_path_image(self, filename):
-        ext = Path(filename).suffix
+        ext = pathlib.Path(filename).suffix
         return f"users/{self.id}/avatar{ext}"
 
     objects = UserManager()
@@ -127,7 +126,7 @@ class User(django.contrib.auth.models.AbstractUser):
 
 class Image(django.db.models.Model):
     def get_path_image(self, filename):
-        ext = Path(filename).suffix
+        ext = pathlib.Path(filename).suffix
         return f"users/{self.user_id}/{uuid.uuid4()}{ext}"
 
     user = django.db.models.ForeignKey(
@@ -149,4 +148,4 @@ class Image(django.db.models.Model):
         verbose_name_plural = _("user_images")
 
     def __str__(self):
-        return Path(self.image.path).stem
+        return pathlib.Path(self.image.path).stem

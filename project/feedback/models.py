@@ -1,7 +1,7 @@
-from django.conf import settings
-import django.db
-from django.template.defaultfilters import truncatechars
-from django.utils.translation import gettext_lazy as _
+import django.conf
+import django.db.models
+import django.template.defaultfilters
+from django.utils.translation import gettext as _
 
 
 __all__ = []
@@ -15,34 +15,34 @@ class Status(django.db.models.TextChoices):
 
 class Feedback(django.db.models.Model):
     text = django.db.models.TextField(
-        "текст",
+        _("text"),
         max_length=4000,
-        help_text="напишите текст сообщения",
+        help_text=_("text_field_help"),
     )
     created_on = django.db.models.DateTimeField(
-        "создано",
-        help_text="дата и время создания",
+        _("created"),
+        help_text=_("created_field_help"),
         auto_now_add=True,
         null=True,
     )
     status = django.db.models.CharField(
-        "статус",
+        _("status"),
         choices=Status.choices,
-        help_text="статус обратной связи",
+        help_text=_("status_field_help"),
         default=Status.NEW,
         max_length=2,
     )
 
     @property
     def short_text(self):
-        return truncatechars(self.text, 100)
+        return django.template.defaultfilters.truncatechars(self.text, 100)
 
     short_text.fget.field_name = "short_text"
-    short_text.fget.short_description = "короткий текст"
+    short_text.fget.short_description = _("short_text")
 
     class Meta:
-        verbose_name = "обратная связь"
-        verbose_name_plural = "обратные связи"
+        verbose_name = _("feedback")
+        verbose_name_plural = _("feedbacks")
 
     def __str__(self) -> str:
         return f"обратная связь ({self.id})"
@@ -50,43 +50,43 @@ class Feedback(django.db.models.Model):
 
 class StatusLog(django.db.models.Model):
     user = django.db.models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        help_text="пользователь который изменил статус обратной связи",
-        verbose_name="пользователь",
+        django.conf.settings.AUTH_USER_MODEL,
+        help_text=_("user_field_help"),
+        verbose_name=_("user"),
         on_delete=django.db.models.SET_NULL,
         null=True,
     )
     feedback = django.db.models.ForeignKey(
         Feedback,
-        verbose_name="обратная связь",
-        help_text="обратная связь лога",
+        verbose_name=_("feedback"),
+        help_text=_("feedback_field_help"),
         on_delete=django.db.models.SET_NULL,
         null=True,
     )
     timestamp = django.db.models.DateTimeField(
-        "создано",
-        help_text="дата и время создания",
+        _("timestamp"),
+        help_text=_("timestamp_field_help"),
         auto_now_add=True,
         null=True,
     )
     from_status = django.db.models.CharField(
-        "с",
+        _("from_status"),
         choices=Status.choices,
-        help_text="изменение статуса с",
+        help_text=_("from_status_field_help"),
         db_column="from",
         max_length=2,
     )
     to_status = django.db.models.CharField(
-        "на",
-        help_text="изменение статуса на",
+        _("to_status"),
+        help_text=_("to_status_field_help"),
         choices=Status.choices,
         db_column="to",
         max_length=2,
     )
 
     class Meta:
-        verbose_name = "журнал состояния"
-        verbose_name_plural = "журнал состояний"
+        verbose_name = _("status_log")
+        verbose_name_plural = _("status_logs")
 
     def __str__(self) -> str:
         return f"состояние ({self.id})"
@@ -99,36 +99,36 @@ class FeedbackFile(django.db.models.Model):
     feedback = django.db.models.ForeignKey(
         Feedback,
         on_delete=django.db.models.CASCADE,
-        verbose_name="обратная связь",
+        verbose_name=_("feedback"),
         related_name="files",
         related_query_name="files",
-        help_text="обратная связь файла",
+        help_text=_("feedback_field_help"),
     )
     file = django.db.models.FileField(
-        "файл",
+        _("file"),
         upload_to=upload_to,
-        help_text="загрузите файл",
+        help_text=_("file_field_help"),
     )
 
     class Meta:
-        verbose_name = "файлы обратной связи"
-        verbose_name_plural = "файлы обратных связей"
+        verbose_name = _("feedback_file")
+        verbose_name_plural = _("feedback_files")
 
 
 class FeedbackAuthor(django.db.models.Model):
     mail = django.db.models.EmailField(
-        "почта",
-        help_text="почтовый адрес",
+        _("email address"),
+        help_text=_("mail_field_help"),
     )
     feedback = django.db.models.OneToOneField(
         Feedback,
         on_delete=django.db.models.CASCADE,
-        help_text="обратная связь автора",
-        verbose_name="обратная связь",
+        help_text=_("feedback_field_help"),
+        verbose_name=_("feedback"),
         related_name="author",
         related_query_name="author",
     )
 
     class Meta:
-        verbose_name = "данные автора"
-        verbose_name_plural = "данные авторов"
+        verbose_name = _("feedback_author")
+        verbose_name_plural = _("feedback_authors")

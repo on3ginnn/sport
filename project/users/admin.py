@@ -1,21 +1,24 @@
-from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
-from django.utils.safestring import mark_safe
+import django.contrib
+import django.contrib.auth.admin
+import django.utils.safestring
 from django.utils.translation import gettext as _
-from sorl.thumbnail.admin import AdminImageMixin
+import sorl.thumbnail.admin
 
 import users.models
 
 __all__ = []
 
 
-class ImageInline(AdminImageMixin, admin.TabularInline):
+class ImageInline(
+    sorl.thumbnail.admin.AdminImageMixin,
+    django.contrib.admin.TabularInline,
+):
     fields = [users.models.Image.image.field.name]
     model = users.models.Image
 
 
-@admin.register(users.models.User)
-class UserAdmin(UserAdmin):
+@django.contrib.admin.register(users.models.User)
+class UserAdmin(django.contrib.auth.admin.UserAdmin):
     list_display = (users.models.User.username.field.name,)
     avatar_field = (
         users.models.User.avatar.field.name,
@@ -31,7 +34,7 @@ class UserAdmin(UserAdmin):
     readonly_fields = [
         "avatar_preview",
     ]
-    fieldsets = UserAdmin.fieldsets + (
+    fieldsets = django.contrib.auth.admin.UserAdmin.fieldsets + (
         (
             _("profile"),
             {
@@ -52,7 +55,7 @@ class UserAdmin(UserAdmin):
 
     def avatar_preview(self, obj):
         if obj:
-            return mark_safe(
+            return django.utils.safestring.mark_safe(
                 f'<img src="{obj.get_image_preview_x50().url}" width="50">',
             )
 
@@ -62,6 +65,6 @@ class UserAdmin(UserAdmin):
     avatar_preview.allow_tags = True
 
 
-@admin.register(users.models.Image)
-class ImageAdmin(admin.ModelAdmin):
+@django.contrib.admin.register(users.models.Image)
+class ImageAdmin(django.contrib.admin.ModelAdmin):
     list_display = (users.models.Image.user.field.name,)

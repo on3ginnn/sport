@@ -1,54 +1,56 @@
-from pathlib import Path
+import pathlib
 import shutil
 
-from django.conf import settings
-from django.core import validators
-from django.core.files.uploadedfile import SimpleUploadedFile
-from django.test import override_settings, TestCase
-from django.urls import reverse
-from parameterized import parameterized
+import django.conf
+import django.core.files.uploadedfile
+import django.core.validators
+import django.test
+import django.urls
+import django.utils
+from django.utils.translation import gettext as _
+import parameterized.parameterized
 
-from feedback.forms import FeedbackAuthorForm, FeedbackFileForm, FeedbackForm
-from feedback.models import Feedback
+import feedback.forms
+import feedback.models
 
 
 __all__ = []
 
 
-MEDIA_TEST: Path = settings.BASE_DIR / "media_test"
+MEDIA_TEST: pathlib.Path = django.conf.settings.BASE_DIR / "media_test"
 
 
-class FormTests(TestCase):
+class FormTests(django.test.TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.form = FeedbackForm()
-        cls.form_author = FeedbackAuthorForm()
+        cls.form = feedback.forms.FeedbackForm()
+        cls.form_author = feedback.forms.FeedbackAuthorForm()
 
     def test_mail_label(self):
         mail_label = FormTests.form_author.fields["mail"].label
-        self.assertEqual(mail_label, "Почта")
+        self.assertEqual(mail_label, _("email address").capitalize())
 
     def test_text_label(self):
         text_label = FormTests.form.fields["text"].label
-        self.assertEqual(text_label, "Текст")
+        self.assertEqual(text_label, _("text").capitalize())
 
     def test_mail_help_text(self):
         mail_help_text = FormTests.form_author.fields["mail"].help_text
         self.assertEqual(
             mail_help_text,
-            "почтовый адрес",
+            _("mail_field_help"),
         )
 
     def test_text_help_text(self):
         text_help_text = FormTests.form.fields["text"].help_text
-        self.assertEqual(text_help_text, "напишите текст сообщения")
+        self.assertEqual(text_help_text, _("text_field_help"))
 
-    @parameterized.expand(
+    @parameterized.parameterized.expand(
         [
-            ("content", FeedbackForm),
-            ("author", FeedbackAuthorForm),
-            ("files", FeedbackFileForm),
+            ("content", feedback.forms.FeedbackForm),
+            ("author", feedback.forms.FeedbackAuthorForm),
+            ("files", feedback.forms.FeedbackFileForm),
         ],
     )
     def test_correct_context(
@@ -57,13 +59,15 @@ class FormTests(TestCase):
         form_type,
     ):
         with self.subTest(form_name=form_name, form_type=form_type):
-            response = self.client.get(reverse("feedback:feedback"))
+            response = self.client.get(
+                django.urls.reverse("feedback:feedback"),
+            )
             self.assertIn("form", response.context)
             self.assertIn(form_name, response.context["form"].forms)
             form = response.context["form"][form_name]
             self.assertIsInstance(form, form_type)
 
-    @parameterized.expand(
+    @parameterized.parameterized.expand(
         [
             (
                 {
@@ -81,21 +85,24 @@ class FormTests(TestCase):
     )
     def test_from(self, data):
         with self.subTest(data=data):
-            feedback_count = Feedback.objects.count()
+            feedback_count = feedback.models.Feedback.objects.count()
             response = self.client.post(
-                reverse("feedback:feedback"),
+                django.urls.reverse("feedback:feedback"),
                 data=data,
                 follow=True,
             )
 
-            self.assertRedirects(response, reverse("feedback:feedback"))
+            self.assertRedirects(
+                response,
+                django.urls.reverse("feedback:feedback"),
+            )
             self.assertEqual(
-                Feedback.objects.count(),
+                feedback.models.Feedback.objects.count(),
                 feedback_count + 1,
                 "Feedback not created",
             )
             self.assertTrue(
-                Feedback.objects.filter(
+                feedback.models.Feedback.objects.filter(
                     author__mail=data["author-mail"],
                     text=data["content-text"],
                 ).exists(),
@@ -104,9 +111,9 @@ class FormTests(TestCase):
 
     def test_form_errors(self):
         data = {"content-text": "some text", "author-mail": "wrong email"}
-        feedback_count = Feedback.objects.count()
+        feedback_count = feedback.models.Feedback.objects.count()
         response = self.client.post(
-            reverse("feedback:feedback"),
+            django.urls.reverse("feedback:feedback"),
             data=data,
             follow=True,
         )
@@ -114,18 +121,18 @@ class FormTests(TestCase):
             response,
             "form",
             "author-mail",
-            validators.EmailValidator.message,
+            django.core.validators.EmailValidator.message,
         )
         self.assertEqual(
-            Feedback.objects.count(),
+            feedback.models.Feedback.objects.count(),
             feedback_count,
             "Feedback created while validation failed",
         )
 
-    @override_settings(MEDIA_ROOT=MEDIA_TEST)
+    @django.test.override_settings(MEDIA_ROOT=MEDIA_TEST)
     def test_form_file_upload(self):
         content = "Test file content".encode()
-        file_upload = SimpleUploadedFile(
+        file_upload = django.core.files.uploadedfile.SimpleUploadedFile(
             "file.txt",
             content,
             content_type="text/plain",
@@ -135,25 +142,29 @@ class FormTests(TestCase):
             "author-mail": "test@test.com",
             "files-files": [file_upload],
         }
-        feedback_count = Feedback.objects.count()
+        feedback_count = feedback.models.Feedback.objects.count()
+
         response = self.client.post(
-            reverse("feedback:feedback"),
+            django.urls.reverse("feedback:feedback"),
             data=data,
             format="multipart",
             follow=True,
         )
 
-        self.assertRedirects(response, reverse("feedback:feedback"))
+        self.assertRedirects(
+            response,
+            django.urls.reverse("feedback:feedback"),
+        )
         self.assertEqual(
-            Feedback.objects.count(),
+            feedback.models.Feedback.objects.count(),
             feedback_count + 1,
             "Feedback not created",
         )
-        feedback = Feedback.objects.filter(
+        feedbacks = feedback.models.Feedback.objects.filter(
             author__mail=data["author-mail"],
             text=data["content-text"],
         ).get()
-        files = list(feedback.files.all())
+        files = list(feedbacks.files.all())
         self.assertEqual(len(files), 1, "Wrong count of files created")
         with (MEDIA_TEST / files[0].file.name).open("rb") as f:
             self.assertEqual(f.read(), content, "Wrong file content")
@@ -161,5 +172,5 @@ class FormTests(TestCase):
     @classmethod
     def tearDownClass(cls):
         super().tearDownClass()
-        if Path.exists(MEDIA_TEST):
+        if pathlib.Path.exists(MEDIA_TEST):
             shutil.rmtree(MEDIA_TEST)

@@ -1,55 +1,60 @@
-from django.conf import settings
-from django.conf.urls.static import static
-from django.contrib import admin
+import django.conf
+import django.conf.urls.static
+import django.contrib.admin
 import django.contrib.auth.urls
-from django.urls import include, path
+import django.urls
 
 import streetsport.apps
 
 urlpatterns = [
-    path(
+    django.urls.path(
         "",
-        include(
+        django.urls.include(
             "homepage.urls",
         ),
         name="homepage",
     ),
-    path(
+    django.urls.path(
         "about/",
-        include(
+        django.urls.include(
             "about.urls",
         ),
         name="about",
     ),
-    path(
+    django.urls.path(
         "feedback/",
-        include(("feedback.urls")),
+        django.urls.include(("feedback.urls")),
         name="feedback",
     ),
-    path(
+    django.urls.path(
         "streetsport/",
-        include(("streetsport.urls")),
+        django.urls.include(("streetsport.urls")),
         name=streetsport.apps.StreetsportConfig.name,
     ),
-    path(
+    django.urls.path(
         "auth/",
-        include(("users.urls")),
+        django.urls.include(("users.urls")),
         name="users",
     ),
-    path(
+    django.urls.path(
         "admin/",
-        admin.site.urls,
+        django.contrib.admin.site.urls,
     ),
-    path(
+    django.urls.path(
         "auth/",
         django.urls.include(django.contrib.auth.urls),
     ),
 ]
 
 
-if settings.DEBUG:
-    urlpatterns += (path("__debug__/", include("debug_toolbar.urls")),)
-    urlpatterns += static(
-        settings.MEDIA_URL,
-        document_root=settings.MEDIA_ROOT,
+if django.conf.settings.DEBUG:
+    urlpatterns += (
+        django.urls.path(
+            "__debug__/",
+            django.urls.include("debug_toolbar.urls"),
+        ),
+    )
+    urlpatterns += django.conf.urls.static.static(
+        django.conf.settings.MEDIA_URL,
+        document_root=django.conf.settings.MEDIA_ROOT,
     )

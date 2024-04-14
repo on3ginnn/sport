@@ -1,12 +1,12 @@
-from django.conf import settings
-import django.contrib
-from django.contrib.auth import login
-from django.core import signing
-from django.core.mail import send_mail
+import django.conf
+import django.contrib.auth
+import django.contrib.messages
+import django.core.mail
+import django.core.signing
 import django.forms
-from django.http import Http404
-from django.template.loader import render_to_string
-from django.urls import reverse_lazy
+import django.http
+import django.template.loader
+import django.urls
 from django.utils.translation import gettext_lazy as _
 import django.views.generic
 
@@ -20,24 +20,25 @@ __all__ = []
 class SignupFormView(django.views.generic.FormView):
     form_class = users.forms.SignUpForm
     template_name = "users/signup.html"
-    success_url = reverse_lazy("users:login")
+    success_url = django.urls.reverse_lazy("users:login")
 
     def form_valid(self, form):
         user = form.save(commit=False)
-        if settings.DEFAULT_USER_IS_ACTIVE:
+        if django.conf.settings.DEFAULT_USER_IS_ACTIVE:
             user.is_active = True
             user.save()
-            login(self.request, user)
+            django.contrib.auth.login(self.request, user)
             return super().form_valid(form)
 
-        token = signing.dumps(form.cleaned_data)
+        token = django.core.signing.dumps(form.cleaned_data)
 
-        send_mail(
+        django.core.mail.send_mail(
             subject="Activate your account",
-            message=render_to_string(
-                "users/signup_email.html", {"token": token}
+            message=django.template.loader.render_to_string(
+                "users/signup_email.html",
+                {"token": token},
             ),
-            from_email=settings.EMAIL_ADMIN,
+            from_email=django.conf.settings.EMAIL_ADMIN,
             recipient_list=[user.email],
         )
         django.contrib.messages.success(
@@ -49,14 +50,14 @@ class SignupFormView(django.views.generic.FormView):
 
 class ActivateRedirectView(django.views.generic.RedirectView):
     django.views.generic.TemplateView
-    url = reverse_lazy("homepage:main")
+    url = django.urls.reverse_lazy("homepage:main")
     template_name = "users/signup.html"
 
     def get_redirect_url(self, *args, **kwargs):
         try:
-            data = signing.loads(kwargs.get("token"))
-        except signing.BadSignature:
-            raise Http404
+            data = django.core.signing.loads(kwargs.get("token"))
+        except django.core.signing.BadSignature:
+            raise django.http.Http404
 
         form = users.forms.SignUpForm(data)
         if not form.is_valid():
@@ -67,7 +68,7 @@ class ActivateRedirectView(django.views.generic.RedirectView):
             return super().get_redirect_url(*args, **kwargs)
 
         user = form.save()
-        login(self.request, user)
+        django.contrib.auth.login(self.request, user)
         django.contrib.messages.success(
             self.request,
             _("message_activate_success"),
