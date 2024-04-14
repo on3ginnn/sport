@@ -48,6 +48,9 @@ class Game(django.db.models.Model):
         verbose_name = _("game")
         verbose_name_plural = _("games")
 
+    def __str__(self):
+        return self.title
+
 
 class Team(django.db.models.Model):
     title = django.db.models.CharField(
@@ -120,6 +123,9 @@ class Team(django.db.models.Model):
         verbose_name = _("team")
         verbose_name_plural = _("teams")
 
+    def __str__(self):
+        return self.title
+
 
 class Order(django.db.models.Model):
     team_one = django.db.models.ForeignKey(
@@ -137,6 +143,16 @@ class Order(django.db.models.Model):
         help_text=_("team_one_field_help"),
         related_name="orders_two",
         related_query_name="orders_two",
+    )
+    game = django.db.models.ForeignKey(
+        Game,
+        on_delete=django.db.models.CASCADE,
+        verbose_name=_("order_game"),
+        help_text=_("order_game_help_text"),
+        related_name="order_game",
+        related_query_name="order_game",
+        null=True,
+        blank=False,
     )
     start = django.db.models.DateTimeField(
         _("start"),
@@ -170,3 +186,6 @@ class Order(django.db.models.Model):
     class Meta:
         verbose_name = _("order")
         verbose_name_plural = _("orders")
+
+    def __str__(self):
+        return f"{self.start}: {self.team_one} - {self.team_two}"

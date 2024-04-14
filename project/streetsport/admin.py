@@ -18,4 +18,4 @@ class GameAdmin(admin.ModelAdmin):
 
 @admin.register(streetsport.models.Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = (streetsport.models.Order.description.field.name,)
+    list_display = (streetsport.models.Order.start.field.name,)

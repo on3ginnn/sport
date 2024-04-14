@@ -46,7 +46,7 @@ msgstr ""
 
 #: .\streetsport\apps.py:10
 msgid "streetsport app"
-msgstr ""
+msgstr "Street спорт"
 
 #: .\streetsport\models.py:23 .\streetsport\models.py:55
 msgid "title"

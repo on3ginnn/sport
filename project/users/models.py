@@ -113,6 +113,14 @@ class User(django.contrib.auth.models.AbstractUser):
         default=0,
     )
 
+    def get_image_preview_x50(self, obj=None):
+        return sorl.thumbnail.get_thumbnail(
+            obj or self.avatar,
+            "50x50",
+            crop="center",
+            quality=51,
+        )
+
     class Meta(django.contrib.auth.models.AbstractUser.Meta):
         swappable = "AUTH_USER_MODEL"
 

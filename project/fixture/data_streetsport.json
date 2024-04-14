@@ -1,0 +1,101 @@
+[
+{
+  "model": "streetsport.game",
+  "pk": 1,
+  "fields": {
+    "title": "футбол",
+    "normalize_title": "futbol"
+  }
+},
+{
+  "model": "streetsport.game",
+  "pk": 2,
+  "fields": {
+    "title": "баскетбол",
+    "normalize_title": "basketbol"
+  }
+},
+{
+  "model": "streetsport.game",
+  "pk": 3,
+  "fields": {
+    "title": "бадминтон",
+    "normalize_title": "badminton"
+  }
+},
+{
+  "model": "streetsport.game",
+  "pk": 4,
+  "fields": {
+    "title": "волейбол",
+    "normalize_title": "voleibol"
+  }
+},
+{
+  "model": "streetsport.team",
+  "pk": 1,
+  "fields": {
+    "title": "sportiki",
+    "lead": 2,
+    "game": 1,
+    "normalize_title": "sportiki",
+    "rating": 13,
+    "teammates": [
+      4,
+      9,
+      6
+    ]
+  }
+},
+{
+  "model": "streetsport.team",
+  "pk": 2,
+  "fields": {
+    "title": "sportiki2",
+    "lead": 3,
+    "game": 2,
+    "normalize_title": "sportiki2",
+    "rating": 8,
+    "teammates": [
+      8,
+      10
+    ]
+  }
+},
+{
+  "model": "streetsport.team",
+  "pk": 3,
+  "fields": {
+    "title": "miniMax",
+    "lead": 7,
+    "game": 4,
+    "normalize_title": "minimax",
+    "rating": 0,
+    "teammates": []
+  }
+},
+{
+  "model": "streetsport.order",
+  "pk": 1,
+  "fields": {
+    "team_one": 1,
+    "team_two": 2,
+    "game": 1,
+    "start": "2024-06-10T19:00:00Z",
+    "description": "Равным образом дальнейшее развитие различных форм деятельности играет важную роль в формировании соответствующий условий активизации.",
+    "location": "https://maps.app.goo.gl/HkdPjfsddbsQboTE8"
+  }
+},
+{
+  "model": "streetsport.order",
+  "pk": 2,
+  "fields": {
+    "team_one": 1,
+    "team_two": 2,
+    "game": 2,
+    "start": "2024-06-15T16:00:00Z",
+    "description": "Задача организации, в особенности же сложившаяся структура организации обеспечивает широкому кругу (специалистов) участие в формировании модели развития.",
+    "location": "https://maps.app.goo.gl/NGhxfSU5Ajyu1Ket8"
+  }
+}
+]
