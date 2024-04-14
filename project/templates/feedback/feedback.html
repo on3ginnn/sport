@@ -7,19 +7,19 @@
 {% endblock title %}
 
 {% block content %}
-{% if messages %}
-  {% for message in messages %}
-    {% if  message.tags == "error" %}
-      <div class="alert alert-danger" role="alert">
-    {% else %}
-      <div class="alert alert-success" role="alert">
-    {% endif %}
-    {{ message }}
+<section class="feedback">
+  <div class="feedback__body _container">
+    <h1>{% trans "feedback_title"|capfirst %}</h1>
+    <div class="section__content feedback__content">
+      <form class="form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+      
+        {% include "includes/form.html" %}
+      
+        {% include "includes/submit_btn.html" with value="Отправить" %}
+      
+      </form>
     </div>
-  {% endfor %}
-{% endif %}
-<form method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-  {% include "includes/form.html" with be_button=True form=form %}
-</form>
+  </div>
+</section>
 {% endblock content %}

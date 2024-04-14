@@ -6,11 +6,15 @@ import feedback.models
 __all__ = []
 
 
-class FeedbackForm(django.forms.ModelForm):
+class AbstractBaseForm(django.forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.label_suffix = ""
         for field in self.visible_fields():
-            field.field.widget.attrs["class"] = "form-control"
+            field.field.widget.attrs["class"] = "form__input"
+
+
+class FeedbackForm(AbstractBaseForm):
 
     class Meta:
         model = feedback.models.Feedback
@@ -20,11 +24,7 @@ class FeedbackForm(django.forms.ModelForm):
         ]
 
 
-class FeedbackAuthorForm(django.forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for field in self.visible_fields():
-            field.field.widget.attrs["class"] = "form-control"
+class FeedbackAuthorForm(AbstractBaseForm):
 
     class Meta:
         model = feedback.models.FeedbackAuthor
@@ -53,8 +53,9 @@ class MultipleFileField(django.forms.FileField):
 class FeedbackFileForm(django.forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.label_suffix = ""
         for field in self.visible_fields():
-            field.field.widget.attrs["class"] = "form-control"
+            field.field.widget.attrs["class"] = "form__input input_file"
 
     files = MultipleFileField(required=False, label="Файлы")
 

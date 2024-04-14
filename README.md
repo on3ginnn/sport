@@ -186,18 +186,11 @@
     ```
 
 3. Run celery worker
-    * linux
+    * python
 
     ```bash
     cd project
     python -m celery -A project worker
-    ```
-
-    * windows
-
-    ```bash
-    cd project
-    celery -A project worker -l info --pool=solo
     ```
 
 ### Start

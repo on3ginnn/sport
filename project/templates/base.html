@@ -4,7 +4,6 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- fav icons -->
     <link rel="apple-touch-icon" sizes="57x57" href="{% static 'img/fav/apple-icon-57x57.png' %}">
     <link rel="apple-touch-icon" sizes="60x60" href="{% static 'img/fav/apple-icon-60x60.png' %}">
     <link rel="apple-touch-icon" sizes="72x72" href="{% static 'img/fav/apple-icon-72x72.png' %}">
@@ -23,23 +22,54 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="{% static 'img/fav' %}/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
-    <!-- css -->
-    <link href="{% static 'css/base.css' %}" rel="stylesheet">
-    <link href="{% static 'css/header/navbar.css' %}" rel="stylesheet">
-    <link href="{% static 'css/footer/footer.css' %}" rel="stylesheet">
-    <!-- css -->
-    <title>{% block title %}{% endblock title %}</title>
+    <link href="{% static 'css/custom/reset.css' %}" rel="stylesheet">
+    <link href="{% static 'css/custom/header/header.css' %}" rel="stylesheet">
+    <link href="{% static 'css/custom/footer/footer.css' %}" rel="stylesheet">
+    <link href="{% static 'css/custom/matches/matches.css' %}" rel="stylesheet">
+    <link href="{% static 'css/custom/form/form.css' %}" rel="stylesheet">
+    <title>{% block title %}StreetСпорт{% endblock title %}</title>
+    <style>
+      @font-face {
+          font-family: "Righteous-Regular";
+          src: url("{% static 'font/Righteous/Righteous-Regular.ttf' %}");
+      }
+      @font-face {
+          font-family: "Roboto-Light";
+          src: url("{% static 'font/Roboto/Roboto-Light.ttf' %}");
+      }
+      @font-face {
+          font-family: "Roboto-Regular";
+          src: url("{% static 'font/Roboto/Roboto-Regular.ttf' %}");
+      }
+      @font-face {
+          font-family: "Roboto-Medium";
+          src: url("{% static 'font/Roboto/Roboto-Medium.ttf' %}");
+      }
+      @font-face {
+          font-family: "Roboto-Bold";
+          src: url("{% static 'font/Roboto/Roboto-Bold.ttf' %}");
+      }
+    </style>
   </head>
   <body>
-    {% include "includes/header.html" %}
-    <main>
-      <div class="container">
-      {% block content %}{% endblock content %}
+    <div class="wrapper">
+      {% include "includes/header.html" %}
+      <div class="messages _container">
+        {% if messages %}
+        <div class="alert alert-dismissible" role="alert">
+          {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+        {% endif %}
       </div>
-    </main>
-    {% include "includes/footer.html" %}
+      <main>
+        {% block content %}
+          Loading...
+        {% endblock content %}
+      </main>
+      {% include "includes/footer.html" %}
+    </div>
   </body>
-  <!-- js -->
-  <script src="{% static 'js/header/navbar.js' %}"></script>
-  <!-- js -->
+  <script src="{% static 'js/script.js' %}"></script>
 </html>

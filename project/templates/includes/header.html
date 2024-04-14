@@ -1,25 +1,36 @@
 {% load static %}
+{% load i18n %}
+
 <header>
-<nav class>
-  <div class="wrapper container">
-    <div class="logo"><a href="#">Logo</a></div>
-    <input type="radio" name="slider" id="menu-btn">
-    <input type="radio" name="slider" id="close-btn">
-    <ul class="nav-links">
-      <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
-      <li><a href="{% url 'homepage:main' %}">Home</a></li>
-      <li><a href="{% url 'about:main' %}">About</a></li>
-      <li>
-        <a href="{% url 'feedback:feedback' %}">
-          Feedback
-        </a>
-      </li>
-    </ul>
-    <div class="nav-btn" onclick="nav_btn_click(this)">
-      <div class="bar"></div>
-      <div class="bar1"></div>
-      <div class="bar2"></div>
+  <div class="header__body _container">
+    <div class="header__content">
+      <a href="{% url 'homepage:main' %}" class="header__logo">
+        <span class="color_red">Street</span> Спорт
+      </a>
+      <nav class="header__navbar navbar">
+        <ul class="navbar__items items">
+          <li class="navbar__item item">
+            <a class="navbar__link {% if view_name == 'homepage:main' %}_active{% endif %}" href="{% url 'homepage:main' %}">
+              {% trans "main"|capfirst %}
+            </a>
+          </li>
+          <li class="navbar__item item">
+            <a class="navbar__link {% if view_name == 'streetsport:orders' %}_active{% endif %}" href="{% url 'streetsport:orders' %}">
+              {% trans "games"|capfirst %}
+            </a>
+          </li>
+          <li class="navbar__item item">
+            <a class="navbar__link {% if view_name == 'streetsport:leaderboard' %}_active{% endif %}" href="{% url 'streetsport:leaderboard' %}">
+              {% trans "leaderboard"|capfirst %}
+            </a>
+          </li>
+          <li class="navbar__item item">
+            <a class="navbar__link {% if view_name == 'users:profile' %}active{% endif %}" href="{% url 'users:profile' %}">
+              {% trans "profile"|capfirst %}
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </div>
-</nav>      
 </header>

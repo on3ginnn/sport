@@ -1,0 +1,32 @@
+header{
+    border-bottom: 3px solid #E6E6E6;
+}
+.header__content{
+    display: flex;
+    justify-content: space-between;
+}
+
+.header__logo{
+    padding: 15px 0;
+    font-size: 32px;
+    line-height: 100%;
+    display: flex;
+    align-items: center;
+    font-family: var(--roboto-bold);
+    color: black;
+    transition: all .1s ease 0s;
+}
+.color_red{
+    color: var(--color-red);
+}
+
+.navbar__link{
+    padding: 25px 30px;
+    font-size: 18px;
+    line-height: 100%;
+    color: black;
+    font-family: var(--roboto-medium);
+    display: flex;
+    align-items: center;
+    transition: all .1s ease 0s;
+}

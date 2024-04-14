@@ -4,6 +4,8 @@ from django.contrib import admin
 import django.contrib.auth.urls
 from django.urls import include, path
 
+import streetsport.apps
+
 urlpatterns = [
     path(
         "",
@@ -23,6 +25,11 @@ urlpatterns = [
         "feedback/",
         include(("feedback.urls")),
         name="feedback",
+    ),
+    path(
+        "streetsport/",
+        include(("streetsport.urls")),
+        name=streetsport.apps.StreetsportConfig.name,
     ),
     path(
         "auth/",

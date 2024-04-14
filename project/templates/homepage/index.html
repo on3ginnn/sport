@@ -7,5 +7,128 @@
 {% endblock title %}
 
 {% block content %}
-<p>домашняя страница</p>
+<section class="matches">
+  <div class="matches__body _container">
+    <h1>{% trans "homepage_title"|capfirst %}</h1>
+    <div class="section__content matches__content">
+      <ul class="matches__items items">
+        <li class="matches__item item">
+          <div class="matches__wrapper">
+            <div class="matches__datetime">
+              <span class="text_bold">19:00</span>, 10.06.2024
+            </div>
+            <a href="{# url 'streetsport:order' 1 #}" class="matches__cart">
+              <article class="matches__match match">
+                <div class="match__left match-team team-one">
+                  <div class="match-team__img">
+                    <div class="match-team__img-default">
+                      <img src="{% static 'img/default/team.svg' %}" alt="{% trans 'team_default_img'|capfirst %}">
+                    </div>
+                  </div>
+                  <div class="match__content">
+                    <div class="match-team__title">
+                      Sportiki
+                    </div>
+                    <div class="match-team__teammates team-teammates">
+                      <ul class="team-teammates__items items">
+                        <li class="team-teammates__item item team-teammate">
+                          <div class="team-teammate__item">
+                            <div class="team-teammate__img">
+                              <img src="{% static 'img/stub/avatar1.jpg' %}" alt="{% trans 'avatar_default_img'|capfirst %}">
+                            </div>
+                          </div>
+                        </li>
+                        <li class="team-teammates__item item">
+                          <div class="team-teammate__item">
+                            <div class="team-teammate__img">
+                              <img src="{% static 'img/stub/avatar2.jpg' %}" alt="{% trans 'avatar_default_img'|capfirst %}">
+                            </div>
+                          </div>
+                        </li>
+                        <li class="team-teammates__item item">
+                          <div class="team-teammate__item">
+                            <div class="team-teammate__img">
+                              <img src="{% static 'img/stub/avatar3.jpg' %}" alt="{% trans 'avatar_default_img'|capfirst %}">
+                            </div>
+                          </div>
+                        </li>
+                        <li class="team-teammates__item item teammates_count">
+                          <div class="team-teammate__item">
+                            +4
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="match__center match-decor">
+                  <div class="match-decor__game match-game">
+                    <div class="match-game__img">
+                      <img src="{% static 'img/stub/soccer.png' %}" alt="match_game">
+                    </div>
+                    <div class="match-game__wrapper">
+                      Футбол
+                    </div>
+                  </div>
+                  <div class="match-decor__vs match-vs">
+                    <div class="match-vs__wrapper">
+                      VS
+                    </div>
+                  </div>
+                  <span class="match-decor__line"></span>
+                </div>
+                <div class="match__right match-team team-two">
+                  <div class="match-team__img">
+                    <img src="{% static 'img/stub/team.jpg' %}" alt="{% trans 'team_stub_img'|capfirst %}">
+                  </div>
+                  <div class="match__content">
+                    <div class="match-team__title">
+                      Sportiki2
+                    </div>
+                    <div class="match-team__teammates team-teammates">
+                      <ul class="team-teammates__items items">
+                        <li class="team-teammates__item item team-teammate">
+                          <div class="team-teammate__item">
+                            <div class="team-teammate__img">
+                              <img src="{% static 'img/stub/avatar1.jpg' %}" alt="{% trans 'avatar_default_img'|capfirst %}">
+                            </div>
+                          </div>
+                        </li>
+                        <li class="team-teammates__item item">
+                          <div class="team-teammate__item">
+                            <div class="team-teammate__img">
+                              <img src="{% static 'img/stub/avatar2.jpg' %}" alt="{% trans 'avatar_default_img'|capfirst %}">
+                            </div>
+                          </div>
+                        </li>
+                        <li class="team-teammates__item item">
+                          <div class="team-teammate__item">
+                            <div class="team-teammate__img">
+                              <img src="{% static 'img/stub/avatar3.jpg' %}" alt="{% trans 'avatar_default_img'|capfirst %}">
+                            </div>
+                          </div>
+                        </li>
+                        <li class="team-teammates__item item teammates_count">
+                          <div class="team-teammate__item">
+                            +4
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </article>
+              <div class="match__link">
+                <div class="match__link-wrapper">
+                  <span>{% trans "viewmore"|lower %}</span>
+                  <img src="{% static 'img/icons/arrow.svg' %}" alt="">
+                </div>
+              </div>
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
 {% endblock content %}

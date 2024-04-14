@@ -1,0 +1,73 @@
+.form{
+    max-width: 600px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.form__field{
+    width: 100%;
+}
+.form__input{
+    margin-top: 5px;
+    resize: none;
+    width: 100%;
+    border: 3px solid var(--color-gray);
+    padding: 10px 20px;
+    font-size: 16px;
+    line-height: 100%;
+    border-radius: 20px;
+}
+label{
+    font-size: 16px;
+    line-height: 100%;
+    font-family: var(--roboto-bold);
+    color: var(--footer-color-gray);
+    text-transform: uppercase;
+}
+
+.input_file{
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    position: absolute;
+}
+
+.form__field-wrapper{
+    margin-top: 5px;
+    display: flex;
+    background: var(--color-gray);
+    border-radius: 20px;
+    padding: 3px;
+    padding-left: 20px;
+    align-items: center;
+    gap: 10px;
+    transition: all .1s ease 0s;
+}
+.form__field-content{
+    background: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    line-height: 100%;
+    color: black;
+    font-family: var(--roboto-regular);
+    text-transform: none;
+    border-radius: 20px;
+    flex: 1 1 auto;
+}
+
+.form__field-button{
+    font-size: 16px;
+    line-height: 100%;
+    color: black;
+    font-family: var(--roboto-medium);
+    text-transform: none;
+    transition: all .1s ease 0s;
+
+}
+.form__field-wrapper:hover{
+    background: var(--color-blue);
+}
+.form__field-wrapper:hover .form__field-button{
+    color: white;
+}

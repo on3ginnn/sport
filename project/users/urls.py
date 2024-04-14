@@ -17,6 +17,16 @@ app_name = "users"
 
 urlpatterns = [
     path(
+        "profile/",
+        views.LoginView.as_view(
+            template_name="users/login.html",
+            authentication_form=users.forms.custom_auth_form(
+                AuthenticationForm,
+            ),
+        ),
+        name="profile",
+    ),
+    path(
         "login/",
         views.LoginView.as_view(
             template_name="users/login.html",

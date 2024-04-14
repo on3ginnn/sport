@@ -1,0 +1,40 @@
+footer{
+    padding: 25px 0;
+    background: var(--color-gray);
+}
+.footer__content{
+    display: flex;
+    justify-content: space-between;
+}
+.navbar__items{
+    height: 100%;
+    align-items: center;
+}
+.footer__navbar .navbar__items{
+    gap: 20px;
+}
+.footer_link{
+    padding: 0;
+    padding-left: 35px;
+    color: var(--footer-color-gray);
+    position: relative;
+}
+.footer_link::before{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+.footer_link#about::before{
+    content: url(../../../img/footer/about-icon.svg);
+}
+.footer_link#feedback::before{
+    content: url(../../../img/footer/feedback-icon.svg);
+}
+.copyright{
+    color: var(--footer-color-gray);
+    font-family: var(--roboto-medium);
+    font-size: 16px;
+    text-align: center;
+    margin-top: 20px;
+}
