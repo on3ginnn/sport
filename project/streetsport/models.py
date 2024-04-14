@@ -61,7 +61,7 @@ class Team(django.db.models.Model):
     )
     lead = django.db.models.ForeignKey(
         users.models.User,
-        on_delete=django.db.models.CASCADE,
+        on_delete=django.db.models.SET_NULL,
         verbose_name=_("lead"),
         help_text=_("lead_field_help"),
         related_name="lead_teams",
@@ -113,7 +113,7 @@ class Team(django.db.models.Model):
         self.normalize_title = normalize_title
 
     @property
-    def children(self):
+    def orders(self):
         return Order.objects.filter(
             django.db.models.Q(team_one=self)
             | django.db.models.Q(team_two=self),
