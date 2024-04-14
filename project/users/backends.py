@@ -1,4 +1,4 @@
-from django.contrib.auth.backends import ModelBackend
+import django.contrib.auth.backends
 
 
 import users.models
@@ -7,7 +7,7 @@ import users.models
 __all__ = []
 
 
-class EmailUsernameBackend(ModelBackend):
+class EmailUsernameBackend(django.contrib.auth.backends.ModelBackend):
     def authenticate(self, request, username=None, password=None, **kwargs):
         try:
             if "@" not in username:

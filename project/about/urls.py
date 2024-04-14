@@ -1,13 +1,13 @@
-from django.urls import path
+import django.urls
 
-from about import views
+import about.views
 
 app_name = "about"
 
 urlpatterns = [
-    path(
+    django.urls.path(
         "",
-        views.DescriptionTemplateView.as_view(),
+        about.views.DescriptionTemplateView.as_view(),
         name="main",
     ),
 ]

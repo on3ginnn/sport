@@ -1,13 +1,13 @@
-from django.urls import path
+import django.urls
 
-from feedback import views
+import feedback.views
 
 app_name = "feedback"
 
 urlpatterns = [
-    path(
+    django.urls.path(
         "",
-        views.FeedbackCreateView.as_view(),
+        feedback.views.FeedbackCreateView.as_view(),
         name="feedback",
     ),
 ]

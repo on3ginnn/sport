@@ -1,11 +1,11 @@
-from pathlib import Path
+import pathlib
 import re
 
-from django.core.exceptions import ValidationError
-import django.db
+import django.core.exceptions
+import django.db.models
 from django.utils.translation import gettext as _
-from slugify import slugify
-import sorl
+import slugify
+import sorl.thumbnail
 
 import streetsport.validators
 import users.models
@@ -16,7 +16,7 @@ __all__ = []
 
 def normalize_str(value):
     words = re.findall("[0-9а-яёa-z]+", value.lower())
-    return slugify("".join(words))
+    return slugify.slugify("".join(words))
 
 
 class Game(django.db.models.Model):
@@ -40,7 +40,7 @@ class Game(django.db.models.Model):
             normalize_title=normalize_title,
         )
         if found.values("id"):
-            raise ValidationError(
+            raise django.core.exceptions.ValidationError(
                 {Game.title.field.name: _("normalize_title_validation_error")},
             )
 
@@ -56,7 +56,7 @@ class Game(django.db.models.Model):
 
 class Team(django.db.models.Model):
     def get_path_image(self, filename):
-        ext = Path(filename).suffix
+        ext = pathlib.Path(filename).suffix
         return f"streetsport/team_{self.id}{ext}"
 
     title = django.db.models.CharField(
@@ -119,7 +119,7 @@ class Team(django.db.models.Model):
             normalize_title=normalize_title,
         )
         if found.values("id"):
-            raise ValidationError(
+            raise django.core.exceptions.ValidationError(
                 {Team.title.field.name: _("normalize_title_validation_error")},
             )
 
@@ -192,7 +192,7 @@ class Order(django.db.models.Model):
 
     def clean(self):
         if self.team_one == self.team_two:
-            raise ValidationError(
+            raise django.core.exceptions.ValidationError(
                 {Order.team_two.field.name: _("team_equal_validation_error")},
             )
 

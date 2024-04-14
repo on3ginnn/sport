@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import UserCreationForm
+import django.contrib.auth.forms
 
 import users.models
 
@@ -15,13 +15,13 @@ def custom_auth_form(form):
     return CustomForm
 
 
-class SignUpForm(UserCreationForm):
+class SignUpForm(django.contrib.auth.forms.UserCreationForm):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         for field in self.visible_fields():
             field.field.widget.attrs["class"] = "form-control"
 
-    class Meta(UserCreationForm.Meta):
+    class Meta(django.contrib.auth.forms.UserCreationForm.Meta):
         model = users.models.User
         fields = (
             model.username.field.name,

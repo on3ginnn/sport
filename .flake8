@@ -2,4 +2,6 @@
 application_import_names = about, users, homepage, feedback, streetsport
 import-order-style = google
 inline-quotes = double
+max-expression-complexity=8
+ignore-django-orm-queries-complexity=True
 exclude = .venv,venv,*/migrations/*,.git,__pycache__

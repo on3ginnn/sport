@@ -1,7 +1,7 @@
-from django.core.exceptions import ValidationError
-from django.test import TestCase
-from django.utils import timezone
-import parameterized
+import django.core.exceptions
+import django.test
+import django.utils.timezone
+import parameterized.parameterized
 
 import users.models
 
@@ -9,17 +9,17 @@ import users.models
 __all__ = []
 
 
-class DBUserTests(TestCase):
+class DBUserTests(django.test.TestCase):
     @classmethod
     def tearDownClass(cls):
         users.models.User.objects.all().delete()
         super().tearDownClass()
 
     def test_birthday_validator(self):
-        now = timezone.now().date()
+        now = django.utils.timezone.now().date()
         count = users.models.User.objects.count()
-        with self.assertRaises(ValidationError):
-            no_valid = now + timezone.timedelta(days=1)
+        with self.assertRaises(django.core.exceptions.ValidationError):
+            no_valid = now + django.utils.timezone.timedelta(days=1)
             user = users.models.User(
                 username="test",
                 password="test",
@@ -60,7 +60,7 @@ class DBUserTests(TestCase):
             ("t.me", False),
             ("telegram.me", False),
             ("test", False),
-        ]
+        ],
     )
     def test_tg_link_validator(self, tg_link, is_valid):
         count = users.models.User.objects.count()
@@ -78,7 +78,7 @@ class DBUserTests(TestCase):
                 msg=f"no add validate by tg_link({tg_link}) user",
             )
         else:
-            with self.assertRaises(ValidationError):
+            with self.assertRaises(django.core.exceptions.ValidationError):
                 user = users.models.User(
                     username="test",
                     password="test",
@@ -104,7 +104,7 @@ class DBUserTests(TestCase):
             ("@TT1T", False),
             ("t" * 33, False),
             ("test", False),
-        ]
+        ],
     )
     def test_username_validator(self, username, is_valid):
         count = users.models.User.objects.count()
@@ -121,7 +121,7 @@ class DBUserTests(TestCase):
                 msg=f"no add validate by username({username}) user",
             )
         else:
-            with self.assertRaises(ValidationError):
+            with self.assertRaises(django.core.exceptions.ValidationError):
                 user = users.models.User(
                     username=username,
                     password="test",

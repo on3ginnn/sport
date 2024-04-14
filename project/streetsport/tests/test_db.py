@@ -1,7 +1,7 @@
 import itertools
 
-from django.core.exceptions import ValidationError
-from django.test import TestCase
+import django.core.exceptions
+import django.test
 import parameterized
 
 import streetsport.models
@@ -11,7 +11,7 @@ import users.models
 __all__ = []
 
 
-class DBNormalizetitleTests(TestCase):
+class DBNormalizetitleTests(django.test.TestCase):
     @classmethod
     def tearDownClass(cls):
         streetsport.models.Game.objects.all().delete()
@@ -54,7 +54,7 @@ class DBNormalizetitleTests(TestCase):
             title=title2,
         )
         if not is_validate:
-            with self.assertRaises(ValidationError):
+            with self.assertRaises(django.core.exceptions.ValidationError):
                 self.game1.full_clean()
                 self.game1.save()
                 self.game2.full_clean()
@@ -77,7 +77,7 @@ class DBNormalizetitleTests(TestCase):
             )
 
 
-class DBTeamTests(TestCase):
+class DBTeamTests(django.test.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.user = users.models.User.objects.create(
@@ -109,7 +109,7 @@ class DBTeamTests(TestCase):
         self.team1.teammates.add(self.user)
         self.team1.full_clean()
         self.team1.save()
-        with self.assertRaises(ValidationError):
+        with self.assertRaises(django.core.exceptions.ValidationError):
             self.team2.teammates.add(self.user)
             self.team2.full_clean()
             self.team2.save()
@@ -127,7 +127,7 @@ class DBTeamTests(TestCase):
         super().tearDownClass()
 
 
-class DBOrderTests(TestCase):
+class DBOrderTests(django.test.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.team1 = streetsport.models.Team.objects.create(
@@ -147,7 +147,7 @@ class DBOrderTests(TestCase):
             team_one=self.team1,
             team_two=self.team1,
         )
-        with self.assertRaises(ValidationError):
+        with self.assertRaises(django.core.exceptions.ValidationError):
             self.order.full_clean()
             self.order.save()
             self.assertEqual(

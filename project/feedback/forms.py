@@ -1,4 +1,4 @@
-from betterforms.multiform import MultiModelForm
+import betterforms.multiform
 import django.forms
 
 import feedback.models
@@ -59,7 +59,7 @@ class FeedbackFileForm(django.forms.Form):
     files = MultipleFileField(required=False, label="Файлы")
 
 
-class FeedbackMultiForm(MultiModelForm):
+class FeedbackMultiForm(betterforms.multiform.MultiModelForm):
     form_classes = {
         "content": FeedbackForm,
         "author": FeedbackAuthorForm,
