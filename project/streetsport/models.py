@@ -148,6 +148,8 @@ class OrderManager(django.db.models.Manager):
                 Order.team_one.field.name,
                 Order.team_two.field.name,
                 Order.game.field.name,
+                "team_one__lead",
+                "team_two__lead",
             )
             .prefetch_related(
                 django.db.models.Prefetch(
@@ -155,18 +157,14 @@ class OrderManager(django.db.models.Manager):
                         f"{Order.team_one.field.name}__"
                         f"{Team.teammates.field.name}"
                     ),
-                    queryset=users.models.User.objects.only(
-                        users.models.User.avatar.field.name,
-                    ),
+                    queryset=users.models.User.objects.all(),
                 ),
                 django.db.models.Prefetch(
                     (
                         f"{Order.team_two.field.name}__"
                         f"{Team.teammates.field.name}"
                     ),
-                    queryset=users.models.User.objects.only(
-                        users.models.User.avatar.field.name,
-                    ),
+                    queryset=users.models.User.objects.all(),
                 ),
             )
         ).only(
@@ -178,10 +176,18 @@ class OrderManager(django.db.models.Manager):
                 f"{Order.team_one.field.name}__{Team.teammates.field.name}"
                 f"__{users.models.User.avatar.field.name}"
             ),
+            (
+                f"{Order.team_one.field.name}__{Team.lead.field.name}"
+                f"__{users.models.User.avatar.field.name}"
+            ),
             f"{Order.team_one.field.name}__{Team.avatar.field.name}",
             f"{Order.team_two.field.name}__{Team.title.field.name}",
             (
                 f"{Order.team_two.field.name}__{Team.teammates.field.name}"
+                f"__{users.models.User.avatar.field.name}"
+            ),
+            (
+                f"{Order.team_two.field.name}__{Team.lead.field.name}"
                 f"__{users.models.User.avatar.field.name}"
             ),
             f"{Order.team_two.field.name}__{Team.avatar.field.name}",
