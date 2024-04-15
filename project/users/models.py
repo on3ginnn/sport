@@ -1,7 +1,7 @@
 import pathlib
 import uuid
 
-import django.contrib.auth
+import django.contrib.auth.models
 import django.db.models
 from django.utils.translation import gettext_lazy as _
 import sorl.thumbnail

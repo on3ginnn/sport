@@ -1,6 +1,7 @@
 
 .matches__items{
     flex-direction: column;
+    gap: 20px;
 }
 
 .matches__item{
@@ -59,8 +60,12 @@
     justify-content: space-between;
 }
 .match__content{
+    display: flex;
+    flex-direction: column;
     padding: 10px 15px 15px;
-
+}
+.team-two .match__content{
+    align-items: end;
 }
 .team-teammate__item{
     width: 60px;
@@ -72,8 +77,10 @@
     align-items: center;
     position: relative;
 }
+
 .teammates_count .team-teammate__item{
     background: transparent;
+    width: auto;
 }
 .team-teammate__img{
     overflow: hidden;
@@ -198,4 +205,10 @@
     width: 100%;
     object-fit: cover;
 
+}
+.team-one .team-teammate__img{
+    background: var(--color-red);
+}
+.team-two .team-teammate__img{
+    background: var(--color-orange);
 }

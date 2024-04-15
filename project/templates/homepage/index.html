@@ -7,134 +7,159 @@
 {% endblock title %}
 
 {% block content %}
-<section class="matches">
-  {% comment %} {{orders}} {% endcomment %}
-  {% for order in orders %}
-  {{order.team_one}}
-  {{order.team_two}}
-  {% for teammate in order.team_two.teammates.all %}
-    {{teammate.avatar}}
-  {% endfor %}
-  {% endfor %}
+{% get_media_prefix as media %}
+<section class="matches" data-media-url="{% get_media_prefix %}">
   <div class="matches__body _container">
     <h1>{% trans "homepage_title"|capfirst %}</h1>
     <div class="section__content matches__content">
       <ul class="matches__items items">
-        <li class="matches__item item">
-          <div class="matches__wrapper">
-            <div class="matches__datetime">
-              <span class="text_bold">19:00</span>, 10.06.2024
-            </div>
-            <a href="{# url 'streetsport:order' 1 #}" class="matches__cart">
-              <article class="matches__match match">
-                <div class="match__left match-team team-one">
-                  <div class="match-team__img">
-                    <div class="match-team__img-default">
-                      <img src="{% static 'img/default/team.svg' %}" alt="{% trans 'team_default_img'|capfirst %}">
-                    </div>
-                  </div>
-                  <div class="match__content">
-                    <div class="match-team__title">
-                      Sportiki
-                    </div>
-                    <div class="match-team__teammates team-teammates">
-                      <ul class="team-teammates__items items">
-                        <li class="team-teammates__item item team-teammate">
-                          <div class="team-teammate__item">
-                            <div class="team-teammate__img">
-                              <img src="{% static 'img/stub/avatar1.jpg' %}" alt="{% trans 'avatar_default_img'|capfirst %}">
-                            </div>
-                          </div>
-                        </li>
-                        <li class="team-teammates__item item">
-                          <div class="team-teammate__item">
-                            <div class="team-teammate__img">
-                              <img src="{% static 'img/stub/avatar2.jpg' %}" alt="{% trans 'avatar_default_img'|capfirst %}">
-                            </div>
-                          </div>
-                        </li>
-                        <li class="team-teammates__item item">
-                          <div class="team-teammate__item">
-                            <div class="team-teammate__img">
-                              <img src="{% static 'img/stub/avatar3.jpg' %}" alt="{% trans 'avatar_default_img'|capfirst %}">
-                            </div>
-                          </div>
-                        </li>
-                        <li class="team-teammates__item item teammates_count">
-                          <div class="team-teammate__item">
-                            +4
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="match__center match-decor">
-                  <div class="match-decor__game match-game">
-                    <div class="match-game__img">
-                      <img src="{% static 'img/stub/soccer.png' %}" alt="match_game">
-                    </div>
-                    <div class="match-game__wrapper">
-                      Футбол
-                    </div>
-                  </div>
-                  <div class="match-decor__vs match-vs">
-                    <div class="match-vs__wrapper">
-                      VS
-                    </div>
-                  </div>
-                  <span class="match-decor__line"></span>
-                </div>
-                <div class="match__right match-team team-two">
-                  <div class="match-team__img">
-                    <img src="{% static 'img/stub/team.jpg' %}" alt="{% trans 'team_stub_img'|capfirst %}">
-                  </div>
-                  <div class="match__content">
-                    <div class="match-team__title">
-                      Sportiki2
-                    </div>
-                    <div class="match-team__teammates team-teammates">
-                      <ul class="team-teammates__items items">
-                        <li class="team-teammates__item item team-teammate">
-                          <div class="team-teammate__item">
-                            <div class="team-teammate__img">
-                              <img src="{% static 'img/stub/avatar1.jpg' %}" alt="{% trans 'avatar_default_img'|capfirst %}">
-                            </div>
-                          </div>
-                        </li>
-                        <li class="team-teammates__item item">
-                          <div class="team-teammate__item">
-                            <div class="team-teammate__img">
-                              <img src="{% static 'img/stub/avatar2.jpg' %}" alt="{% trans 'avatar_default_img'|capfirst %}">
-                            </div>
-                          </div>
-                        </li>
-                        <li class="team-teammates__item item">
-                          <div class="team-teammate__item">
-                            <div class="team-teammate__img">
-                              <img src="{% static 'img/stub/avatar3.jpg' %}" alt="{% trans 'avatar_default_img'|capfirst %}">
-                            </div>
-                          </div>
-                        </li>
-                        <li class="team-teammates__item item teammates_count">
-                          <div class="team-teammate__item">
-                            +4
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </article>
-              <div class="match__link">
-                <div class="match__link-wrapper">
-                  <span>{% trans "viewmore"|lower %}</span>
-                  <img src="{% static 'img/icons/arrow.svg' %}" alt="">
-                </div>
+        {% for order in orders %}
+          <li class="matches__item item">
+            <div class="matches__wrapper">
+              <div class="matches__datetime">
+                <span class="text_bold">{{ order.start|date:"H:i" }}</span>, {{ order.start|date:"d.m.Y" }}
               </div>
-            </a>
-          </div>
-        </li>
+              <a href="{# url 'streetsport:order' 1 #}" class="matches__cart">
+                <article class="matches__match match">
+                  <div class="match__left match-team team-one">
+                    <div class="match-team__img">
+                      {% if order.team_one.avatar %}
+                      <img src="{{ media }}{{ order.team_one.avatar }}" alt="{% trans 'team_img'|capfirst %}">
+                      {% else %}
+                      <div class="match-team__img-default">
+                        <img src="{% static 'img/default/team.svg' %}" alt="{% trans 'default_team_img'|capfirst %}">
+                      </div>
+                      {% endif %}
+                    </div>
+                    <div class="match__content">
+                      <div class="match-team__title">
+                        {{ order.team_one.title }}
+                      </div>
+                      <div class="match-team__teammates team-teammates">
+                        <ul class="team-teammates__items items">
+                          <li class="team-teammates__item item team-teammate">
+                            <div class="team-teammate__item">
+                              <div class="team-teammate__img">
+                                {% if order.team_one.lead.avatar %}
+                                <img src="{{ media }}{{ order.team_one.lead.avatar }}" alt="{% trans 'avatar_img'|capfirst %}">
+                                {% else %}
+                                <img src="{% static 'img/default/avatar.png' %}" alt="{% trans 'default_avatar_img'|capfirst %}">
+                                {% endif %}
+                              </div>
+                            </div>
+                          </li>
+                          {% with team_teammates=order.team_one.teammates.all %}
+                            {% for teammate in team_teammates|slice:":2" %}
+                              <li class="team-teammates__item item team-teammate">
+                                <div class="team-teammate__item">
+                                  <div class="team-teammate__img">
+                                    {% if teammate.avatar %}
+                                    <img src="{{ media }}{{ teammate.avatar }}" alt="{% trans 'avatar_img'|capfirst %}">
+                                    {% else %}
+                                    <img src="{% static 'img/default/avatar.png' %}" alt="{% trans 'default_avatar_img'|capfirst %}">
+                                    {% endif %}
+                                  </div>
+                                </div>
+                              </li>
+                            {% endfor %}
+                            {% if team_teammates|length|add:"-2" > 0 %}
+                            <li class="team-teammates__item item teammates_count">
+                              <div class="team-teammate__item">
+                                +{{ team_teammates|length|add:"-2" }}
+                              </div>
+                            </li>
+                            {% endif %}
+
+                          {% endwith %}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="match__center match-decor">
+                    <div class="match-decor__game match-game">
+                      <div class="match-game__img">
+                        {% if order.game.icon %}
+                        <img src="{{ media }}{{ order.game.icon }}" alt="match_game">
+                        {% else %}
+                        <img src="{% static 'img/default/sports.png' %}" alt="default_match_game">
+                        {% endif %}
+                      </div>
+                      <div class="match-game__wrapper">
+                        {{ order.game.title|capfirst }}
+                      </div>
+                    </div>
+                    <div class="match-decor__vs match-vs">
+                      <div class="match-vs__wrapper">
+                        VS
+                      </div>
+                    </div>
+                    <span class="match-decor__line"></span>
+                  </div>
+                  <div class="match__right match-team team-two">
+                    <div class="match-team__img">
+                      {% if order.team_two.avatar %}
+                      <img src="{{ media }}{{ order.team_two.avatar }}" alt="{% trans 'team_img'|capfirst %}">
+                      {% else %}
+                      <div class="match-team__img-default">
+                        <img src="{% static 'img/default/team.svg' %}" alt="{% trans 'default_team_img'|capfirst %}">
+                      </div>
+                      {% endif %}
+                    </div>
+                    <div class="match__content">
+                      <div class="match-team__title">
+                        {{ order.team_two.title }}
+                      </div>
+                      <div class="match-team__teammates team-teammates">
+                        <ul class="team-teammates__items items">
+                          <li class="team-teammates__item item team-teammate">
+                            <div class="team-teammate__item">
+                              <div class="team-teammate__img">
+                                {% if order.team_two.lead.avatar %}
+                                <img src="{{ media }}{{ order.team_two.lead.avatar }}" alt="{% trans 'avatar_img'|capfirst %}">
+                                {% else %}
+                                <img src="{% static 'img/default/avatar.png' %}" alt="{% trans 'default_avatar_img'|capfirst %}">
+                                {% endif %}
+                              </div>
+                            </div>
+                          </li>
+                          {% with team_teammates=order.team_two.teammates.all %}
+                            {% for teammate in team_teammates|slice:":2" %}
+                              <li class="team-teammates__item item team-teammate">
+                                <div class="team-teammate__item">
+                                  <div class="team-teammate__img">
+                                    {% if teammate.avatar %}
+                                    <img src="{{ media }}{{ teammate.avatar }}" alt="{% trans 'avatar_img'|capfirst %}">
+                                    {% else %}
+                                    <img src="{% static 'img/default/avatar.png' %}" alt="{% trans 'default_avatar_img'|capfirst %}">
+                                    {% endif %}
+                                  </div>
+                                </div>
+                              </li>
+                            {% endfor %}
+                            {% if team_teammates|length|add:"-2" > 0 %}
+                            <li class="team-teammates__item item teammates_count">
+                              <div class="team-teammate__item">
+                                +{{ team_teammates|length|add:"-2" }}
+                              </div>
+                            </li>
+                            {% endif %}
+
+                          {% endwith %}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+                <div class="match__link">
+                  <div class="match__link-wrapper">
+                    <span>{% trans "viewmore"|lower %}</span>
+                    <img src="{% static 'img/icons/arrow.svg' %}" alt="">
+                  </div>
+                </div>
+              </a>
+            </div>
+          </li>
+        {% endfor %}
       </ul>
     </div>
   </div>
