@@ -87,10 +87,17 @@ h1{
 .text_bold{
     font-family: var(--roboto-bold);
 }
+.color_red{
+    color: var(--color-red);
+}
+.color_blue{
+    color: var(--color-blue);
+}
 .section__content{
     margin-top: 20px;
 }
 .btn{
+    display: inline-block;
     cursor: pointer;
     padding: 15px 20px;
     background: var(--color-blue);
@@ -136,4 +143,10 @@ h1{
 }
 .form__input:focus{
     border: 3px solid var(--color-blue);
+}
+.form__field-wrapper:hover{
+    background: var(--color-blue);
+}
+.form__field-wrapper:hover .form__field-button{
+    color: white;
 }

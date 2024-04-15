@@ -1,31 +1,34 @@
 {% extends "base.html" %}
 {% load i18n %}
 
+
 {% block title %}
-{% trans "login_title"|capfirst %}
+  {% trans "login_title"|capfirst %}
 {% endblock title %}
 
-
 {% block content %}
-  {% if messages %}
-    {% for message in messages %}
-      {% if  message.tags == "error" %}
-      <div class="alert alert-danger" role="alert">
+<section class="login">
+  <div class="login__body _container">
+    <h1>{% trans "login_title"|capfirst %}</h1>
+    <div class="section__content login__content">
+      {% if form.is_multipart %}
+        <form class="form" enctype="multipart/form-data" method="post">
       {% else %}
-      <div class="alert alert-success" role="alert">
+        <form class="form" method="post">
       {% endif %}
-      {{ message }}
-      </div>
-    {% endfor %}
-  {% endif %}
-  <div class="row justify-content-center">
-    <div class="col-12 col-md-6 col-lg-7">
-      <form method="post">
         {% csrf_token %}
-        {% include "includes/form.html" with be_button=True form=form %}
-        <a href="{% url "users:password_reset" %}">{% trans "forgot_password"|capfirst %}</a>
-        <a href="{% url "users:signup" %}">{% trans "no_account"|capfirst %}</a>
+      
+        {% include "includes/form.html" %}
+          
+        <div class="form__button">
+          {% include "includes/submit_btn.html" with value="Войти" %}
+          <a class="form__link" href="{% url "users:signup" %}">{% trans "no_account"|capfirst %}? <span class="color_blue">{% trans "register_text"|capfirst %}</span></a>
+        </div>
+        <div class="form__extra">
+          <a class="form__link" href="{% url "users:password_reset" %}">{% trans "forgot_password"|capfirst %}? <span class="color_blue">{% trans "reset_password_text"|capfirst %}</span></a>
+        </div> 
       </form>
     </div>
   </div>
+</section>
 {% endblock content %}

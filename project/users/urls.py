@@ -25,6 +25,7 @@ urlpatterns = [
         "login/",
         django.contrib.auth.views.LoginView.as_view(
             template_name="users/login.html",
+            redirect_authenticated_user=True,
             authentication_form=users.forms.custom_auth_form(
                 django.contrib.auth.forms.AuthenticationForm,
             ),
@@ -33,9 +34,7 @@ urlpatterns = [
     ),
     django.urls.path(
         "logout/",
-        django.contrib.auth.views.LogoutView.as_view(
-            template_name="users/logout.html",
-        ),
+        django.contrib.auth.views.LogoutView.as_view(),
         name="logout",
     ),
     django.urls.path(
@@ -95,7 +94,9 @@ urlpatterns = [
     ),
     django.urls.path(
         "signup/",
-        users.views.SignupFormView.as_view(),
+        users.views.SignupFormView.as_view(
+            redirect_authenticated_user=True,
+        ),
         name="signup",
     ),
     django.urls.path(

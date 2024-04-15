@@ -18,9 +18,26 @@ __all__ = []
 
 
 class SignupFormView(django.views.generic.FormView):
+    redirect_authenticated_user = True
     form_class = users.forms.SignUpForm
     template_name = "users/signup.html"
     success_url = django.urls.reverse_lazy("users:login")
+
+    def dispatch(self, request, *args, **kwargs):
+        if (
+            self.redirect_authenticated_user
+            and self.request.user.is_authenticated
+        ):
+            redirect_to = self.get_success_url()
+            if redirect_to == self.request.path:
+                raise ValueError(
+                    "Redirection loop for authenticated user detected. Check t"
+                    "hat your LOGIN_REDIRECT_URL doesnt point to a login page."
+                )
+
+            return django.http.HttpResponseRedirect(redirect_to)
+
+        return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         user = form.save(commit=False)

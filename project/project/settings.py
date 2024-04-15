@@ -24,7 +24,7 @@ DEBUG = true_load("DJANGO_DEBUG", False)
 
 AMQP_URL = os.getenv("AMQP_URL", "amqp://guest@localhost:5672//")
 
-DEFAULT_USER_IS_ACTIVE = os.getenv("DJANGO_DEFAULT_USER_IS_ACTIVE", DEBUG)
+DEFAULT_USER_IS_ACTIVE = true_load("DJANGO_DEFAULT_USER_IS_ACTIVE", DEBUG)
 
 ALLOWED_HOSTS = list(
     map(str.strip, os.getenv("DJANGO_ALLOWED_HOSTS", "*").split(",")),

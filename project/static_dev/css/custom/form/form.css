@@ -1,12 +1,13 @@
 .form{
     max-width: 600px;
     position: relative;
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 20px; */
 }
 .form__field{
     width: 100%;
+    margin-bottom: 20px;
 }
 .form__input{
     margin-top: 5px;
@@ -65,9 +66,13 @@ label{
     transition: all .1s ease 0s;
 
 }
-.form__field-wrapper:hover{
-    background: var(--color-blue);
+
+.form__extra{
+    margin-top: 10px;
 }
-.form__field-wrapper:hover .form__field-button{
-    color: white;
+
+.form__link{
+    color: var(--footer-color-gray);
+    font-size: 16px;
+    line-height: 100%;
 }

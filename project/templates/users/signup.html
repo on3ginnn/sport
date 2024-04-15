@@ -1,18 +1,40 @@
 {% extends "base.html" %}
 {% load i18n %}
 
+
 {% block title %}
-{% trans "login_title"|capfirst %}
+  {% trans "register_title"|capfirst %}
 {% endblock title %}
 
-
 {% block content %}
-<div class="row justify-content-center">
-    <div class="col-12 col-md-6 col-lg-7">
-      <form method="post">
+<section class="register">
+  <div class="register__body _container">
+    <h1>{% trans "register_title"|capfirst %}</h1>
+    <div class="section__content register__content">
+      {% if form.is_multipart %}
+        <form class="form" enctype="multipart/form-data" method="post">
+      {% else %}
+        <form class="form" method="post">
+      {% endif %}
         {% csrf_token %}
-        {% include "includes/form.html" with be_button=True form=form %}
+      
+        {% include "includes/form.html" %}
+          
+        <div class="form__button">
+          {% include "includes/submit_btn.html" with value='Зарегистрироваться' %}
+          <a class="form__link" href="{% url "users:login" %}">{% trans "has_account"|capfirst %}? <span class="color_blue">{% trans "login_text"|capfirst %}</span></a>
+        </div>
+        <div class="form__extra">
+          <a class="form__link" href="{% url "users:password_reset" %}">
+          Нажимая кнопку “Зарегистрироваться”, вы принимаете все 
+          <span class="color_blue">условия конфиденциальности</span>
+          и даете согласие на обработку своих персональных данных</a>
+        </div> 
       </form>
     </div>
-</div>
+  </div>
+</section>
 {% endblock content %}
+
+
+

@@ -11,13 +11,18 @@
   <div class="feedback__body _container">
     <h1>{% trans "feedback_title"|capfirst %}</h1>
     <div class="section__content feedback__content">
-      <form class="form" method="post" enctype="multipart/form-data">
+      {% if form.is_multipart %}
+        <form class="form" enctype="multipart/form-data" method="post">
+      {% else %}
+        <form class="form" method="post">
+      {% endif %}
         {% csrf_token %}
       
         {% include "includes/form.html" %}
       
-        {% include "includes/submit_btn.html" with value="Отправить" %}
-      
+        <div class="form__button">
+          {% include "includes/submit_btn.html" with value="Отправить" %}
+        </div>
       </form>
     </div>
   </div>
