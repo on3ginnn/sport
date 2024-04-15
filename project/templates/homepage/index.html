@@ -8,6 +8,14 @@
 
 {% block content %}
 <section class="matches">
+  {% comment %} {{orders}} {% endcomment %}
+  {% for order in orders %}
+  {{order.team_one}}
+  {{order.team_two}}
+  {% for teammate in order.team_two.teammates.all %}
+    {{teammate.avatar}}
+  {% endfor %}
+  {% endfor %}
   <div class="matches__body _container">
     <h1>{% trans "homepage_title"|capfirst %}</h1>
     <div class="section__content matches__content">

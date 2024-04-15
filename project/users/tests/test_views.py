@@ -49,6 +49,7 @@ class TestUserViews(django.test.TestCase):
         self.assertRedirects(
             response,
             django.urls.reverse("users:login"),
+            target_status_code=302,
         )
 
         self.assertTrue(

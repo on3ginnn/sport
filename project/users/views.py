@@ -31,8 +31,9 @@ class SignupFormView(django.views.generic.FormView):
             redirect_to = self.get_success_url()
             if redirect_to == self.request.path:
                 raise ValueError(
-                    "Redirection loop for authenticated user detected. Check t"
-                    "hat your LOGIN_REDIRECT_URL doesnt point to a login page."
+                    "Redirection loop for authenticated user detected. "
+                    "Check that your LOGIN_REDIRECT_URL doesnt point "
+                    "to a login page.",
                 )
 
             return django.http.HttpResponseRedirect(redirect_to)

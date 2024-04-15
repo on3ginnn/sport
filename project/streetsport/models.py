@@ -140,7 +140,56 @@ class Team(django.db.models.Model):
         return self.title
 
 
+class OrderManager(django.db.models.Manager):
+    def homepage(self):
+        return (
+            self.get_queryset()
+            .select_related(
+                Order.team_one.field.name,
+                Order.team_two.field.name,
+                Order.game.field.name,
+            )
+            .prefetch_related(
+                django.db.models.Prefetch(
+                    (
+                        f"{Order.team_one.field.name}__"
+                        f"{Team.teammates.field.name}"
+                    ),
+                    queryset=users.models.User.objects.only(
+                        users.models.User.avatar.field.name,
+                    ),
+                ),
+                django.db.models.Prefetch(
+                    (
+                        f"{Order.team_two.field.name}__"
+                        f"{Team.teammates.field.name}"
+                    ),
+                    queryset=users.models.User.objects.only(
+                        users.models.User.avatar.field.name,
+                    ),
+                ),
+            )
+        ).only(
+            Order.id.field.name,
+            Order.start.field.name,
+            f"{Order.game.field.name}__{Game.title.field.name}",
+            f"{Order.team_one.field.name}__{Team.title.field.name}",
+            (
+                f"{Order.team_one.field.name}__{Team.teammates.field.name}"
+                f"__{users.models.User.avatar.field.name}"
+            ),
+            f"{Order.team_one.field.name}__{Team.avatar.field.name}",
+            f"{Order.team_two.field.name}__{Team.title.field.name}",
+            (
+                f"{Order.team_two.field.name}__{Team.teammates.field.name}"
+                f"__{users.models.User.avatar.field.name}"
+            ),
+            f"{Order.team_two.field.name}__{Team.avatar.field.name}",
+        )
+
+
 class Order(django.db.models.Model):
+    objects = OrderManager()
     team_one = django.db.models.ForeignKey(
         Team,
         on_delete=django.db.models.CASCADE,
