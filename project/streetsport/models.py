@@ -204,6 +204,7 @@ class OrderManager(django.db.models.Manager):
             Order.id.field.name,
             Order.start.field.name,
             f"{Order.game.field.name}__{Game.title.field.name}",
+            f"{Order.game.field.name}__{Game.icon.field.name}",
             f"{Order.team_one.field.name}__{Team.title.field.name}",
             (
                 f"{Order.team_one.field.name}__{Team.teammates.field.name}"
