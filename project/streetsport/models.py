@@ -81,6 +81,10 @@ class Team(django.db.models.Model):
         ext = pathlib.Path(filename).suffix
         return f"streetsport/team_{self.id}{ext}"
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.__original_lead = self.lead
+
     title = django.db.models.CharField(
         _("title"),
         help_text=_("title_field_help"),
@@ -154,6 +158,19 @@ class Team(django.db.models.Model):
             )
 
         self.normalize_title = normalize_title
+
+    def save(self, *args, **kwargs):
+        if self.lead is None:
+            next_teammate = self.teammates.filter(
+                ~django.db.models.Q(id=self.__original_lead.id),
+            ).first()
+            if next_teammate:
+                self.lead = next_teammate
+            else:
+                return self.delete()
+
+        self.__original_lead = self.lead
+        return super().save(*args, **kwargs)
 
     @property
     def orders(self):

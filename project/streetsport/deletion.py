@@ -8,7 +8,7 @@ __all__ = []
 
 def delete_or_set_next_lead(collector, field, sub_objs, using):
     delete = []
-    user_ids = (user.id for user in collector.origin)
+    user_ids = (user.id for user in collector.data[users.models.User])
     teams = sub_objs.prefetch_related(
         django.db.models.Prefetch(
             streetsport.models.Team.teammates.field.name,
