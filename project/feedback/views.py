@@ -27,18 +27,20 @@ class FeedbackCreateView(django.views.generic.CreateView):
         author_form.save(commit=True)
 
         files = files_form.cleaned_data["files"]
+        email_send = django.core.mail.EmailMessage(
+            subject="Feedback",
+            body=content_form.cleaned_data["text"],
+            from_email=django.conf.settings.EMAIL_ADMIN,
+            to=[author_form.cleaned_data["mail"]],
+        )
         for file in files:
+            email_send.attach(file.name, file.file.read(), file.content_type)
             feedback.models.FeedbackFile(
                 file=file,
                 feedback=feedback_instance,
             ).save()
 
-        django.core.mail.send_mail(
-            subject="Feedback",
-            message=content_form.cleaned_data["text"],
-            from_email=django.conf.settings.EMAIL_ADMIN,
-            recipient_list=[author_form.cleaned_data["mail"]],
-        )
+        email_send.send()
 
         django.contrib.messages.success(
             self.request,
