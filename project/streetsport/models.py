@@ -51,6 +51,7 @@ class Game(django.db.models.Model):
             "50x50",
             crop="center",
             quality=51,
+            format="PNG",
         )
 
     def clean(self):
