@@ -4,7 +4,7 @@
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$600000$eQltqm0mfRQM1uz0cyBO3w$VKGVBrhFudGQxNOUrUnISgSvzniNiaO09gAAPrrEs2U=",
-    "last_login": "2024-04-14T06:37:13.635Z",
+    "last_login": "2024-04-16T04:57:21.854Z",
     "is_superuser": true,
     "first_name": "",
     "last_name": "",
@@ -130,7 +130,7 @@
     "email": "yaregreuboukou-2303@yopmail.com",
     "bio": "Задача организации, в особенности же новая модель организационной деятельности представляет собой интересный эксперимент проверки позиций, занимаемых участниками в отношении поставленных задач.",
     "birthday": "2007-06-08",
-    "avatar": "users/6/avatar.jpg",
+    "avatar": "",
     "tg_link": "t.me/yardarmclaim",
     "rating": 4,
     "groups": [],
@@ -211,7 +211,7 @@
   "pk": 10,
   "fields": {
     "password": "pbkdf2_sha256$600000$E0o4jbM68l3oFM9n8R96JU$xaIJooFco6YAg+2JQjPG5juaYz0s8cUNqTaQCf6tfhI=",
-    "last_login": null,
+    "last_login": "2024-04-16T04:52:34.604Z",
     "is_superuser": false,
     "first_name": "Клавдия",
     "last_name": "Ситникова",
@@ -230,11 +230,34 @@
   }
 },
 {
+  "model": "users.user",
+  "pk": 11,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$i6vPz6E1a6bbmPjW73AJ0g$eAMuLKnWaVD0sE1ux1+YLd/tGieTJt5C+lPwZjSYnSE=",
+    "last_login": "2024-04-15T12:38:27.381Z",
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-04-15T12:38:26.922Z",
+    "username": "NoName",
+    "email": "t22092006@gmail.com",
+    "bio": null,
+    "birthday": null,
+    "avatar": "",
+    "tg_link": null,
+    "rating": 0,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
   "model": "users.image",
   "pk": 1,
   "fields": {
     "user": 2,
-    "image": "users/2/4ef85e46-defd-44f2-8654-e7e2708d9f93.png"
+    "image": "users/2/b09a7ca8-c48b-4468-95ad-8df98920c281.png"
   }
 }
 ]

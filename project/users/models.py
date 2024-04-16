@@ -112,10 +112,10 @@ class User(django.contrib.auth.models.AbstractUser):
         default=0,
     )
 
-    def get_image_preview_x50(self, obj=None):
+    def get_image_preview_x100(self, obj=None):
         return sorl.thumbnail.get_thumbnail(
             obj or self.avatar,
-            "50x50",
+            "100x100",
             crop="center",
             quality=51,
         )

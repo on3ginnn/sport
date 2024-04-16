@@ -24,7 +24,7 @@
                   <div class="match__left match-team team-one">
                     <div class="match-team__img">
                       {% if order.team_one.avatar %}
-                      <img src="{{ media }}{{ order.team_one.avatar }}" alt="{% trans 'team_img'|capfirst %}">
+                      <img src="{{ order.team_one.get_image_preview_400x300.url }}" alt="{% trans 'team_img'|capfirst %}">
                       {% else %}
                       <div class="match-team__img-default">
                         <img src="{% static 'img/default/team.svg' %}" alt="{% trans 'default_team_img'|capfirst %}">
@@ -41,7 +41,7 @@
                             <div class="team-teammate__item">
                               <div class="team-teammate__img">
                                 {% if order.team_one.lead.avatar %}
-                                <img src="{{ media }}{{ order.team_one.lead.avatar }}" alt="{% trans 'avatar_img'|capfirst %}">
+                                <img src="{{ order.team_one.lead.get_image_preview_x100.url }}" alt="{% trans 'avatar_img'|capfirst %}">
                                 {% else %}
                                 <img src="{% static 'img/default/avatar.png' %}" alt="{% trans 'default_avatar_img'|capfirst %}">
                                 {% endif %}
@@ -54,7 +54,7 @@
                                 <div class="team-teammate__item">
                                   <div class="team-teammate__img">
                                     {% if teammate.avatar %}
-                                    <img src="{{ media }}{{ teammate.avatar }}" alt="{% trans 'avatar_img'|capfirst %}">
+                                    <img src="{{ teammate.get_image_preview_x100.url }}" alt="{% trans 'avatar_img'|capfirst %}">
                                     {% else %}
                                     <img src="{% static 'img/default/avatar.png' %}" alt="{% trans 'default_avatar_img'|capfirst %}">
                                     {% endif %}
@@ -79,7 +79,7 @@
                     <div class="match-decor__game match-game">
                       <div class="match-game__img">
                         {% if order.game.icon %}
-                        <img src="{{ media }}{{ order.game.icon }}" alt="match_game">
+                        <img src="{{ order.game.get_image_preview_x50.url }}" alt="match_game">
                         {% else %}
                         <img src="{% static 'img/default/sports.png' %}" alt="default_match_game">
                         {% endif %}
@@ -98,7 +98,7 @@
                   <div class="match__right match-team team-two">
                     <div class="match-team__img">
                       {% if order.team_two.avatar %}
-                      <img src="{{ media }}{{ order.team_two.avatar }}" alt="{% trans 'team_img'|capfirst %}">
+                      <img src="{{ order.team_two.get_image_preview_400x300.url }}" alt="{% trans 'team_img'|capfirst %}">
                       {% else %}
                       <div class="match-team__img-default">
                         <img src="{% static 'img/default/team.svg' %}" alt="{% trans 'default_team_img'|capfirst %}">
@@ -115,7 +115,7 @@
                             <div class="team-teammate__item">
                               <div class="team-teammate__img">
                                 {% if order.team_two.lead.avatar %}
-                                <img src="{{ media }}{{ order.team_two.lead.avatar }}" alt="{% trans 'avatar_img'|capfirst %}">
+                                <img src="{{ order.team_two.lead.get_image_preview_x100.url }}" alt="{% trans 'avatar_img'|capfirst %}">
                                 {% else %}
                                 <img src="{% static 'img/default/avatar.png' %}" alt="{% trans 'default_avatar_img'|capfirst %}">
                                 {% endif %}
@@ -128,7 +128,7 @@
                                 <div class="team-teammate__item">
                                   <div class="team-teammate__img">
                                     {% if teammate.avatar %}
-                                    <img src="{{ media }}{{ teammate.avatar }}" alt="{% trans 'avatar_img'|capfirst %}">
+                                    <img src="{{ teammate.get_image_preview_x100.url }}" alt="{% trans 'avatar_img'|capfirst %}">
                                     {% else %}
                                     <img src="{% static 'img/default/avatar.png' %}" alt="{% trans 'default_avatar_img'|capfirst %}">
                                     {% endif %}

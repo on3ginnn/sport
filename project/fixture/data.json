@@ -1,10 +1,1029 @@
 [
 {
+  "model": "admin.logentry",
+  "pk": 48,
+  "fields": {
+    "action_time": "2024-04-14T09:25:51.615Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "4",
+    "object_repr": "волейбол",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 49,
+  "fields": {
+    "action_time": "2024-04-14T09:25:51.617Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "3",
+    "object_repr": "бадминтон",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 50,
+  "fields": {
+    "action_time": "2024-04-14T09:25:51.618Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "2",
+    "object_repr": "баскетбол",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 51,
+  "fields": {
+    "action_time": "2024-04-14T09:25:51.619Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "1",
+    "object_repr": "футбол",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 52,
+  "fields": {
+    "action_time": "2024-04-15T18:02:18.198Z",
+    "user": 1,
+    "content_type": 14,
+    "object_id": "2",
+    "object_repr": "sportiki2",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Avatar\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 53,
+  "fields": {
+    "action_time": "2024-04-15T18:39:10.922Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "4",
+    "object_repr": "titlecultural",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Avatar\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 54,
+  "fields": {
+    "action_time": "2024-04-15T18:40:01.879Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "2",
+    "object_repr": "someusername",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Avatar\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 55,
+  "fields": {
+    "action_time": "2024-04-15T19:04:25.093Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "8",
+    "object_repr": "curryscreen",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Avatar\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 56,
+  "fields": {
+    "action_time": "2024-04-16T03:52:00.524Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "2",
+    "object_repr": "someusername",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Avatar\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 57,
+  "fields": {
+    "action_time": "2024-04-16T03:52:14.582Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "2",
+    "object_repr": "someusername",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"name\": \"user_image\", \"object\": \"b09a7ca8-c48b-4468-95ad-8df98920c281\", \"fields\": [\"Image\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 58,
+  "fields": {
+    "action_time": "2024-04-16T03:56:52.228Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "4",
+    "object_repr": "titlecultural",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Avatar\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 59,
+  "fields": {
+    "action_time": "2024-04-16T03:58:26.919Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "6",
+    "object_repr": "yardarmclaim",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Avatar\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 60,
+  "fields": {
+    "action_time": "2024-04-16T04:45:56.910Z",
+    "user": 1,
+    "content_type": 14,
+    "object_id": "2",
+    "object_repr": "sportiki2",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Avatar\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 61,
+  "fields": {
+    "action_time": "2024-04-16T04:50:46.489Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "8",
+    "object_repr": "curryscreen",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Avatar\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 62,
+  "fields": {
+    "action_time": "2024-04-16T04:57:33.531Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "1",
+    "object_repr": "футбол",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game_icon\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 63,
+  "fields": {
+    "action_time": "2024-04-16T04:57:36.459Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "2",
+    "object_repr": "баскетбол",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 64,
+  "fields": {
+    "action_time": "2024-04-16T04:57:44.505Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "2",
+    "object_repr": "баскетбол",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game_icon\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 65,
+  "fields": {
+    "action_time": "2024-04-16T04:59:29.846Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "3",
+    "object_repr": "бадминтон",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game_icon\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 66,
+  "fields": {
+    "action_time": "2024-04-16T04:59:37.021Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "4",
+    "object_repr": "волейбол",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game_icon\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 67,
+  "fields": {
+    "action_time": "2024-04-16T05:01:47.637Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "2",
+    "object_repr": "баскетбол",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Game_icon\"]}}]"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 1,
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": 1,
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 2,
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": 1,
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 3,
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": 1,
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 4,
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": 1,
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 5,
+  "fields": {
+    "name": "Can add permission",
+    "content_type": 2,
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 6,
+  "fields": {
+    "name": "Can change permission",
+    "content_type": 2,
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 7,
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": 2,
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 8,
+  "fields": {
+    "name": "Can view permission",
+    "content_type": 2,
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 9,
+  "fields": {
+    "name": "Can add group",
+    "content_type": 3,
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 10,
+  "fields": {
+    "name": "Can change group",
+    "content_type": 3,
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 11,
+  "fields": {
+    "name": "Can delete group",
+    "content_type": 3,
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 12,
+  "fields": {
+    "name": "Can view group",
+    "content_type": 3,
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 13,
+  "fields": {
+    "name": "Can add content type",
+    "content_type": 4,
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 14,
+  "fields": {
+    "name": "Can change content type",
+    "content_type": 4,
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 15,
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": 4,
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 16,
+  "fields": {
+    "name": "Can view content type",
+    "content_type": 4,
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 17,
+  "fields": {
+    "name": "Can add session",
+    "content_type": 5,
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 18,
+  "fields": {
+    "name": "Can change session",
+    "content_type": 5,
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 19,
+  "fields": {
+    "name": "Can delete session",
+    "content_type": 5,
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 20,
+  "fields": {
+    "name": "Can view session",
+    "content_type": 5,
+    "codename": "view_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 21,
+  "fields": {
+    "name": "Can add kv store",
+    "content_type": 6,
+    "codename": "add_kvstore"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 22,
+  "fields": {
+    "name": "Can change kv store",
+    "content_type": 6,
+    "codename": "change_kvstore"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 23,
+  "fields": {
+    "name": "Can delete kv store",
+    "content_type": 6,
+    "codename": "delete_kvstore"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 24,
+  "fields": {
+    "name": "Can view kv store",
+    "content_type": 6,
+    "codename": "view_kvstore"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 25,
+  "fields": {
+    "name": "Can add user",
+    "content_type": 7,
+    "codename": "add_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 26,
+  "fields": {
+    "name": "Can change user",
+    "content_type": 7,
+    "codename": "change_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 27,
+  "fields": {
+    "name": "Can delete user",
+    "content_type": 7,
+    "codename": "delete_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 28,
+  "fields": {
+    "name": "Can view user",
+    "content_type": 7,
+    "codename": "view_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 29,
+  "fields": {
+    "name": "Can add user_image",
+    "content_type": 8,
+    "codename": "add_image"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 30,
+  "fields": {
+    "name": "Can change user_image",
+    "content_type": 8,
+    "codename": "change_image"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 31,
+  "fields": {
+    "name": "Can delete user_image",
+    "content_type": 8,
+    "codename": "delete_image"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 32,
+  "fields": {
+    "name": "Can view user_image",
+    "content_type": 8,
+    "codename": "view_image"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 33,
+  "fields": {
+    "name": "Can add обратная связь",
+    "content_type": 9,
+    "codename": "add_feedback"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 34,
+  "fields": {
+    "name": "Can change обратная связь",
+    "content_type": 9,
+    "codename": "change_feedback"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 35,
+  "fields": {
+    "name": "Can delete обратная связь",
+    "content_type": 9,
+    "codename": "delete_feedback"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 36,
+  "fields": {
+    "name": "Can view обратная связь",
+    "content_type": 9,
+    "codename": "view_feedback"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 37,
+  "fields": {
+    "name": "Can add журнал состояния",
+    "content_type": 10,
+    "codename": "add_statuslog"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 38,
+  "fields": {
+    "name": "Can change журнал состояния",
+    "content_type": 10,
+    "codename": "change_statuslog"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 39,
+  "fields": {
+    "name": "Can delete журнал состояния",
+    "content_type": 10,
+    "codename": "delete_statuslog"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 40,
+  "fields": {
+    "name": "Can view журнал состояния",
+    "content_type": 10,
+    "codename": "view_statuslog"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 41,
+  "fields": {
+    "name": "Can add данные автора",
+    "content_type": 11,
+    "codename": "add_feedbackauthor"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 42,
+  "fields": {
+    "name": "Can change данные автора",
+    "content_type": 11,
+    "codename": "change_feedbackauthor"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 43,
+  "fields": {
+    "name": "Can delete данные автора",
+    "content_type": 11,
+    "codename": "delete_feedbackauthor"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 44,
+  "fields": {
+    "name": "Can view данные автора",
+    "content_type": 11,
+    "codename": "view_feedbackauthor"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 45,
+  "fields": {
+    "name": "Can add файлы обратной связи",
+    "content_type": 12,
+    "codename": "add_feedbackfile"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 46,
+  "fields": {
+    "name": "Can change файлы обратной связи",
+    "content_type": 12,
+    "codename": "change_feedbackfile"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 47,
+  "fields": {
+    "name": "Can delete файлы обратной связи",
+    "content_type": 12,
+    "codename": "delete_feedbackfile"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 48,
+  "fields": {
+    "name": "Can view файлы обратной связи",
+    "content_type": 12,
+    "codename": "view_feedbackfile"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 49,
+  "fields": {
+    "name": "Can add game",
+    "content_type": 13,
+    "codename": "add_game"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 50,
+  "fields": {
+    "name": "Can change game",
+    "content_type": 13,
+    "codename": "change_game"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 51,
+  "fields": {
+    "name": "Can delete game",
+    "content_type": 13,
+    "codename": "delete_game"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 52,
+  "fields": {
+    "name": "Can view game",
+    "content_type": 13,
+    "codename": "view_game"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 53,
+  "fields": {
+    "name": "Can add team",
+    "content_type": 14,
+    "codename": "add_team"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 54,
+  "fields": {
+    "name": "Can change team",
+    "content_type": 14,
+    "codename": "change_team"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 55,
+  "fields": {
+    "name": "Can delete team",
+    "content_type": 14,
+    "codename": "delete_team"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 56,
+  "fields": {
+    "name": "Can view team",
+    "content_type": 14,
+    "codename": "view_team"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 57,
+  "fields": {
+    "name": "Can add order",
+    "content_type": 15,
+    "codename": "add_order"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 58,
+  "fields": {
+    "name": "Can change order",
+    "content_type": 15,
+    "codename": "change_order"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 59,
+  "fields": {
+    "name": "Can delete order",
+    "content_type": 15,
+    "codename": "delete_order"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 60,
+  "fields": {
+    "name": "Can view order",
+    "content_type": 15,
+    "codename": "view_order"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "2b7q134w69e5086jegotke7xlc38ha5g",
+  "fields": {
+    "session_data": ".eJxVizEOwjAMRe-SGVWJG9cOIxJHYI7cOFEqaAdCJ8TdaaUOML73_3ubKOurxrXlZ5zUnI1z5vQrR0n3vOzLjq07uHXXWabHbXOLzPlyvP7SKq1uXWbtHWgYCRnBeTuwp1SASq8k6Agl-IEpAwMXG4AweavKLESAYj5fexI0zA:1rwLbP:FSyOSLaU7YOy6wxsHMcnlMXf1mfens1POpefYiMC7Kc",
+    "expire_date": "2024-04-29T12:38:27.383Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "a7ppwb7xk3nbt7cv3xiejce598hgujm3",
+  "fields": {
+    "session_data": ".eJxVi0EOwiAQRe_C2jQMlIFxaeIRXBMYhtBouxC7Mt7dNulCl-_9_94qpvXV4trlGaeizgrU6dflxHdZ9mHHPhzch-ucpsdtc0ua5XK8_tKWets65w3oahmDFdQeiQEoZAB2I1cnzAGJdBYcfQlYCpKpQIDOW8O6qs8XXeA09A:1rwasj:28EtH0ILBOEQU_PMdy61nBQbaHFZWt20c9RQJg1e16A",
+    "expire_date": "2024-04-30T04:57:21.857Z"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||image||014780324de206ec553031e0ce161c4c",
+  "fields": {
+    "value": "{\"name\": \"cache/81/48/8148f70784985d828db5735a7d7d2564.jpg\", \"storage\": \"django.core.files.storage.filesystem.FileSystemStorage\", \"size\": [50, 50]}"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||image||074b7684be1d3cebd1bb6eb972e0e029",
+  "fields": {
+    "value": "{\"name\": \"cache/83/da/83da8737eaf8d39f2b658d7dcbf52269.jpg\", \"storage\": \"django.core.files.storage.filesystem.FileSystemStorage\", \"size\": [50, 50]}"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||image||1ac1a59acb6a7d8d8539ee92a8d81461",
+  "fields": {
+    "value": "{\"name\": \"cache/80/e9/80e97cee93505c51fde5bcb9569fb273.jpg\", \"storage\": \"django.core.files.storage.filesystem.FileSystemStorage\", \"size\": [50, 50]}"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||image||23d76e405b0846c3e65ae34a6a1aa8c3",
+  "fields": {
+    "value": "{\"name\": \"streetsport/game/game_1.png\", \"storage\": \"django.core.files.storage.filesystem.FileSystemStorage\", \"size\": [512, 512]}"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||image||2681324b334dcfd4bad779b1cce1f37b",
+  "fields": {
+    "value": "{\"name\": \"cache/c8/e4/c8e49c5a06865062e72c488fefe17c19.jpg\", \"storage\": \"django.core.files.storage.filesystem.FileSystemStorage\", \"size\": [100, 100]}"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||image||3a72c9c9dc283064821fa173f08734b6",
+  "fields": {
+    "value": "{\"name\": \"cache/65/6d/656dc12195273a214813f3cb3a0a7010.png\", \"storage\": \"django.core.files.storage.filesystem.FileSystemStorage\", \"size\": [80, 80]}"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||image||63bb422056e0672682deb6cf9a8ee297",
+  "fields": {
+    "value": "{\"name\": \"users/4/avatar.jpg\", \"storage\": \"django.core.files.storage.filesystem.FileSystemStorage\", \"size\": [626, 626]}"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||image||6a8f5c7877902423a8a88d37cc09c98f",
+  "fields": {
+    "value": "{\"name\": \"cache/13/f6/13f6bacd183c05dc7925310374d1406f.jpg\", \"storage\": \"django.core.files.storage.filesystem.FileSystemStorage\", \"size\": [340, 240]}"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||image||72d39688d5fde8aeb72b58bdfae1d296",
+  "fields": {
+    "value": "{\"name\": \"cache/5e/d4/5ed403628fb79cfb203b2e2907038326.jpg\", \"storage\": \"django.core.files.storage.filesystem.FileSystemStorage\", \"size\": [400, 30]}"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||image||7ee9074883c06339c1317768b514fd47",
+  "fields": {
+    "value": "{\"name\": \"cache/49/75/497583dbb8d0237c4a2f90566772df8f.jpg\", \"storage\": \"django.core.files.storage.filesystem.FileSystemStorage\", \"size\": [100, 100]}"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||image||800a8eccd1bab8264e2f6c67c6099e88",
+  "fields": {
+    "value": "{\"name\": \"streetsport/game/game_2.png\", \"storage\": \"django.core.files.storage.filesystem.FileSystemStorage\", \"size\": [512, 512]}"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||image||823e318cba9d1c9c683622748334adf3",
+  "fields": {
+    "value": "{\"name\": \"cache/67/e2/67e23dd954242a2afccd47b237ccc78b.jpg\", \"storage\": \"django.core.files.storage.filesystem.FileSystemStorage\", \"size\": [400, 300]}"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||image||87ca921810d968505fb67b987a6047af",
+  "fields": {
+    "value": "{\"name\": \"cache/3e/f2/3ef2cc16a596cf680ee2e6fa1b4a0880.jpg\", \"storage\": \"django.core.files.storage.filesystem.FileSystemStorage\", \"size\": [100, 100]}"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||image||8ecc5bf9f5bfcc2d08cd3cc1bca613f8",
+  "fields": {
+    "value": "{\"name\": \"users/2/avatar.jpg\", \"storage\": \"django.core.files.storage.filesystem.FileSystemStorage\", \"size\": [1024, 1024]}"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||image||a6f0fed50b4eae5d9a9715f791abd5b6",
+  "fields": {
+    "value": "{\"name\": \"cache/9b/52/9b52fddc9c6fe18af4e8ac9e25e27104.jpg\", \"storage\": \"django.core.files.storage.filesystem.FileSystemStorage\", \"size\": [100, 100]}"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||image||b6b5a735e885fefe6eceab052e9cfab4",
+  "fields": {
+    "value": "{\"name\": \"streetsport/game/game_2_C5HP5Jp.png\", \"storage\": \"django.core.files.storage.filesystem.FileSystemStorage\", \"size\": [512, 512]}"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||image||c53be090b947b581a2cd1b44afc5d1e9",
+  "fields": {
+    "value": "{\"name\": \"users/8/avatar.jpg\", \"storage\": \"django.core.files.storage.filesystem.FileSystemStorage\", \"size\": [275, 183]}"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||image||e4d14253c1ad8388ad5fcbe5225bca7d",
+  "fields": {
+    "value": "{\"name\": \"cache/a4/c5/a4c5fcaa17f632f3a49ded49628266a0.jpg\", \"storage\": \"django.core.files.storage.filesystem.FileSystemStorage\", \"size\": [50, 50]}"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||image||ea99279e659d6c3dd8b8f128f2308bc8",
+  "fields": {
+    "value": "{\"name\": \"cache/5c/50/5c501226e7192e3843301e6fc06fe2c0.jpg\", \"storage\": \"django.core.files.storage.filesystem.FileSystemStorage\", \"size\": [50, 50]}"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||image||ee62038f7611f6d946340828386d2b27",
+  "fields": {
+    "value": "{\"name\": \"streetsport/team_2.jpg\", \"storage\": \"django.core.files.storage.filesystem.FileSystemStorage\", \"size\": [512, 288]}"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||image||f3f80f2dbf13270e426f24f21f2f1b51",
+  "fields": {
+    "value": "{\"name\": \"users/2/4ef85e46-defd-44f2-8654-e7e2708d9f93.png\", \"storage\": \"django.core.files.storage.filesystem.FileSystemStorage\", \"size\": [1080, 1080]}"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||thumbnails||23d76e405b0846c3e65ae34a6a1aa8c3",
+  "fields": {
+    "value": "[\"ea99279e659d6c3dd8b8f128f2308bc8\"]"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||thumbnails||63bb422056e0672682deb6cf9a8ee297",
+  "fields": {
+    "value": "[\"87ca921810d968505fb67b987a6047af\", \"1ac1a59acb6a7d8d8539ee92a8d81461\"]"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||thumbnails||800a8eccd1bab8264e2f6c67c6099e88",
+  "fields": {
+    "value": "[\"074b7684be1d3cebd1bb6eb972e0e029\"]"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||thumbnails||8ecc5bf9f5bfcc2d08cd3cc1bca613f8",
+  "fields": {
+    "value": "[\"014780324de206ec553031e0ce161c4c\", \"a6f0fed50b4eae5d9a9715f791abd5b6\"]"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||thumbnails||b6b5a735e885fefe6eceab052e9cfab4",
+  "fields": {
+    "value": "[\"e4d14253c1ad8388ad5fcbe5225bca7d\"]"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||thumbnails||c53be090b947b581a2cd1b44afc5d1e9",
+  "fields": {
+    "value": "[\"2681324b334dcfd4bad779b1cce1f37b\"]"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||thumbnails||ee62038f7611f6d946340828386d2b27",
+  "fields": {
+    "value": "[\"7ee9074883c06339c1317768b514fd47\", \"823e318cba9d1c9c683622748334adf3\", \"72d39688d5fde8aeb72b58bdfae1d296\", \"6a8f5c7877902423a8a88d37cc09c98f\"]"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||thumbnails||f3f80f2dbf13270e426f24f21f2f1b51",
+  "fields": {
+    "value": "[\"3a72c9c9dc283064821fa173f08734b6\"]"
+  }
+},
+{
   "model": "users.user",
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$600000$eQltqm0mfRQM1uz0cyBO3w$VKGVBrhFudGQxNOUrUnISgSvzniNiaO09gAAPrrEs2U=",
-    "last_login": "2024-04-14T06:37:13.635Z",
+    "last_login": "2024-04-16T04:57:21.854Z",
     "is_superuser": true,
     "first_name": "",
     "last_name": "",
@@ -130,7 +1149,7 @@
     "email": "yaregreuboukou-2303@yopmail.com",
     "bio": "Задача организации, в особенности же новая модель организационной деятельности представляет собой интересный эксперимент проверки позиций, занимаемых участниками в отношении поставленных задач.",
     "birthday": "2007-06-08",
-    "avatar": "users/6/avatar.jpg",
+    "avatar": "",
     "tg_link": "t.me/yardarmclaim",
     "rating": 4,
     "groups": [],
@@ -211,7 +1230,7 @@
   "pk": 10,
   "fields": {
     "password": "pbkdf2_sha256$600000$E0o4jbM68l3oFM9n8R96JU$xaIJooFco6YAg+2JQjPG5juaYz0s8cUNqTaQCf6tfhI=",
-    "last_login": null,
+    "last_login": "2024-04-16T04:52:34.604Z",
     "is_superuser": false,
     "first_name": "Клавдия",
     "last_name": "Ситникова",
@@ -230,11 +1249,227 @@
   }
 },
 {
+  "model": "users.user",
+  "pk": 11,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$i6vPz6E1a6bbmPjW73AJ0g$eAMuLKnWaVD0sE1ux1+YLd/tGieTJt5C+lPwZjSYnSE=",
+    "last_login": "2024-04-15T12:38:27.381Z",
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-04-15T12:38:26.922Z",
+    "username": "NoName",
+    "email": "t22092006@gmail.com",
+    "bio": null,
+    "birthday": null,
+    "avatar": "",
+    "tg_link": null,
+    "rating": 0,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
   "model": "users.image",
   "pk": 1,
   "fields": {
     "user": 2,
-    "image": "users/2/4ef85e46-defd-44f2-8654-e7e2708d9f93.png"
+    "image": "users/2/b09a7ca8-c48b-4468-95ad-8df98920c281.png"
+  }
+},
+{
+  "model": "feedback.feedback",
+  "pk": 1,
+  "fields": {
+    "text": "test",
+    "created_on": "2024-04-13T18:23:24.631Z",
+    "status": "NW"
+  }
+},
+{
+  "model": "feedback.feedback",
+  "pk": 2,
+  "fields": {
+    "text": "еуые 2",
+    "created_on": "2024-04-13T18:26:24.043Z",
+    "status": "NW"
+  }
+},
+{
+  "model": "feedback.feedback",
+  "pk": 3,
+  "fields": {
+    "text": "test",
+    "created_on": "2024-04-14T10:29:54.938Z",
+    "status": "NW"
+  }
+},
+{
+  "model": "feedback.feedback",
+  "pk": 4,
+  "fields": {
+    "text": "test2",
+    "created_on": "2024-04-14T10:32:03.393Z",
+    "status": "NW"
+  }
+},
+{
+  "model": "feedback.feedback",
+  "pk": 5,
+  "fields": {
+    "text": "test3",
+    "created_on": "2024-04-14T10:33:48.667Z",
+    "status": "NW"
+  }
+},
+{
+  "model": "feedback.feedback",
+  "pk": 6,
+  "fields": {
+    "text": "test text",
+    "created_on": "2024-04-14T21:16:59.806Z",
+    "status": "NW"
+  }
+},
+{
+  "model": "feedback.feedback",
+  "pk": 7,
+  "fields": {
+    "text": "test text",
+    "created_on": "2024-04-14T21:18:17.941Z",
+    "status": "NW"
+  }
+},
+{
+  "model": "feedback.feedback",
+  "pk": 8,
+  "fields": {
+    "text": "test2",
+    "created_on": "2024-04-14T21:19:21.560Z",
+    "status": "NW"
+  }
+},
+{
+  "model": "feedback.feedback",
+  "pk": 9,
+  "fields": {
+    "text": "test3",
+    "created_on": "2024-04-14T21:20:07.765Z",
+    "status": "NW"
+  }
+},
+{
+  "model": "feedback.feedbackfile",
+  "pk": 1,
+  "fields": {
+    "feedback": 6,
+    "file": "uploads/6/free-icon-like-731636.png"
+  }
+},
+{
+  "model": "feedback.feedbackfile",
+  "pk": 2,
+  "fields": {
+    "feedback": 7,
+    "file": "uploads/7/free-icon-like-731636.png"
+  }
+},
+{
+  "model": "feedback.feedbackfile",
+  "pk": 3,
+  "fields": {
+    "feedback": 8,
+    "file": "uploads/8/free-icon-like-731636212.png"
+  }
+},
+{
+  "model": "feedback.feedbackfile",
+  "pk": 4,
+  "fields": {
+    "feedback": 8,
+    "file": "uploads/8/free-icon-like-7316316.png"
+  }
+},
+{
+  "model": "feedback.feedbackfile",
+  "pk": 5,
+  "fields": {
+    "feedback": 9,
+    "file": "uploads/9/information.png"
+  }
+},
+{
+  "model": "feedback.feedbackauthor",
+  "pk": 1,
+  "fields": {
+    "mail": "on3ginnn@gmail.com",
+    "feedback": 1
+  }
+},
+{
+  "model": "feedback.feedbackauthor",
+  "pk": 2,
+  "fields": {
+    "mail": "on3ginnn@gmail.com",
+    "feedback": 2
+  }
+},
+{
+  "model": "feedback.feedbackauthor",
+  "pk": 3,
+  "fields": {
+    "mail": "on3ginnn@gmail.com",
+    "feedback": 3
+  }
+},
+{
+  "model": "feedback.feedbackauthor",
+  "pk": 4,
+  "fields": {
+    "mail": "on3ginnn@gmail.com",
+    "feedback": 4
+  }
+},
+{
+  "model": "feedback.feedbackauthor",
+  "pk": 5,
+  "fields": {
+    "mail": "on3ginnn@gmail.com",
+    "feedback": 5
+  }
+},
+{
+  "model": "feedback.feedbackauthor",
+  "pk": 6,
+  "fields": {
+    "mail": "on3ginnn@gmail.com",
+    "feedback": 6
+  }
+},
+{
+  "model": "feedback.feedbackauthor",
+  "pk": 7,
+  "fields": {
+    "mail": "on3ginnn@gmail.com",
+    "feedback": 7
+  }
+},
+{
+  "model": "feedback.feedbackauthor",
+  "pk": 8,
+  "fields": {
+    "mail": "on3ginnn@gmail.com",
+    "feedback": 8
+  }
+},
+{
+  "model": "feedback.feedbackauthor",
+  "pk": 9,
+  "fields": {
+    "mail": "on3ginnn@gmail.com",
+    "feedback": 9
   }
 },
 {
@@ -242,7 +1477,8 @@
   "pk": 1,
   "fields": {
     "title": "футбол",
-    "normalize_title": "futbol"
+    "normalize_title": "futbol",
+    "icon": "streetsport/game/game_1.png"
   }
 },
 {
@@ -250,7 +1486,8 @@
   "pk": 2,
   "fields": {
     "title": "баскетбол",
-    "normalize_title": "basketbol"
+    "normalize_title": "basketbol",
+    "icon": "streetsport/game/game_2_C5HP5Jp.png"
   }
 },
 {
@@ -258,7 +1495,8 @@
   "pk": 3,
   "fields": {
     "title": "бадминтон",
-    "normalize_title": "badminton"
+    "normalize_title": "badminton",
+    "icon": "streetsport/game/game_3.png"
   }
 },
 {
@@ -266,7 +1504,8 @@
   "pk": 4,
   "fields": {
     "title": "волейбол",
-    "normalize_title": "voleibol"
+    "normalize_title": "voleibol",
+    "icon": "streetsport/game/game_4.png"
   }
 },
 {
@@ -274,13 +1513,14 @@
   "pk": 1,
   "fields": {
     "title": "sportiki",
+    "avatar": "",
     "lead": 2,
     "game": 1,
     "normalize_title": "sportiki",
     "rating": 13,
     "teammates": [
-      4,
       9,
+      4,
       6
     ]
   }
@@ -290,6 +1530,7 @@
   "pk": 2,
   "fields": {
     "title": "sportiki2",
+    "avatar": "streetsport/team_2.jpg",
     "lead": 3,
     "game": 2,
     "normalize_title": "sportiki2",
@@ -305,6 +1546,7 @@
   "pk": 3,
   "fields": {
     "title": "miniMax",
+    "avatar": "",
     "lead": 7,
     "game": 4,
     "normalize_title": "minimax",

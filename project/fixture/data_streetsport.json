@@ -4,7 +4,8 @@
   "pk": 1,
   "fields": {
     "title": "футбол",
-    "normalize_title": "futbol"
+    "normalize_title": "futbol",
+    "icon": "streetsport/game/game_1.png"
   }
 },
 {
@@ -12,7 +13,8 @@
   "pk": 2,
   "fields": {
     "title": "баскетбол",
-    "normalize_title": "basketbol"
+    "normalize_title": "basketbol",
+    "icon": "streetsport/game/game_2_C5HP5Jp.png"
   }
 },
 {
@@ -20,7 +22,8 @@
   "pk": 3,
   "fields": {
     "title": "бадминтон",
-    "normalize_title": "badminton"
+    "normalize_title": "badminton",
+    "icon": "streetsport/game/game_3.png"
   }
 },
 {
@@ -28,7 +31,8 @@
   "pk": 4,
   "fields": {
     "title": "волейбол",
-    "normalize_title": "voleibol"
+    "normalize_title": "voleibol",
+    "icon": "streetsport/game/game_4.png"
   }
 },
 {
@@ -36,13 +40,14 @@
   "pk": 1,
   "fields": {
     "title": "sportiki",
+    "avatar": "",
     "lead": 2,
     "game": 1,
     "normalize_title": "sportiki",
     "rating": 13,
     "teammates": [
-      4,
       9,
+      4,
       6
     ]
   }
@@ -52,6 +57,7 @@
   "pk": 2,
   "fields": {
     "title": "sportiki2",
+    "avatar": "streetsport/team_2.jpg",
     "lead": 3,
     "game": 2,
     "normalize_title": "sportiki2",
@@ -67,6 +73,7 @@
   "pk": 3,
   "fields": {
     "title": "miniMax",
+    "avatar": "",
     "lead": 7,
     "game": 4,
     "normalize_title": "minimax",

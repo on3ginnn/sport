@@ -20,6 +20,10 @@ def normalize_str(value):
 
 
 class Game(django.db.models.Model):
+    def get_path_image(self, filename):
+        ext = pathlib.Path(filename).suffix
+        return f"streetsport/game/game_{self.id}{ext}"
+
     title = django.db.models.CharField(
         _("title"),
         help_text=_("title_field_help"),
@@ -32,6 +36,22 @@ class Game(django.db.models.Model):
         editable=False,
         help_text=_("normalize_title_field_help"),
     )
+
+    icon = sorl.thumbnail.ImageField(
+        _("game_icon"),
+        help_text=_("game_icon_field_help"),
+        upload_to=get_path_image,
+        null=True,
+        blank=True,
+    )
+
+    def get_image_preview_x50(self, obj=None):
+        return sorl.thumbnail.get_thumbnail(
+            obj or self.icon,
+            "50x50",
+            crop="center",
+            quality=51,
+        )
 
     def clean(self):
         normalize_title = normalize_str(self.title)
@@ -111,6 +131,14 @@ class Team(django.db.models.Model):
         help_text=_("rating_field_help"),
         default=0,
     )
+
+    def get_image_preview_400x300(self, obj=None):
+        return sorl.thumbnail.get_thumbnail(
+            obj or self.avatar,
+            "400x300",
+            crop="center",
+            quality=51,
+        )
 
     def clean(self):
         normalize_title = normalize_str(self.title)
