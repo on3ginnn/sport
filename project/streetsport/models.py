@@ -148,8 +148,8 @@ class OrderManager(django.db.models.Manager):
                 Order.team_one.field.name,
                 Order.team_two.field.name,
                 Order.game.field.name,
-                "team_one__lead",
-                "team_two__lead",
+                f"{Order.team_one.field.name}__{Team.lead.field.name}",
+                f"{Order.team_two.field.name}__{Team.lead.field.name}",
             )
             .prefetch_related(
                 django.db.models.Prefetch(
