@@ -157,9 +157,6 @@ class Team(django.db.models.Model):
                 {Team.title.field.name: _("normalize_title_validation_error")},
             )
 
-        self.normalize_title = normalize_title
-
-    def save(self, *args, **kwargs):
         if self.lead is None:
             next_teammate = self.teammates.filter(
                 ~django.db.models.Q(id=self.__original_lead.id),
@@ -167,10 +164,13 @@ class Team(django.db.models.Model):
             if next_teammate:
                 self.lead = next_teammate
             else:
-                return self.delete()
+                raise django.core.exceptions.ValidationError(
+                    {Team.lead.field.name: _("lead_one_validation_error")},
+                )
 
         self.__original_lead = self.lead
-        return super().save(*args, **kwargs)
+
+        self.normalize_title = normalize_title
 
     @property
     def orders(self):
