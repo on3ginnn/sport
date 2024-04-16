@@ -171,6 +171,7 @@ class OrderManager(django.db.models.Manager):
                     ).only(users.models.User.avatar.field.name),
                 ),
             )
+            .order_by(f"-{Order.start.field.name}")[:10]
         ).only(
             Order.id.field.name,
             Order.start.field.name,
