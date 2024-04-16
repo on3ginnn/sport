@@ -176,8 +176,8 @@ class OrderManager(django.db.models.Manager):
                 Order.team_one.field.name,
                 Order.team_two.field.name,
                 Order.game.field.name,
-                "team_one__lead",
-                "team_two__lead",
+                f"{Order.team_one.field.name}__{Team.lead.field.name}",
+                f"{Order.team_two.field.name}__{Team.lead.field.name}",
             )
             .prefetch_related(
                 django.db.models.Prefetch(
@@ -185,14 +185,18 @@ class OrderManager(django.db.models.Manager):
                         f"{Order.team_one.field.name}__"
                         f"{Team.teammates.field.name}"
                     ),
-                    queryset=users.models.User.objects.all(),
+                    queryset=users.models.User.objects.order_by(
+                        users.models.User.rating.field.name,
+                    ).only(users.models.User.avatar.field.name),
                 ),
                 django.db.models.Prefetch(
                     (
                         f"{Order.team_two.field.name}__"
                         f"{Team.teammates.field.name}"
                     ),
-                    queryset=users.models.User.objects.all(),
+                    queryset=users.models.User.objects.order_by(
+                        users.models.User.rating.field.name,
+                    ).only(users.models.User.avatar.field.name),
                 ),
             )
         ).only(
