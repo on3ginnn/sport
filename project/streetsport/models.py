@@ -7,6 +7,7 @@ from django.utils.translation import gettext as _
 import slugify
 import sorl.thumbnail
 
+import streetsport.deletion
 import streetsport.validators
 import users.models
 
@@ -95,7 +96,7 @@ class Team(django.db.models.Model):
     )
     lead = django.db.models.ForeignKey(
         users.models.User,
-        on_delete=django.db.models.SET_NULL,
+        on_delete=streetsport.deletion.delete_or_set_next_lead,
         verbose_name=_("lead"),
         help_text=_("lead_field_help"),
         related_name="lead_teams",

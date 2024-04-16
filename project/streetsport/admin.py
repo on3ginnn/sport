@@ -1,4 +1,4 @@
-import django.contrib
+import django.contrib.admin
 
 import streetsport.models
 

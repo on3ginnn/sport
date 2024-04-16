@@ -6,6 +6,7 @@ import django.db.models
 from django.utils.translation import gettext_lazy as _
 import sorl.thumbnail
 
+import users.models
 import users.validators
 
 __all__ = []
@@ -121,6 +122,7 @@ class User(django.contrib.auth.models.AbstractUser):
         )
 
     class Meta(django.contrib.auth.models.AbstractUser.Meta):
+        ordering = ["rating"]
         swappable = "AUTH_USER_MODEL"
 
 

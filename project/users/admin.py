@@ -1,4 +1,4 @@
-import django.contrib
+import django.contrib.admin
 import django.contrib.auth.admin
 import django.utils.safestring
 from django.utils.translation import gettext as _
