@@ -1,0 +1,87 @@
+.btn_filter_close .btn{
+    background: none;
+    padding-left: 30px;
+}
+
+.btn_filter_close .btn::before{
+    content: url(../../../img/icons/close.svg);
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+}
+.modals,
+.modal{
+    display: none;
+
+}
+.modal._active {display: block;}
+.modals._active{
+    display: flex;
+    position: fixed;
+    z-index: 50;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0,0,.2);
+    justify-content: center;
+    align-items: center;
+}
+.modal{
+    background: white;
+    max-width: 800px;
+    padding: 20px;
+    width: 100%;
+}
+.filters__items{
+    gap: 5px;
+}
+.filter{
+    padding: 8px 10px;
+    padding-right: 30px;
+    background: var(--color-blue);
+    color: white;
+    text-transform: lowercase;
+    font-size: 16px;
+    line-height: 100%;
+    font-weight: 500;
+    border-radius: 20px;
+    position: relative;
+}
+.filter::before{
+    content: url(../../../img/icons/cancel.svg);
+    width: 12px;
+    height: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    position: absolute;
+}
+.filter.filter_link::before{
+    content: url(../../../img/icons/link.svg);
+
+}
+.filter-field label{
+    margin: 0;
+    margin-top: 8px;
+    font-family: var(--roboto-regular);
+}
+.form__filters{
+    display: flex;
+    gap: 5px;
+}
+.filter__fields{
+    margin-top: 10px;
+}
+.filter__field{
+    margin-bottom: 10px;
+    display: flex;
+    gap: 5px;
+}
+.modal_form__button{
+    width: 100%;
+    justify-content: end;
+}

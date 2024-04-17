@@ -212,3 +212,34 @@
 .team-two .team-teammate__img{
     background: var(--color-orange);
 }
+.matches__filter-btn{
+    margin-left: 20px;
+    margin-right: auto;
+}
+.btn.filter_btn{
+    background: var(--color-gray);
+    color: black;
+    padding: 10px 20px;
+    padding-left: 50px;
+    border-radius: 20px;
+    position: relative;
+}
+.btn.filter_btn::before{
+    content: url(../../../img/icons/filter.svg);
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+}
+
+.btn_order_create .btn::before{
+    content: url(../../../img/icons/add.svg);
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+}

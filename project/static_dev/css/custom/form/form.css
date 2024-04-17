@@ -10,7 +10,6 @@
     margin-bottom: 20px;
 }
 .form__input{
-    margin-top: 5px;
     resize: none;
     width: 100%;
     border: 3px solid var(--color-gray);
@@ -20,13 +19,14 @@
     border-radius: 20px;
 }
 label{
+    display: block;
+    margin-bottom: 5px;
     font-size: 16px;
     line-height: 100%;
     font-family: var(--roboto-bold);
     color: var(--footer-color-gray);
     text-transform: uppercase;
 }
-
 .input_file{
     opacity: 0;
     visibility: hidden;
@@ -35,7 +35,6 @@ label{
 }
 
 .form__field-wrapper{
-    margin-top: 5px;
     display: flex;
     background: var(--color-gray);
     border-radius: 20px;
@@ -75,4 +74,11 @@ label{
     color: var(--footer-color-gray);
     font-size: 16px;
     line-height: 100%;
+}
+
+.form__button{
+    padding: 10px 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
 }

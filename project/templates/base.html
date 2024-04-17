@@ -27,6 +27,7 @@
     <link href="{% static 'css/custom/footer/footer.css' %}" rel="stylesheet">
     <link href="{% static 'css/custom/matches/matches.css' %}" rel="stylesheet">
     <link href="{% static 'css/custom/form/form.css' %}" rel="stylesheet">
+    <link href="{% static 'css/custom/modals/modals.css' %}" rel="stylesheet">
     <title>{% block title %}StreetСпорт{% endblock title %}</title>
     <style>
       @font-face {
@@ -52,6 +53,9 @@
     </style>
   </head>
   <body>
+    <div class="modals">
+      {% include "includes/modals/filter.html" %}
+    </div>
     <div class="wrapper">
       {% include "includes/header.html" %}
       <div class="messages _container">

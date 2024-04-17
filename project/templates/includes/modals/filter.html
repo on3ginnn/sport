@@ -1,0 +1,151 @@
+{% load static %}
+{% load i18n %}
+
+<article id="filterModal" class="modal">
+  <div class="modal__wrapper">
+    <div class="section__title">
+      <h1>{% trans "filtration"|capfirst %}</h1>
+      <div class="section__title-btn btn_filter_close icon_btn">
+        {% include 'includes/btn.html' with value='' %}
+      </div>
+    </div>
+    <div class="section__content filter__content">
+      <div class="filter__content-fields form-fields">
+        <div class="form__field">
+          <label for="">Активные</label>
+          <div class="form__filters filters">
+            <ul class="filters__items items">
+              <li class="filters__item item">
+                <div class="filters__filter filter btn">
+                  <div class="filter__content">
+                    БЛИЖАЙШИЕ
+                  </div>
+                </div>
+              </li>
+              <li class="filters__item item">
+                <div class="filters__filter filter btn">
+                  <div class="filter__content">
+                    команда: sportiki
+                  </div>
+                </div>
+              </li>
+              <li class="filters__item item">
+                <div class="filters__filter filter btn">
+                  <div class="filter__content">
+                    игрок: александр
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="form__field">
+          <label for="">ВЫБЕРИТЕ ФИЛЬТРЫ</label>
+          <div class="filter__fields filter-fields">
+            <div class="filter__field filter-field">
+              <label for="">время:</label>
+              <div class="form__filters filters">
+                <ul class="filters__items items">
+                  <li class="filters__item item">
+                    <div class="filters__filter filter btn">
+                      <div class="filter__content">
+                        БЛИЖАЙШИЕ
+                      </div>
+                    </div>
+                  </li>
+                  <li class="filters__item item">
+                    <div class="filters__filter filter btn">
+                      <div class="filter__content">
+                        прошедшие
+                      </div>
+                    </div>
+                  </li>
+                  <li class="filters__item item">
+                    <div class="filters__filter filter btn">
+                      <div class="filter__content">
+                        активные
+                      </div>
+                    </div>
+                  </li>
+                  <li class="filters__item item">
+                    <div class="filters__filter filter btn">
+                      <div class="filter__content">
+                        все
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="filter__field filter-field">
+              <label for="">вид игры:</label>
+              <div class="form__filters filters">
+                <ul class="filters__items items">
+                  <li class="filters__item item">
+                    <div class="filters__filter filter btn">
+                      <div class="filter__content">
+                        баскетбол
+                      </div>
+                    </div>
+                  </li>
+                  <li class="filters__item item">
+                    <div class="filters__filter filter btn">
+                      <div class="filter__content">
+                        футбол
+                      </div>
+                    </div>
+                  </li>
+                  <li class="filters__item item">
+                    <div class="filters__filter filter btn">
+                      <div class="filter__content">
+                        волейбол
+                      </div>
+                    </div>
+                  </li>
+                  <li class="filters__item item">
+                    <div class="filters__filter filter btn">
+                      <div class="filter__content">
+                        все
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="filter__field filter-field">
+              <label for="">команды:</label>
+              <div class="form__filters filters">
+                <ul class="filters__items items">
+                  <li class="filters__item item">
+                    <div class="filters__filter filter filter_link btn">
+                      <div class="filter__content">
+                        выбрать команды
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="filter__field filter-field">
+              <label for="">игроки:</label>
+              <div class="form__filters filters">
+                <ul class="filters__items items">
+                  <li class="filters__item item">
+                    <div class="filters__filter filter filter_link btn">
+                      <div class="filter__content">
+                        выбрать игроков
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form__button modal_form__button">
+          {% include "includes/submit_btn.html" with value="Применить" %}
+        </div>
+      </div>
+    </div>
+  </div>
+</article>

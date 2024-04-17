@@ -1,19 +1,19 @@
 from django.urls import path
 
-from feedback import views
 import streetsport.apps
+import streetsport.views
 
 app_name = streetsport.apps.StreetsportConfig.name
 
 urlpatterns = [
     path(
         "",
-        views.FeedbackCreateView.as_view(),
+        streetsport.views.GamesListView.as_view(),
         name="orders",
     ),
     path(
-        "",
-        views.FeedbackCreateView.as_view(),
+        "leaderboard/",
+        streetsport.views.GamesListView.as_view(),
         name="leaderboard",
     ),
 ]

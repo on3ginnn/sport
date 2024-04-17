@@ -9,9 +9,7 @@
       </a>
       <nav class="header__navbar navbar">
         <ul class="navbar__items items">
-          {% with request.user.is_authenticated as is_auth %}
-          {% if is_auth %}
-
+          {% with view_name=request.resolver_match.view_name is_auth=request.user.is_authenticated %}
           <li class="navbar__item item">
             <a class="navbar__link {% if view_name == 'homepage:main' %}_active{% endif %}" href="{% url 'homepage:main' %}">
               {% trans "main"|capfirst %}
@@ -27,7 +25,7 @@
               {% trans "leaderboard"|capfirst %}
             </a>
           </li>
-          
+          {% if is_auth %}
           <li class="navbar__item item">
             <a class="navbar__link {% if view_name == 'users:profile' %}_active{% endif %}" href="{% url 'users:profile' %}">
               {% trans "profile"|capfirst %}

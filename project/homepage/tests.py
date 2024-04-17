@@ -1,4 +1,4 @@
-from http import HTTPStatus
+import http
 
 import django.test
 import django.urls
@@ -11,4 +11,4 @@ class StaticURLTests(django.test.TestCase):
         status_code = self.client.get(
             django.urls.reverse("homepage:main"),
         ).status_code
-        self.assertEqual(status_code, HTTPStatus.OK)
+        self.assertEqual(status_code, http.HTTPStatus.OK)

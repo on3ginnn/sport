@@ -23,20 +23,20 @@ def delete_or_set_next_lead(collector, field, sub_objs, using):
                 django.db.models.Q(
                     teammates__id=django.db.models.F(
                         streetsport.models.Team.lead.field.name,
-                    )
+                    ),
                 )
                 | django.db.models.Q(
                     teammates__id__in=user_ids,
-                )
+                ),
             ),
-        )
+        ),
     )
     for team in teams:
         if not team.count_teammates:
             delete.append(team)
         else:
             team.lead = team.teammates.filter(
-                ~django.db.models.Q(id=team.lead.id)
+                ~django.db.models.Q(id=team.lead.id),
             ).first()
             team.save()
 

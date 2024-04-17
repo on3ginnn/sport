@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+{% trans "games_title"|capfirst %}
+{% endblock title %}
+
+{% block content %}
+{% get_media_prefix as media %}
+<section class="matches" data-media-url="{% get_media_prefix %}">
+  <div class="matches__body _container">
+    <div class="section__title">
+      <h1>{% trans "games_title"|capfirst %}</h1>
+      <div class="matches__filter-btn">
+        <button type="button" name="filter_btn" id="filterModal" class="btn filter_btn modal_btn">Фильтры</button>
+      </div>
+      <div class="section__title-btn btn_order_create icon_btn">
+        {% include 'includes/btn.html' with value='Создать матч' %}
+      </div>
+    </div>
+    <div class="matches__filters filters">
+      <ul class="filters__items items">
+        <li class="filters__item item">
+          <div class="filters__filter filter btn">
+            <div class="filter__content">
+              БЛИЖАЙШИЕ
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="section__content matches__content">
+      <ul class="matches__items items">
+        {% for order in orders %}
+          <li class="matches__item item">
+            <div class="matches__wrapper">
+              <div class="matches__datetime">
+                <span class="text_bold">{{ order.start|date:"H:i" }}</span>, {{ order.start|date:"d.m.Y" }}
+              </div>
+              <a href="{# url 'streetsport:order' 1 #}" class="matches__cart">
+
+                {% include 'includes/game_order.html' %}
+
+                <div class="match__link">
+                  <div class="match__link-wrapper">
+                    <span>{% trans "viewmore"|lower %}</span>
+                    <img src="{% static 'img/icons/arrow.svg' %}" alt="">
+                  </div>
+                </div>
+              </a>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+{% endblock content %}

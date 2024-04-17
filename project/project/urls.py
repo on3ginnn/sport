@@ -27,7 +27,7 @@ urlpatterns = [
         name="feedback",
     ),
     django.urls.path(
-        "streetsport/",
+        "games/",
         django.urls.include(("streetsport.urls")),
         name=streetsport.apps.StreetsportConfig.name,
     ),
