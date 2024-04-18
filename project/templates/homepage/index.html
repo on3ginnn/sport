@@ -19,7 +19,7 @@
               <div class="matches__datetime">
                 <span class="text_bold">{{ order.start|date:"H:i" }}</span>, {{ order.start|date:"d.m.Y" }}
               </div>
-              <a href="{# url 'streetsport:order' 1 #}" class="matches__cart">
+              <a href="{% url 'streetsport:order' order.id %}" class="matches__cart">
 
                 {% include 'includes/game_order.html' %}
                 <div class="match__link">

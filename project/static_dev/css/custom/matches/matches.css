@@ -51,6 +51,10 @@
     font-family: var(--roboto-light);
     line-height: 100%;
 }
+.order__datetime{
+    font-size: 40px;
+    line-height: 100%;
+}
 .match-team {
     flex: 0 1 50%;
     padding: 5px;
@@ -196,6 +200,13 @@
     line-height: 100%;
     color: black;
 }
+.order .match-game__wrapper{
+    font-size: inherit;
+}
+.order .match-game__img{
+    width: 48px;
+    height: 48px;
+}
 .match-game__img{
     width: 24px;
     height: 24px;
@@ -242,4 +253,36 @@
     top: 50%;
     left: 20px;
     transform: translateY(-50%);
+}
+
+.btn_order_edit .btn::before{
+    content: url(../../../img/icons/edit.svg);
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+}
+.btn_order_delete .btn{
+    background: white;
+    color: var(--color-red);
+}
+.order__wrapper{
+    display: flex;
+
+}
+.order__map{
+    flex: 0 0 50%;
+    padding-right: 20px;
+    position: relative;
+}
+.order__map img{
+    width: 100%;
+    object-fit: cover;
+}
+.order__description{
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 100%;
 }

@@ -16,7 +16,8 @@
         <button type="button" name="filter_btn" id="filterModal" class="btn filter_btn modal_btn">Фильтры</button>
       </div>
       <div class="section__title-btn btn_order_create icon_btn">
-        {% include 'includes/btn.html' with value='Создать матч' %}
+        {% url 'streetsport:order-create' as url %}
+        {% include 'includes/btn.html' with value='Создать матч' url=url %}
       </div>
     </div>
     <div class="matches__filters filters">

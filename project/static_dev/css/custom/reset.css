@@ -130,6 +130,12 @@ h1{
     transition: all .1s ease 0s;
     position: relative;
 }
+.section__title-btns{
+    margin-left: auto;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
 .icon_btn .btn{
     padding-left: 55px;
 }

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+{% trans "games_title"|capfirst %}
+{% endblock title %}
+
+{% block content %}
+{% get_media_prefix as media %}
+<section class="order" data-media-url="{% get_media_prefix %}">
+  <div class="matches__body _container">
+    <div class="section__title">
+      <h1>
+        <div class="order__game match-game">
+          <div class="match-game__img">
+            {% if order.game.icon %}
+            <img src="{{ order.game.get_image_preview_x50.url }}" alt="match_game">
+            {% else %}
+            <img src="{% static 'img/default/sports.png' %}" alt="default_match_game">
+            {% endif %}
+          </div>
+          <div class="match-game__wrapper">
+            {{ order.game.title|capfirst }}
+          </div>
+        </div>
+      </h1>
+      <div class="section__title-btns">
+        <div class="section__title-btn btn_order_delete">
+          {% url 'streetsport:order-create' as url %}
+          {% include 'includes/btn.html' with value='Удалить игру' url=url %}
+        </div>
+        <div class="section__title-btn btn_order_edit icon_btn">
+          {% url 'streetsport:order-create' as url %}
+          {% include 'includes/btn.html' with value='Редактировать' url=url %}
+        </div>
+      </div>
+    </div>
+    <div class="section__content order__content">
+      <div class="order__wrapper">
+        <div class="order__map">
+          <img src="{% static 'img/stub/map.jpg' %}" alt="{% trans 'order_map'|capfirst %}">
+        </div>
+        <div class="order__info">
+          <h1><a href="{# url 'streetsport:team' pk=order.team_one.id #}" class="color_blue">{{ order.team_one.title }}</a> & <a href="{# url 'streetsport:team' pk=order.team_two.id #}" class="color_blue">{{ order.team_one.title }}</a></h1>
+          <div class="order__datetime matches__datetime">
+            <span class="text_bold">{{ order.start|date:"H:i" }}</span>, {{ order.start|date:"d.m.Y" }}
+          </div>
+          <div class="order__description">
+            {{ order.description }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}

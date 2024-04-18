@@ -12,6 +12,16 @@ urlpatterns = [
         name="orders",
     ),
     path(
+        "create/",
+        streetsport.views.GamesCreateView.as_view(),
+        name="order-create",
+    ),
+    path(
+        "<int:pk>/",
+        streetsport.views.GamesDetailView.as_view(),
+        name="order",
+    ),
+    path(
         "leaderboard/",
         streetsport.views.GamesListView.as_view(),
         name="leaderboard",
