@@ -1,3 +1,5 @@
+const body = document.querySelector('body');
+const modals = document.querySelector('.modals');
 
 document.addEventListener('change', changeEvent);
 document.addEventListener('click', clickEvent);
@@ -20,31 +22,59 @@ function changeEvent(event){
     }
 }
 
+let hideModals = [];
+let activeModal = null;
+
 function clickEvent(event){
     if (event.target.closest('.modal_btn')) {
-        let body = document.querySelector('body');
-        let modals = document.querySelector('.modals');
         let modalBtn = event.target.closest('.modal_btn');
-        let modalItems = document.querySelectorAll('.modal');
-        modalItems.forEach(item => item.classList.remove('._active'));
-        let activateModal = document.querySelector(`#${modalBtn.id}`);
+        let activateModal = document.querySelector(`.modal#${modalBtn.id}`);
 
         if (activateModal){
-            activateModal.classList.add('_active');
             modals.classList.add('_active');
             body.classList.add('_lock');
+
+            let modalItems = document.querySelectorAll('.modal');
+            modalItems.forEach(item => item.classList.remove('_active'));
+
+            if (activeModal) {
+                hideModals.push(activeModal);
+            }
+            
+            activeModal = activateModal;
+
+            activeModal.classList.add('_active');
         }
     }
     if (event.target.closest('.btn_filter_close') || event.target.classList.value.includes("modals")) {
 
-        let body = document.querySelector('body');
-        let modals = document.querySelector('.modals');
-        let activeModal = document.querySelector(`.modal._active`);
-
         if (activeModal){
             activeModal.classList.remove('_active');
-            modals.classList.remove('_active');
-            body.classList.remove('_lock');
+
+            if (hideModals.length > 0) {
+                activeModal = hideModals.pop();
+                activeModal.classList.add('_active');
+            } else {
+                activeModal = null;
+
+                modals.classList.remove('_active');
+                body.classList.remove('_lock');
+            }
+        }
+    }
+    if (event.target.closest('.form__button') && event.target.classList.value.includes("btn")){
+        if (activeModal){
+            activeModal.classList.remove('_active');
+
+            if (hideModals.length > 0) {
+                activeModal = hideModals.pop();
+                activeModal.classList.add('_active');
+            } else {
+                activeModal = null;
+                
+                modals.classList.remove('_active');
+                body.classList.remove('_lock');
+            }
         }
     }
 }

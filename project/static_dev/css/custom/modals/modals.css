@@ -85,3 +85,23 @@
     width: 100%;
     justify-content: end;
 }
+
+.filter-field__wrapper{
+    position: relative;
+    width: 100%;
+}
+.filter-field__wrapper input.form__input {
+    padding-right: 50px;
+}
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+	-webkit-appearance:none;
+}
+.filter-field__searchicon{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+}

@@ -1,0 +1,68 @@
+{% load static %}
+{% load i18n %}
+
+<article id="searchTeamModal" class="modal">
+  <div class="modal__wrapper">
+    <div class="section__title">
+      <h1>{% trans "search_team"|capfirst %}</h1>
+      <div class="section__title-btn btn_filter_close icon_btn">
+        {% include 'includes/btn.html' with value='' %}
+      </div>
+    </div>
+    <div class="section__content filter__content">
+      <div class="filter__content-fields form-fields">
+        <div class="form__field">
+          <label for="">Активные</label>
+          <div class="form__filters filters">
+            <ul class="filters__items items">
+              <li class="filters__item item">
+                <div class="filters__filter filter btn">
+                  <div class="filter__content">
+                    все
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="form__field">
+          <label for="">Введите название команды</label>
+          <ul class="filter__fields filter-fields">
+            <li class="filter__field filter-field">
+              <div class="filter-field__wrapper">
+                <input type="search" name="search-team" maxlength="254" class="form__input" required="" id="id_search-team">
+                <div class="filter-field__searchicon search_btn">
+                  <img src="{% static 'img/icons/search.svg' %}" alt="{% trans "search_btn"|capfirst %}">
+                </div>
+              </div>
+            </li>
+            <li class="filter__field filter-field">
+              <div class="form__filters filters">
+                <ul class="filters__items items">
+                  <li class="filters__item item">
+                    <div class="filters__filter filter btn">
+                      <div class="filter__content">
+                        sportiki
+                      </div>
+                    </div>
+                  </li>
+                  <li class="filters__item item">
+                    <div class="filters__filter filter btn">
+                      <div class="filter__content">
+                        sportiki 2
+                      </div>
+                    </div>
+                  </li>
+
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="form__button modal_form__button">
+          {% include "includes/submit_btn.html" with value="Применить" %}
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
