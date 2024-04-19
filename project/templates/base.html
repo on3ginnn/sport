@@ -52,7 +52,7 @@
       }
     </style>
   </head>
-  <body>
+  <body data-users="{{ qs_users }}" data-teams="{{ qs_teams }}" data-games="{{ qs_games }}" data-filter-item='{% include "includes/filter_item.html" %}'>
     <div class="modals">
         {% include "includes/modals/filter.html" %}
         {% include "includes/modals/search_team.html" %}

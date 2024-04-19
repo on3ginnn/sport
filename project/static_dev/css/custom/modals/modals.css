@@ -38,6 +38,7 @@
 }
 .filters__items{
     gap: 5px;
+    flex-wrap: wrap;
 }
 .filter{
     padding: 8px 10px;
@@ -50,6 +51,8 @@
     font-weight: 500;
     border-radius: 20px;
     position: relative;
+    white-space: nowrap;
+    user-select: none;
 }
 .filter::before{
     content: url(../../../img/icons/cancel.svg);
@@ -62,7 +65,9 @@
 }
 .filter.filter_link::before{
     content: url(../../../img/icons/link.svg);
-
+}
+.available_filters .filter::before{
+    content: url(../../../img/icons/add_filter.svg);
 }
 .filter-field label{
     margin: 0;
