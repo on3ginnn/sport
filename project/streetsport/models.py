@@ -146,6 +146,14 @@ class Team(django.db.models.Model):
             quality=51,
         )
 
+    def get_image_preview_x100(self, obj=None):
+        return sorl.thumbnail.get_thumbnail(
+            obj or self.avatar,
+            "100x100",
+            crop="center",
+            quality=51,
+        )
+
     def clean(self):
         normalize_title = normalize_str(self.title)
         found = Team.objects.filter(

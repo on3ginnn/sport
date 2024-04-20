@@ -1,0 +1,83 @@
+.table tr:not(.table_header) {
+    counter-increment: rowNumber;
+}
+
+.table tr:not(.table_header) .row_num::before {
+    content: counter(rowNumber);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    font-weight: 500;
+}
+.table_header{
+    background: var(--color-gray);
+    height: 50px;
+    text-transform: uppercase;
+}
+.team_header,
+.user_header{
+    text-align: left;
+}
+
+.row_num{
+    width: 50px;
+    position: relative;
+    text-align: center;
+}
+.table__header,
+.table__row{
+    height: 50px;
+    transition: all .1s ease;
+}
+
+.table__content{
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+.table_data .table__content{
+    justify-content: start;
+}
+.table__thumb{
+    position: relative;
+    height: 50px;
+    object-position: center;
+    overflow: hidden;
+    width: 50px;
+}
+.table__thumb img{
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    object-position: center;
+}
+
+.table{
+    width: 100%;
+    border-collapse: none;
+}
+.table__data {
+    border-bottom: 1px solid var(--color-gray);
+}
+
+.leaderboard__wrapper._active{
+    display: block;
+}
+.leaderboard__wrapper{
+    display: none;
+}
+.leaderboard__select{
+    margin-right: auto;
+    position: relative;
+    background-image: url(../../../img/icons/arrow_select.svg);
+    background-repeat: no-repeat;
+    background-position: right 10px top 10px;
+    background-size: 12px;
+}
+.match-decor__game.leaderboard_game{
+    margin: 0;
+}

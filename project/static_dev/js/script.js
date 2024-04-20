@@ -21,15 +21,22 @@ let activeFiltersTeams = [];
 let activeFiltersUsers = [];
 
 // доступные для выбора фильтры
-let availableFiltersGames = games.slice();
-let availableFiltersTeams = teams.slice();
-let availableFiltersUsers = users.slice();
+let availableFiltersGames = [];
+let availableFiltersTeams = [];
+let availableFiltersUsers = [];
 
 // события (оптимизированы)
 document.addEventListener('change', changeEvent);
 document.addEventListener('click', clickEvent);
-document.addEventListener('DOMContentLoaded', filtrationRendering);
 
+// только если на странице игр
+if (body.dataset.viewName === "streetsport:orders"){
+    // доступные для выбора фильтры
+    availableFiltersGames = games.slice();
+    availableFiltersTeams = teams.slice();
+    availableFiltersUsers = users.slice();
+    document.addEventListener('DOMContentLoaded', filtrationRendering);
+}
 // рендеринг всех фильтров на странице
 function filterRender(){
     console.log(activeFiltersGames);
@@ -153,6 +160,15 @@ function changeEvent(event){
         } else{
             fileFieldContent.innerHTML = `Файлы не выбраны`;
         }
+    }
+    if (event.target.closest('.filter_leaderboard')) {
+        let leaderBoardSelect = event.target.closest('.filter_leaderboard');
+        let avtivateLeaderBoard = document.querySelector(`.${leaderBoardSelect.value}`);
+        
+        let leaderBoards = document.querySelectorAll('.leaderboard_item');
+        leaderBoards.forEach(item => item.classList.remove('_active'));
+
+        avtivateLeaderBoard.classList.add('_active');
     }
 }
 
@@ -294,5 +310,11 @@ function clickEvent(event){
         }
 
         filtrationRendering();
+    }
+    if (event.target.closest('.search_header_btn')) {
+        const searchBtn = event.target.closest('.search_header_btn');
+        const searchHeader = document.querySelector('.search-header');
+        searchBtn.classList.toggle('_active');
+        searchHeader.classList.toggle('_active');
     }
 }

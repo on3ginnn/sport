@@ -6,10 +6,6 @@ footer{
     display: flex;
     justify-content: space-between;
 }
-.navbar__items{
-    height: 100%;
-    align-items: center;
-}
 .footer__navbar .navbar__items{
     gap: 20px;
 }

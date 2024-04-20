@@ -28,6 +28,7 @@
     <link href="{% static 'css/custom/matches/matches.css' %}" rel="stylesheet">
     <link href="{% static 'css/custom/form/form.css' %}" rel="stylesheet">
     <link href="{% static 'css/custom/modals/modals.css' %}" rel="stylesheet">
+    <link href="{% static 'css/custom/leaderboard/leaderboard.css' %}" rel="stylesheet">
     <title>{% block title %}StreetСпорт{% endblock title %}</title>
     <style>
       @font-face {
@@ -52,7 +53,7 @@
       }
     </style>
   </head>
-  <body data-users="{{ qs_users }}" data-teams="{{ qs_teams }}" data-games="{{ qs_games }}" data-filter-item='{% include "includes/filter_item.html" %}'>
+  <body data-view-name="{{ request.resolver_match.view_name }}" data-users="{{ qs_users }}" data-teams="{{ qs_teams }}" data-games="{{ qs_games }}" data-filter-item='{% include "includes/filter_item.html" %}'>
     <div class="modals">
         {% include "includes/modals/filter.html" %}
         {% include "includes/modals/search_team.html" %}

@@ -83,3 +83,8 @@ label{
     align-items: center;
     gap: 5px;
 }
+select {
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
+    appearance:none;
+}

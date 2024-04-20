@@ -1,4 +1,4 @@
-from django.urls import path
+import django.urls
 
 import streetsport.apps
 import streetsport.views
@@ -6,22 +6,22 @@ import streetsport.views
 app_name = streetsport.apps.StreetsportConfig.name
 
 urlpatterns = [
-    path(
+    django.urls.path(
         "",
         streetsport.views.GamesListView.as_view(),
         name="orders",
     ),
-    path(
+    django.urls.path(
         "create/",
         streetsport.views.GamesCreateView.as_view(),
         name="order-create",
     ),
-    path(
+    django.urls.path(
         "<int:pk>/",
         streetsport.views.GamesDetailView.as_view(),
         name="order",
     ),
-    path(
+    django.urls.path(
         "leaderboard/",
         streetsport.views.GamesListView.as_view(),
         name="leaderboard",

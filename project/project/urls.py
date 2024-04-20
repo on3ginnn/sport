@@ -4,6 +4,10 @@ import django.contrib.admin
 import django.contrib.auth.urls
 import django.urls
 
+import leaderboard.apps
+import leaderboard.urls
+import search.apps
+import search.urls
 import streetsport.apps
 
 urlpatterns = [
@@ -43,6 +47,16 @@ urlpatterns = [
     django.urls.path(
         "auth/",
         django.urls.include(django.contrib.auth.urls),
+    ),
+    django.urls.path(
+        "search/",
+        django.urls.include(search.urls),
+        name=search.apps.SearchConfig.name,
+    ),
+    django.urls.path(
+        "leaderboard/",
+        django.urls.include(leaderboard.urls),
+        name=leaderboard.apps.LeaderboardConfig.name,
     ),
 ]
 

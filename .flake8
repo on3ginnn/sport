@@ -1,5 +1,5 @@
 [flake8]
-application_import_names = about, users, homepage, feedback, streetsport
+application_import_names = about, users, homepage, feedback, streetsport, leaderboard, search
 import-order-style = google
 inline-quotes = double
 max-expression-complexity=8

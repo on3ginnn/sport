@@ -131,8 +131,8 @@
     object-fit: cover;
 }
 .match-team__img-default{
+    height: 100%;
     padding: 15px 15px 0;
-    opacity: .1;
 }
 .match__center{
     z-index: 5;
@@ -224,7 +224,6 @@
     background: var(--color-orange);
 }
 .matches__filter-btn{
-    margin-left: 20px;
     margin-right: auto;
 }
 .btn.filter_btn{
@@ -270,7 +269,6 @@
 }
 .order__wrapper{
     display: flex;
-
 }
 .order__map{
     flex: 0 0 50%;

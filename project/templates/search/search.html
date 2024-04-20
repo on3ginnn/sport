@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+{% trans "search_title"|capfirst %}
+{% endblock title %}
+
+{% block content %}
+{% get_media_prefix as media %}
+<section class="search" data-media-url="{% get_media_prefix %}">
+  <div class="search__body _container">
+    <h1>{% trans "search_title"|capfirst %}</h1>
+    <div class="section__content search__content">
+      <ul class="search__items items">
+        <li class="search__item item">
+          <div class="search__wrapper">
+            <div class="search__label">
+              <label for="">игроки</label>
+            </div>
+            <div class="search__table">
+              <table cellspacing="0" class="search-table table">
+                <tr class="table__row table_header">
+                  <th class="table__header row_num">
+                    №
+                  </th>
+                  <th class="table__header">
+                    Игрок
+                  </th>
+                </tr>
+                <tr class="table__row">
+                  <td class="table__data row_num">
+                  </td>
+                  <td class="table__data user_data">
+                    <div class="table__content">
+                      <div class="table__thumb">
+                        <img src="{% static 'img/stub/avatar1.jpg' %}" alt="{% trans 'avatar_img'|capfirst %}">
+                      </div>
+                      <a href="{# url 'users:profile' pk=1 #}" class="table__text color_blue">
+                        someusername
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="table__row">
+                  <td class="table__data row_num">
+                  </td>
+                  <td class="table__data user_data">
+                    <div class="table__content">
+                      <div class="table__thumb">
+                        <img src="{% static 'img/default/avatar.svg' %}" alt="{% trans 'default_avatar_img'|capfirst %}">
+                      </div>
+                      <a href="{# url 'users:profile' pk=1 #}" class="table__text color_blue">
+                        ivan223
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </li>
+        <li class="search__item item">
+          <div class="search__wrapper">
+            <div class="search__label">
+              <label for="">команды</label>
+            </div>
+            <div class="search__table">
+              <table cellspacing="0" class="search-table table">
+                <tr class="table__row table_header">
+                  <th class="table__header row_num">
+                    №
+                  </th>
+                  <th class="table__header">
+                    Команда
+                  </th>
+                </tr>
+                <tr class="table__row">
+                  <td class="table__data row_num">
+                  </td>
+                  <td class="table__data user_data">
+                    <div class="table__content">
+                      <div class="table__thumb">
+                        <img src="{% static 'img/stub/team.jpg' %}" alt="{% trans 'team_img'|capfirst %}">
+                      </div>
+                      <a href="{# url 'users:profile' pk=1 #}" class="table__text color_blue">
+                        sportiki
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="table__row">
+                  <td class="table__data row_num">
+                  </td>
+                  <td class="table__data user_data">
+                    <div class="table__content">
+                      <div class="table__thumb">
+                        <img src="{% static 'img/default/team.svg' %}" alt="{% trans 'default_team_img'|capfirst %}">
+                      </div>
+                      <a href="{# url 'users:profile' pk=1 #}" class="table__text color_blue">
+                        sportiki2
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+{% endblock content %}
