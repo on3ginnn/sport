@@ -8,7 +8,6 @@ __all__ = []
 @django.contrib.admin.register(streetsport.models.Team)
 class TeamAdmin(django.contrib.admin.ModelAdmin):
     list_display = (streetsport.models.Team.title.field.name,)
-    filter_horizontal = (streetsport.models.Team.teammates.field.name,)
 
 
 @django.contrib.admin.register(streetsport.models.Game)

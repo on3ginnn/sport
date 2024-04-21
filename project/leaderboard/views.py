@@ -11,7 +11,7 @@ import users.models
 class LeaderboardListView(django.views.generic.ListView):
     template_name = "leaderboard/leaderboard.html"
     queryset = users.models.User.objects.all().order_by(
-        "-rating", "-teams__rating"
+        "-rating", "-team__rating"
     )
     context_object_name = "users"
 
@@ -26,7 +26,7 @@ class LeaderboardListView(django.views.generic.ListView):
 class UsersTopListView(django.views.generic.ListView):
     template_name = "leaderboard/users_top.html"
     queryset = users.models.User.objects.all().order_by(
-        "-rating", "-teams__rating"
+        "-rating", "-team__rating"
     )
     context_object_name = "users"
 

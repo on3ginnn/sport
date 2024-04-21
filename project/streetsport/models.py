@@ -3,13 +3,12 @@ import re
 
 import django.core.exceptions
 import django.db.models
+import django.middleware
 from django.utils.translation import gettext as _
 import slugify
 import sorl.thumbnail
 
-import streetsport.deletion
 import streetsport.validators
-import users.models
 
 
 __all__ = []
@@ -76,6 +75,42 @@ class Game(django.db.models.Model):
         return self.title
 
 
+class TeamManager(django.db.models.Manager):
+    def detail(self):
+        return (
+            self.get_queryset()
+            .filter()
+            .select_related(Team.game.field.name, Team.lead.related.name)
+            .only(
+                Team.id.field.name,
+                Team.avatar.field.name,
+                Team.rating.field.name,
+                Team.title.field.name,
+                f"{Team.game.field.name}__{Game.id.field.name}",
+                f"{Team.game.field.name}__{Game.icon.field.name}",
+                f"{Team.game.field.name}__{Game.title.field.name}",
+                (
+                    f"{Team.lead.related.name}"
+                    f"__{Team.lead.related.model.id.field.name}"
+                ),
+            )
+        )
+
+    def delete_view(self):
+        return (
+            self.get_queryset()
+            .filter()
+            .select_related(Team.lead.related.name)
+            .only(
+                Team.id.field.name,
+                (
+                    f"{Team.lead.related.name}"
+                    f"__{Team.lead.related.model.id.field.name}"
+                ),
+            )
+        )
+
+
 class Team(django.db.models.Model):
     def get_path_image(self, filename):
         ext = pathlib.Path(filename).suffix
@@ -83,7 +118,8 @@ class Team(django.db.models.Model):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.__original_lead = self.lead
+
+    objects = TeamManager()
 
     title = django.db.models.CharField(
         _("title"),
@@ -96,24 +132,6 @@ class Team(django.db.models.Model):
         help_text=_("avatar_field_help"),
         upload_to=get_path_image,
         null=True,
-        blank=True,
-    )
-    lead = django.db.models.ForeignKey(
-        users.models.User,
-        on_delete=streetsport.deletion.delete_or_set_next_lead,
-        verbose_name=_("lead"),
-        help_text=_("lead_field_help"),
-        related_name="lead_teams",
-        related_query_name="lead_teams",
-        blank=True,
-        null=True,
-    )
-    teammates = django.db.models.ManyToManyField(
-        users.models.User,
-        verbose_name=_("teammates"),
-        help_text=_("teammates_field_help"),
-        related_name="teams",
-        related_query_name="teams",
         blank=True,
     )
     game = django.db.models.ForeignKey(
@@ -165,19 +183,6 @@ class Team(django.db.models.Model):
                 {Team.title.field.name: _("normalize_title_validation_error")},
             )
 
-        if self.lead is None:
-            next_teammate = self.teammates.filter(
-                ~django.db.models.Q(id=self.__original_lead.id),
-            ).first()
-            if next_teammate:
-                self.lead = next_teammate
-            else:
-                raise django.core.exceptions.ValidationError(
-                    {Team.lead.field.name: _("lead_one_validation_error")},
-                )
-
-        self.__original_lead = self.lead
-
         self.normalize_title = normalize_title
 
     @property
@@ -203,27 +208,27 @@ class OrderManager(django.db.models.Manager):
                 Order.team_one.field.name,
                 Order.team_two.field.name,
                 Order.game.field.name,
-                f"{Order.team_one.field.name}__{Team.lead.field.name}",
-                f"{Order.team_two.field.name}__{Team.lead.field.name}",
+                f"{Order.team_one.field.name}__{Team.lead.related.name}",
+                f"{Order.team_two.field.name}__{Team.lead.related.name}",
             )
             .prefetch_related(
                 django.db.models.Prefetch(
                     (
                         f"{Order.team_one.field.name}__"
-                        f"{Team.teammates.field.name}"
+                        f"{Team.teammates.field.related_query_name()}"
                     ),
-                    queryset=users.models.User.objects.order_by(
-                        users.models.User.rating.field.name,
-                    ).only(users.models.User.avatar.field.name),
+                    queryset=Team.teammates.field.model.objects.order_by(
+                        Team.teammates.field.model.rating.field.name,
+                    ).only(Team.teammates.field.model.avatar.field.name),
                 ),
                 django.db.models.Prefetch(
                     (
                         f"{Order.team_two.field.name}__"
-                        f"{Team.teammates.field.name}"
+                        f"{Team.teammates.field.related_query_name()}"
                     ),
-                    queryset=users.models.User.objects.order_by(
-                        users.models.User.rating.field.name,
-                    ).only(users.models.User.avatar.field.name),
+                    queryset=Team.teammates.field.model.objects.order_by(
+                        Team.teammates.field.model.rating.field.name,
+                    ).only(Team.teammates.field.model.avatar.field.name),
                 ),
             )
             .order_by(f"-{Order.start.field.name}")[:10]
@@ -234,22 +239,24 @@ class OrderManager(django.db.models.Manager):
             f"{Order.game.field.name}__{Game.icon.field.name}",
             f"{Order.team_one.field.name}__{Team.title.field.name}",
             (
-                f"{Order.team_one.field.name}__{Team.teammates.field.name}"
-                f"__{users.models.User.avatar.field.name}"
+                f"{Order.team_one.field.name}"
+                f"__{Team.teammates.field.related_query_name()}"
+                f"__{Team.teammates.field.model.avatar.field.name}"
             ),
             (
-                f"{Order.team_one.field.name}__{Team.lead.field.name}"
-                f"__{users.models.User.avatar.field.name}"
+                f"{Order.team_one.field.name}__{Team.lead.related.name}"
+                f"__{Team.lead.related.model.avatar.field.name}"
             ),
             f"{Order.team_one.field.name}__{Team.avatar.field.name}",
             f"{Order.team_two.field.name}__{Team.title.field.name}",
             (
-                f"{Order.team_two.field.name}__{Team.teammates.field.name}"
-                f"__{users.models.User.avatar.field.name}"
+                f"{Order.team_two.field.name}"
+                f"__{Team.teammates.field.related_query_name()}"
+                f"__{Team.teammates.field.model.avatar.field.name}"
             ),
             (
-                f"{Order.team_two.field.name}__{Team.lead.field.name}"
-                f"__{users.models.User.avatar.field.name}"
+                f"{Order.team_two.field.name}__{Team.lead.related.name}"
+                f"__{Team.lead.related.model.avatar.field.name}"
             ),
             f"{Order.team_two.field.name}__{Team.avatar.field.name}",
         )

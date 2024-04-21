@@ -1,6 +1,8 @@
 import json
 
 import django.contrib.auth.mixins
+import django.db.models
+import django.http
 from django.utils.translation import gettext_lazy as _
 import django.views.generic
 
@@ -11,18 +13,40 @@ import users.models
 __all__ = []
 
 
-class TeamDeleteView(django.views.generic.DeleteView):
+class TeamDeleteView(
+    django.contrib.auth.mixins.LoginRequiredMixin,
+    django.views.generic.DeleteView,
+):
     template_name = "streetsport/team.html"
-    # TODO: оптимизировать запрос и сделать чтобы работало(только для лида)
+    queryset = streetsport.models.Team.objects.delete_view()
+
+    def get(self, request, *args, **kwargs):
+        if self.request.user != self.get_object().lead:
+            raise django.http.Http404
+
+        return super().get(request, *args, **kwargs)
+
     queryset = streetsport.models.Team.objects.all()
 
 
 class TeamDetailView(django.views.generic.DetailView):
     template_name = "streetsport/team.html"
-    queryset = streetsport.models.Team.objects.all()
+    queryset = streetsport.models.Team.objects.detail()
     context_object_name = "team"
-    # TODO: оптимизировать запрос
-    # TODO: получить место команды(team_top) в топе( order_by("-raging", "title") )
+
+    def get_context_data(self, **kwargs):
+        kwargs.update(
+            self.queryset.aggregate(
+                team_top=django.db.models.Count(
+                    "id",
+                    filter=django.db.models.Q(
+                        rating__gte=kwargs.get("object").rating
+                    ),
+                )
+            )
+        )
+        return super().get_context_data(**kwargs)
+
     extra_context = {"teams": streetsport.models.Team.objects.all()}
 
 

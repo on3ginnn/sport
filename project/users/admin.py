@@ -24,12 +24,16 @@ class UserAdmin(django.contrib.auth.admin.UserAdmin):
         users.models.User.avatar.field.name,
         "avatar_preview",
     )
-    list_add_fields = [
+    list_profile_fields = [
         users.models.User.birthday.field.name,
         users.models.User.bio.field.name,
         users.models.User.tg_link.field.name,
         users.models.User.rating.field.name,
         avatar_field,
+    ]
+    list_team_fields = [
+        users.models.User.lead_team.field.name,
+        users.models.User.team.field.name,
     ]
     readonly_fields = [
         "avatar_preview",
@@ -38,16 +42,13 @@ class UserAdmin(django.contrib.auth.admin.UserAdmin):
         (
             _("profile"),
             {
-                "fields": list_add_fields,
+                "fields": list_profile_fields,
             },
         ),
-    )
-    add_fieldsets = (
         (
-            None,
+            _("team"),
             {
-                "classes": ("wide",),
-                "fields": ("username", "email", "password1", "password2"),
+                "fields": list_team_fields,
             },
         ),
     )
