@@ -16,11 +16,11 @@
       </h1>
       <div class="section__title-btns">
         <div class="section__title-btn btn_delete">
-          {% url 'auth:user-delete' as url %}
+          {% url 'users:user-delete' as url %}
           {% include 'includes/btn.html' with value='Удалить аккаунт' url=url %}
         </div>
         <div class="section__title-btn btn_edit icon_btn">
-          {% url 'auth:user-edit' as url %}
+          {% url 'users:profile-edit' as url %}
           {% include 'includes/btn.html' with value='Редактировать' url=url %}
         </div>
       </div>
@@ -28,7 +28,11 @@
     <div class="section__content profile__content">
       <div class="profile__wrapper info_wrapper">
         <div class="profile__map info_img">
-          <img src="{% static 'img/stub/avatar1.jpg' %}" alt="{% trans 'avatar_img'|capfirst %}">
+          {% if user.avatar %}
+            <img src="{{ user.get_image_preview_x1000.url }}" alt="{% trans 'avatar_img'|capfirst %}">
+          {% else %}
+            <img src="{% static 'img/default/avatar.svg' %}" alt="{% trans 'default_avatar_img'|capfirst %}">
+          {% endif %}
           <div class="profile__tabs tabs">
             <ul class="tabs__items items">
               <li class="tabs__item item">
@@ -39,7 +43,11 @@
                     </div>
                     <div class="tab__content">
                       <div class="tab__text filter_link filter">
-                        #43
+                        {% if user.single_top %}
+                          #{{ user.single_top }}
+                        {% else %}
+                          -
+                        {% endif %}
                       </div>
                     </div>
                   </div>
@@ -53,26 +61,32 @@
                     </div>
                     <div class="tab__content">
                       <div class="tab__text filter_link filter">
-                        #3
+                        {% if user.team_top %}
+                          #{{ user.team_top }}
+                        {% else %}
+                          -
+                        {% endif %}
                       </div>
                     </div>
                   </div>
                 </a>
               </li>
+              {% if user.team %}
               <li class="tabs__item item">
-                <a href="{% url 'streetsport:team' %}" class="tab team_tab">
+                <a href="{% url 'streetsport:team' 1 %}" class="tab team_tab">
                   <div class="tab__wrapper">
                     <div class="tab__title">
                       team
                     </div>
                     <div class="tab__content">
                       <div class="tab__text filter_link filter">
-                        sportiki
+                        {{ user.team.title }}
                       </div>
                     </div>
                   </div>
-                </a>                
+                </a>
               </li>
+              {% endif %}
             </ul>
           </div>
         </div>
@@ -80,48 +94,72 @@
           <div class="profile__field form__field info_field">
             <label for="">ник</label>
             <div class="profile__description info_text">
-              someusername
+              {{ user.username }}
             </div>
           </div>
           <div class="profile__field form__field info_field">
             <label for="">почта</label>
-            <a href="mailto:example@example.com" class="profile__description info_text color_blue">
-              example@example.com
-            </a>
+            {% if user.first_name %}
+              <a href="mailto:{{ user.email }}" class="profile__description info_text color_blue">
+                {{ user.email }}
+              </a>
+            {% else %}
+              -
+            {% endif %}
           </div>
           <div class="profile__field form__field info_field">
             <label for="">имя</label>
             <div class="profile__description info_text">
-              Анатолий
+              {% if user.first_name %}
+                {{ user.first_name }}
+              {% else %}
+                -
+              {% endif %}
             </div>
           </div>
           <div class="profile__field form__field info_field">
             <label for="">фамилия</label>
             <div class="profile__description info_text">
-              Анатолиев
+              {% if user.last_name %}
+                {{ user.last_name }}
+              {% else %}
+                -
+              {% endif %}
             </div>
           </div>
           <div class="profile__field form__field info_field">
             <label for="">день рождения</label>
             <div class="profile__description info_text">
-              11.11.1111
+              {% if user.birthday %}
+                {{ user.birthday }}
+              {% else %}
+                -
+              {% endif %}
             </div>
           </div>
           <div class="profile__field form__field info_field">
             <label for="">о себе</label>
             <div class="profile__description info_text">
-              lorem ipsumlorem ipsumlorem ipsumlorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum 
+              {% if user.bio %}
+                {{ user.bio }}
+              {% else %}
+                -
+              {% endif %}
             </div>
           </div>
           <div class="profile__field form__field info_field">
             <label for="">Telegram</label>
-            <a href="https://t.me/someone" class="profile__description info_text color_blue">
-              t.me/someone
-            </a>
+              {% if user.tg_link %}
+                <a href="https://{{ user.tg_link }}" class="profile__description info_text color_blue">
+                  {{ user.tg_link }}
+                </a>
+              {% else %}
+                -
+              {% endif %}
           </div>
           <div class="profile__field form__field info_field">
             <div class="section__title-btn btn_add icon_btn">
-              {% url 'auth:team-add' as url %}
+              {% url 'streetsport:team-add' pk=user.id as url %}
               {% include 'includes/btn.html' with value='Пригласить в команду' url=url %}
             </div>
           </div>

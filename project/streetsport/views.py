@@ -1,6 +1,7 @@
 import json
 
 import django.contrib.auth.mixins
+from django.utils.translation import gettext_lazy as _
 import django.views.generic
 
 import streetsport.forms
@@ -8,6 +9,34 @@ import streetsport.models
 import users.models
 
 __all__ = []
+
+
+class TeamDeleteView(django.views.generic.DeleteView):
+    template_name = "streetsport/team.html"
+    # TODO: оптимизировать запрос и сделать чтобы работало(только для лида)
+    queryset = streetsport.models.Team.objects.all()
+
+
+class TeamDetailView(django.views.generic.DetailView):
+    template_name = "streetsport/team.html"
+    queryset = streetsport.models.Team.objects.all()
+    context_object_name = "team"
+    # TODO: оптимизировать запрос
+    # TODO: получить место команды(team_top) в топе( order_by("-raging", "title") )
+    extra_context = {"teams": streetsport.models.Team.objects.all()}
+
+
+class TeamUpdateView(django.views.generic.UpdateView):
+    success_message = _("team_edit_success")
+    form_class = streetsport.forms.TeamEditForm
+    template_name = "streetsport/team_edit.html"
+
+    # TODO: нужно получить команду текущего юзера (переделать связь команды и игрока с ManyToMany на OneToMany (игрок только в одной команде, в команде много игроков))
+    def get_object(self, *args, **kwargs):
+        self.success_url = django.urls.reverse_lazy(
+            "streetsport:team", kwargs={"pk": self.request.user.teams.id}
+        )
+        return self.request.user.teams
 
 
 class GamesListView(django.views.generic.ListView):

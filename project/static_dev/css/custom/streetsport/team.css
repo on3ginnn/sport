@@ -1,0 +1,19 @@
+.btn_vs .btn{
+    padding-left: 55px;
+    background: var(--color-orange);
+    position: relative;
+    overflow: hidden;
+}
+.btn_vs.icon_btn .btn::before{
+    content: url(../../../img/icons/team_vs.svg);
+    top: 0;
+    left: 0;
+    height: 100%;
+    position: absolute;
+}
+.vs_field{
+    margin-top: auto;
+    display: flex;
+    align-items: end;
+    justify-content: end;
+}

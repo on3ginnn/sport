@@ -163,12 +163,9 @@ function changeEvent(event){
     }
     if (event.target.closest('.filter_leaderboard')) {
         let leaderBoardSelect = event.target.closest('.filter_leaderboard');
-        let avtivateLeaderBoard = document.querySelector(`.${leaderBoardSelect.value}`);
-        
-        let leaderBoards = document.querySelectorAll('.leaderboard_item');
-        leaderBoards.forEach(item => item.classList.remove('_active'));
-
-        avtivateLeaderBoard.classList.add('_active');
+        let avtivateLeaderBoardHref = leaderBoardSelect.value;
+        console.log(avtivateLeaderBoardHref);
+        document.location.href = avtivateLeaderBoardHref;
     }
 }
 

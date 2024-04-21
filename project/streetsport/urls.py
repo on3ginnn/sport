@@ -22,13 +22,30 @@ urlpatterns = [
         name="order",
     ),
     django.urls.path(
-        "leaderboard/",
-        streetsport.views.GamesListView.as_view(),
-        name="leaderboard",
+        "team/<int:pk>/",
+        streetsport.views.TeamDetailView.as_view(),
+        name="team",
     ),
     django.urls.path(
-        "",
-        streetsport.views.GamesListView.as_view(),
-        name="team",
+        "team/<int:pk>/edit/",
+        streetsport.views.TeamUpdateView.as_view(),
+        name="team-edit",
+    ),
+    django.urls.path(
+        "team/<int:pk>/delete/",
+        streetsport.views.TeamDeleteView.as_view(),
+        name="team-delete",
+    ),
+    django.urls.path(
+        "user/<int:pk>/add/",
+        # TODO: добавить view для добавления юзера в команду текущего юзера(лида)
+        streetsport.views.TeamDetailView.as_view(),
+        name="team-add",
+    ),
+    django.urls.path(
+        "team/<int:pk>/vs/",
+        # TODO: добавить view для создания матча с этой командой(только для лида)
+        streetsport.views.TeamDetailView.as_view(),
+        name="team-vs",
     ),
 ]

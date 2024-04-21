@@ -17,6 +17,16 @@ import users.models
 __all__ = []
 
 
+class ProfileEditFormView(django.views.generic.UpdateView):
+    success_message = _("profile_edit_success")
+    form_class = users.forms.ProfileEditForm
+    template_name = "users/profile_edit.html"
+    success_url = django.urls.reverse_lazy("users:profile")
+
+    def get_object(self, *args, **kwargs):
+        return self.request.user
+
+
 class SignupFormView(django.views.generic.FormView):
     redirect_authenticated_user = True
     form_class = users.forms.SignUpForm
@@ -66,8 +76,17 @@ class SignupFormView(django.views.generic.FormView):
         return super().form_valid(form)
 
 
-class ProfileTemplateView(django.views.generic.TemplateView):
+class ProfileDetailView(django.views.generic.DetailView):
     template_name = "users/profile.html"
+    queryset = users.models.User.objects.all()
+    # TODO: получить место игрока(single_top) в топе( order_by("-raging", "-teams__rating")  и его команды(team_top) в топе( order_by("-raging", "title") )
+
+    # TODO: сделать доступным просмотр профиля по pk или у текущего юзера
+
+
+class UserDeleteView(django.views.generic.DeleteView):
+    # TODO: оптимизировать запрос и сделать чтобы работало
+    queryset = users.models.User.objects.all()
 
 
 class ActivateRedirectView(django.views.generic.RedirectView):

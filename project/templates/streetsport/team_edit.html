@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+
+{% block title %}
+  {% trans "team_edit_title"|capfirst %}
+{% endblock title %}
+
+{% block content %}
+<section class="team">
+  <div class="team__body _container">
+    <h1>  {% trans "team_edit_title"|capfirst %}</h1>
+    <div class="section__content team__content">
+      {% if form.is_multipart %}
+        <form class="form" enctype="multipart/form-data" method="post">
+      {% else %}
+        <form class="form" method="post">
+      {% endif %}
+        {% csrf_token %}
+      
+        {% include "includes/form.html" %}
+      
+        <div class="form__button">
+          {% include "includes/submit_btn.html" with value="Сохранить" %}
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock content %}

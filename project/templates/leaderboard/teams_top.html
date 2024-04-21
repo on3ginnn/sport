@@ -13,82 +13,11 @@
     <div class="section__title">
       <h1>{% trans "leaderboard_title"|capfirst %}</h1>
       <select name="leaderboard" id="leaderboard" class="leaderboard__select filter_leaderboard filter_link filter">
-        <option value="users_leaderboard" selected>Игроки</option>
-        <option value="teams_leaderboard">Команды</option>
+        <option value="{% url 'leaderboard:users' %}">Игроки</option>
+        <option value="{% url 'leaderboard:teams' %}" selected>Команды</option>
       </select>
-
     </div>
     <div class="section__content leaderboard__content">
-      <div class="leaderboard__wrapper leaderboard_item users_leaderboard _active">
-        <div class="leaderboard__table">
-          <table cellspacing="0" class="leaderboard-table table">
-            <tr class="table__row table_header">
-              <th class="table__header row_num">
-                №
-              </th>
-              <th class="table__header user_header">
-                Игрок
-              </th>
-              <th class="table__header">
-                побед
-              </th>
-              <th class="table__header">
-                команда
-              </th>
-              <th class="table__header">
-                последняя игра
-              </th>
-            </tr>
-            {% for user in users %}
-              <tr class="table__row">
-                <td class="table__data row_num">
-                </td>
-                <td class="table__data table_data">
-                  <div class="table__content">
-                    <div class="table__thumb">
-                      {% if user.avatar %}
-                      <img src="{{ user.get_image_preview_x100.url }}" alt="{% trans 'avatar_img'|capfirst %}">
-                      {% else %}
-                      <img src="{% static 'img/default/avatar.svg' %}" alt="{% trans 'default_avatar_img'|capfirst %}">
-                      {% endif %}
-                    </div>
-                    <a href="{# url 'users:profile' pk=user.id #}" class="table__text color_blue">
-                      {{ user.username }}
-                    </a>
-                  </div>
-                </td>
-                <td class="table__data">
-                  <div class="table__content">
-                    {{ user.rating }}
-                  </div>
-                </td>
-                <td class="table__data">
-                  <div class="table__content">
-                    {% if false %}
-                    <a href="{# url 'streetsport:team' pk=user.teams.id #}" class="table__text color_blue">
-                      team.title
-                    </a>
-                    {% else %}
-                    -
-                    {% endif %}
-                  </div>
-                </td>
-                <td class="table__data">
-                  <div class="table__content">
-                    {% if false %}
-                    <a href="{# url 'streetsport:order' pk=1 #}" class="table__text color_blue">
-                      team.title
-                    </a>
-                    {% else %}
-                    -
-                    {% endif %}
-                  </div>
-                </td>
-              </tr>
-            {% endfor %}
-          </table>
-        </div>
-      </div>
       <div class="leaderboard__wrapper leaderboard_item teams_leaderboard">
         <div class="leaderboard__table">
           <table cellspacing="0" class="leaderboard-table table">

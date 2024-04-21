@@ -121,6 +121,14 @@ class User(django.contrib.auth.models.AbstractUser):
             quality=51,
         )
 
+    def get_image_preview_x1000(self, obj=None):
+        return sorl.thumbnail.get_thumbnail(
+            obj or self.avatar,
+            "1000x1000",
+            crop="center",
+            quality=51,
+        )
+
     class Meta(django.contrib.auth.models.AbstractUser.Meta):
         ordering = ["rating"]
         swappable = "AUTH_USER_MODEL"

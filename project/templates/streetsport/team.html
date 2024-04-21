@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+{% trans "team_title"|capfirst %}
+{% endblock title %}
+
+{% block content %}
+{% get_media_prefix as media %}
+<section class="profile" data-media-url="{% get_media_prefix %}">
+  <div class="matches__body _container">
+    <div class="section__title">
+      <h1>
+        Команда: {{ team.title }}
+      </h1>
+      <div class="section__title-btns">
+        <div class="section__title-btn btn_delete">
+          {% url 'streetsport:team-delete' as url %}
+          {% include 'includes/btn.html' with value='Удалить команду' url=url %}
+        </div>
+        <div class="section__title-btn btn_edit icon_btn">
+          {% url 'streetsport:team-edit' pk=1 as url %}
+          {% include 'includes/btn.html' with value='Редактировать' url=url %}
+        </div>
+      </div>
+    </div>
+    <div class="section__content profile__content">
+      <div class="profile__wrapper info_wrapper">
+        <div class="profile__map info_img">
+          <img src="{% static 'img/stub/team.jpg' %}" alt="{% trans 'teab_default_img'|capfirst %}">
+          <div class="profile__tabs tabs">
+            <ul class="tabs__items items">
+              <li class="tabs__item item">
+                <a href="{% url 'leaderboard:teams' %}" class="tab team_top">
+                  <div class="tab__wrapper">
+                    <div class="tab__title">
+                      team top
+                    </div>
+                    <div class="tab__content">
+                      <div class="tab__text filter_link filter">
+                        {% if team.team_top %}
+                          #{{ team.team_top }}
+                        {% else %}
+                          -
+                        {% endif %}
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="profile__info info_content">
+          <div class="profile__field form__field info_field">
+            <label for="">игра</label>
+            <div class="profile__description info_text">
+              <div class="match-decor__game match-game leaderboard_game">
+                <div class="match-game__img">
+                  {% if team.game.icon %}
+                  <img src="{{ team.game.get_image_preview_x50.url }}" alt="match_game">
+                  {% else %}
+                  <img src="{% static 'img/default/sports.png' %}" alt="default_match_game">
+                  {% endif %}
+                </div>
+                <div class="match-game__wrapper">
+                  {{ team.game.title|capfirst }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="profile__field form__field info_field">
+            <label for="">матчи</label>
+            <div class="profile__description info_text">
+              <div class="filters__filter filter filter_link btn modal_btn" id="searchUserModal">
+                <div class="filter__content">
+                  команда: sportiki
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="profile__field form__field info_field vs_field">
+            <div class="section__title-btn btn_vs icon_btn">
+              {% url 'streetsport:team-vs' as url %}
+              {% include 'includes/btn.html' with value='Бросить вызов' url=url %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section__content leaderboard__content">
+      <div class="leaderboard__wrapper leaderboard_item teams_leaderboard">
+        <div class="leaderboard__table">
+          <table cellspacing="0" class="leaderboard-table table">
+            <tr class="table__row table_header">
+              <th class="table__header row_num">
+                №
+              </th>
+              <th class="table__header team_header">
+                Команда
+              </th>
+              <th class="table__header">
+                побед
+              </th>
+              <th class="table__header">
+                последняя игра
+              </th>
+              <th class="table__header">
+                игра
+              </th>
+            </tr>
+            {% for team in teams %}
+            <tr class="table__row">
+              <td class="table__data row_num">
+              </td>
+              <td class="table__data table_data">
+                <div class="table__content">
+                  <div class="table__thumb">
+                    {% if team.avatar %}
+                    <img src="{{ team.get_image_preview_x100.url }}" alt="{% trans 'avatar_img'|capfirst %}">
+                    {% else %}
+                    <img src="{% static 'img/default/team.svg' %}" alt="{% trans 'default_team_img'|capfirst %}">
+                    {% endif %}
+                  </div>
+                  <a href="{# url 'users:profile' pk=team.id #}" class="table__text color_blue">
+                    {{ team.title }}
+                  </a>
+                </div>
+              </td>
+              <td class="table__data">
+                <div class="table__content">
+                  {{ team.rating }}
+                </div>
+              </td>
+              <td class="table__data">
+                <div class="table__content">
+                  {% if false %}
+                  <a href="{# url 'streetsport:order' pk=1 #}" class="table__text color_blue">
+                    team.title
+                  </a>
+                  {% else %}
+                  -
+                  {% endif %}
+                </div>
+              </td>
+              <td class="table__data">
+                <div class="table__content">
+                  <div class="match-decor__game match-game leaderboard_game">
+                    <div class="match-game__img">
+                      {% if team.game.icon %}
+                      <img src="{{ team.game.get_image_preview_x50.url }}" alt="match_game">
+                      {% else %}
+                      <img src="{% static 'img/default/sports.png' %}" alt="default_match_game">
+                      {% endif %}
+                    </div>
+                    <div class="match-game__wrapper">
+                      {{ team.game.title|capfirst }}
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}

@@ -12,9 +12,25 @@ app_name = "users"
 
 urlpatterns = [
     django.urls.path(
-        "profile/",
-        users.views.ProfileTemplateView.as_view(),
+        "profile/<int:pk>/",
+        users.views.ProfileDetailView.as_view(),
         name="profile",
+    ),
+    # TODO: сделать доступ к профилю без pk, т.к после редактирования профиля должен быть редирект на профиль текущего
+    django.urls.path(
+        "profile/",
+        users.views.ProfileDetailView.as_view(),
+        name="profile-current",
+    ),
+    django.urls.path(
+        "profile/edit/",
+        users.views.ProfileEditFormView.as_view(),
+        name="profile-edit",
+    ),
+    django.urls.path(
+        "profile/delete/",
+        users.views.UserDeleteView.as_view(),
+        name="user-delete",
     ),
     django.urls.path(
         "login/",

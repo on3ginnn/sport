@@ -9,18 +9,13 @@ app_name = leaderboard.apps.LeaderboardConfig.name
 
 urlpatterns = [
     django.urls.path(
-        "",
-        leaderboard.views.LeaderboardListView.as_view(),
-        name="main",
-    ),
-    django.urls.path(
-        "",
-        leaderboard.views.LeaderboardListView.as_view(),
+        "users/",
+        leaderboard.views.UsersTopListView.as_view(),
         name="users",
     ),
     django.urls.path(
-        "",
-        leaderboard.views.LeaderboardListView.as_view(),
+        "teams/",
+        leaderboard.views.TeamsTopListView.as_view(),
         name="teams",
     ),
 ]

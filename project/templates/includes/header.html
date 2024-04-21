@@ -22,13 +22,13 @@
               </a>
             </li>
             <li class="navbar__item item">
-              <a class="navbar__link {% if view_name == 'leaderboard:main' %}_active{% endif %}" href="{% url 'leaderboard:main' %}">
+              <a class="navbar__link {% if view_name == 'leaderboard:main' %}_active{% endif %}" href="{% url 'leaderboard:users' %}">
                 {% trans "leaderboard"|capfirst %}
               </a>
             </li>
             {% if is_auth %}
             <li class="navbar__item item">
-              <a class="navbar__link {% if view_name == 'users:profile' %}_active{% endif %}" href="{% url 'users:profile' %}">
+              <a class="navbar__link {% if view_name == 'users:profile:profile-current' %}_active{% endif %}" href="{% url 'users:profile' pk=request.user.id %}">
                 {% trans "profile"|capfirst %}
               </a>
             </li>
