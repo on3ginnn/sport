@@ -17,5 +17,5 @@ class SearchListView(django.views.generic.FormView):
         # TODO: search_value - запрос. Найти похожие и передать в контекст 2 переменные(users, teams).
         # TODO: Каждая перменная хранит инфу для таблицы search:search.
         # TODO:
-        context["form"].data["search-header"] = search_value
+        # context["form"].data["search-header"] = search_value
         return context

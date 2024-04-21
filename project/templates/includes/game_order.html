@@ -1,6 +1,6 @@
 {% load static %}
 {% load i18n %}
-<article class="matches__match match">
+<article class="matches__match match" data-game="{{ order.game.normalize_title }}" data-team-one="{{ order.team_one.normalize_title }}" data-team-two="{{ order.team_two.normalize_title }}">
 	<div class="match__left match-team team-one">
 		<div class="match-team__img">
 			{% if order.team_one.avatar %}

@@ -6,7 +6,7 @@ import django.db.models
 from django.utils.translation import gettext_lazy as _
 import sorl.thumbnail
 
-import users.models
+# import users.models
 import users.validators
 
 __all__ = []

@@ -63,6 +63,7 @@ class GamesListView(django.views.generic.ListView):
                 streetsport.models.Team.objects.values(
                     "id",
                     "title",
+                    "normalize_title",
                 )
             ),
             default=str,
@@ -72,6 +73,7 @@ class GamesListView(django.views.generic.ListView):
                 streetsport.models.Game.objects.values(
                     "id",
                     "title",
+                    "normalize_title",
                 )
             ),
             default=str,

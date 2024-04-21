@@ -19,12 +19,23 @@ let activeFilters = [];
 let activeFiltersGames = [];
 let activeFiltersTeams = [];
 let activeFiltersUsers = [];
-
+// неактивированные фильтры(не нажата кнопка принять)
+let inActiveFilters = [];
+let inActiveFiltersGames = [];
+let inActiveFiltersTeams = [];
+let inActiveFiltersUsers = [];
+// вложенные фильтры для команд
+let nestedInActiveFiltersTeams = []
+let nestedInActiveFiltersUsers = []
 // доступные для выбора фильтры
 let availableFiltersGames = [];
 let availableFiltersTeams = [];
 let availableFiltersUsers = [];
 
+// доступные для выбора фильтры
+let allFiltersGames = [];
+let allFiltersTeams = [];
+let allFiltersUsers = [];
 // события (оптимизированы)
 document.addEventListener('change', changeEvent);
 document.addEventListener('click', clickEvent);
@@ -32,36 +43,39 @@ document.addEventListener('click', clickEvent);
 // только если на странице игр
 if (body.dataset.viewName === "streetsport:orders"){
     // доступные для выбора фильтры
-    availableFiltersGames = games.slice();
-    availableFiltersTeams = teams.slice();
-    availableFiltersUsers = users.slice();
-    document.addEventListener('DOMContentLoaded', filtrationRendering);
+    allFiltersGames = games.slice();
+    allFiltersTeams = teams.slice();
+    allFiltersUsers = users.slice();
+    document.addEventListener('DOMContentLoaded', filtrationApplyed);
 }
-// рендеринг всех фильтров на странице
-function filterRender(){
-    console.log(activeFiltersGames);
-    console.log(activeFiltersTeams);
-    console.log(activeFiltersUsers);
-    activeFilters = [];
 
+// сбор всех активных фильтров
+function filterAdd() {
+
+    inActiveFilters = [];
     // собираем фильтры в актив массив
-    if (activeFiltersGames.length === 0) {
-        availableFiltersGames = games.slice();
+    if (inActiveFiltersGames.length === 0) {
+        availableFiltersGames = allFiltersGames.slice();
     } else {
-        activeFilters.push(...activeFiltersGames);
+        inActiveFilters.push(...inActiveFiltersGames);
+        availableFiltersGames = allFiltersGames.filter(filter => !inActiveFiltersGames.includes(filter));
     }
-    if (activeFiltersTeams.length === 0) {
+    if (nestedInActiveFiltersTeams.length === 0) {
         availableFiltersTeams = teams.slice();
     } else {
-        activeFilters.push(...activeFiltersTeams);
+        inActiveFilters.push(...nestedInActiveFiltersTeams);
+        availableFiltersTeams = allFiltersTeams.filter(filter => !nestedInActiveFiltersTeams.includes(filter));
     }
-    if (activeFiltersUsers.length === 0) {
+    if (nestedInActiveFiltersUsers.length === 0) {
         availableFiltersUsers = users.slice();
     } else {
-        activeFilters.push(...activeFiltersUsers);
+        inActiveFilters.push(...nestedInActiveFiltersUsers);
+        availableFiltersUsers = allFiltersUsers.filter(filter => !nestedInActiveFiltersUsers.includes(filter));
     }
+}
 
-    // функция для рендера
+// рендеринг всех фильтров на странице
+function rendering(){
     function render(container, content="все", dataId=null, dataCategory=null){
         const filterItem = document.createElement('li');
         filterItem.classList.add("filters__item");
@@ -82,10 +96,10 @@ function filterRender(){
     const filterActive = document.querySelector(".active_filters.active_filters_public");
     const filterActivePublicContainer = filterActive.querySelector('.filter_container');
     filterActivePublicContainer.innerHTML = "";
-    if (activeFilters.length === 0){
+    if (inActiveFilters.length === 0){
         render(filterActivePublicContainer);
     } else {
-        activeFilters.forEach(filter => {
+        inActiveFilters.forEach(filter => {
             render(filterActivePublicContainer, content=filter.content, dataId=filter.id, dataCategory=filter.category);
         });
     }
@@ -98,23 +112,24 @@ function filterRender(){
         render(gamesFilterAvailableContainer, content=filter.title, dataId=filter.id);
     });
 
+    // рендер фильтров команды как в главных фильтрах так и в фильтрах команды
     const teamsFilterAvailable = document.querySelector(".available_filters.filter_teams");
     const teamsFilterAvailableContainer = teamsFilterAvailable.querySelector('.filter_container');
     const teamsFilterActive = document.querySelector('.active_filters_teams');
     const teamsFilterActiveContainer = teamsFilterActive.querySelector('.filter_container');
     teamsFilterAvailableContainer.innerHTML = "";
     teamsFilterActiveContainer.innerHTML = "";
-    if (activeFiltersTeams.length === 0) {
+    if (nestedInActiveFiltersTeams.length === 0) {
         render(teamsFilterActiveContainer);
         availableFiltersTeams.forEach(filter => {
             render(teamsFilterAvailableContainer, content=filter.title, dataId=filter.id);
         });
     } else {
+        nestedInActiveFiltersTeams.forEach(filter => {
+            render(teamsFilterActiveContainer, content=filter.title, dataId=filter.id, dataCategory=filter.category);
+        });
         availableFiltersTeams.forEach(filter => {
             render(teamsFilterAvailableContainer, content=filter.title, dataId=filter.id);
-        });
-        activeFiltersTeams.forEach(filter => {
-            render(teamsFilterActiveContainer, content=filter.title, dataId=filter.id, dataCategory=filter.category);
         });
     }
 
@@ -124,27 +139,36 @@ function filterRender(){
     const usersFilterActiveContainer = usersFilterActive.querySelector('.filter_container');
     usersFilterAvailableContainer.innerHTML = "";
     usersFilterActiveContainer.innerHTML = "";
-    if (activeFiltersUsers.length === 0) {
+    if (nestedInActiveFiltersUsers.length === 0) {
         render(usersFilterActiveContainer);
         availableFiltersUsers.forEach(filter => {
             render(usersFilterAvailableContainer, content=filter.username, dataId=filter.id);
         });
     } else {
+        nestedInActiveFiltersUsers.forEach(filter => {
+            render(usersFilterActiveContainer, content=filter.username, dataId=filter.id, dataCategory=filter.category);
+        });
         availableFiltersUsers.forEach(filter => {
             render(usersFilterAvailableContainer, content=filter.username, dataId=filter.id);
         });
-        activeFiltersUsers.forEach(filter => {
-            render(usersFilterActiveContainer, content=filter.username, dataId=filter.id, dataCategory=filter.category);
-        });
     }
-    
+}
+// добавление и рендеринг всех фильтров на странице
+function filterRender(
+){
+    filterAdd();
+    rendering();
 }
 
-function filtrationRendering(event){
+// запуск рендеринга фильтров (для принятия всех фильтров)
+function filtrationApplyed(
+){
+
     filterRender();
     ordersFilterRender();
 }
 
+// событие замены сотояния
 function changeEvent(event){
     if (event.target.closest('.input_file')){
         let fileInput = event.target.closest('.input_file');
@@ -164,12 +188,11 @@ function changeEvent(event){
     if (event.target.closest('.filter_leaderboard')) {
         let leaderBoardSelect = event.target.closest('.filter_leaderboard');
         let avtivateLeaderBoardHref = leaderBoardSelect.value;
-        console.log(avtivateLeaderBoardHref);
         document.location.href = avtivateLeaderBoardHref;
     }
 }
 
-
+// перенос всех фильров с модального окна на страницу ордеров
 function ordersFilterRender(){
     const filterActive = document.querySelector(".active_filters.active_filters_public");
     const filterActivePublicContainer = filterActive.querySelector('.filter_container');
@@ -178,12 +201,29 @@ function ordersFilterRender(){
     orderFiltersContainer.innerHTML = filterActivePublicContainer.innerHTML;
 }
 
+// событие клика
 function clickEvent(event){
+    // отркытие модальных окон
     if (event.target.closest('.modal_btn')) {
         let modalBtn = event.target.closest('.modal_btn');
         let activateModal = document.querySelector(`.modal#${modalBtn.id}`);
 
         if (activateModal){
+            // подгружаем сохраненную версию фильтров при открытии
+            if (activateModal.closest('#filterModal')){
+                inActiveFiltersGames = activeFiltersGames.slice();
+                inActiveFiltersUsers = activeFiltersUsers.slice();
+                nestedInActiveFiltersUsers = inActiveFiltersUsers.slice();
+                inActiveFiltersTeams = activeFiltersTeams.slice();
+                nestedInActiveFiltersTeams = inActiveFiltersTeams.slice();
+            } else if (activateModal.closest('#searchTeamModal')) {
+                nestedInActiveFiltersTeams = inActiveFiltersTeams.slice();
+            } else if (activateModal.closest('#searchUserModal')) {
+                nestedInActiveFiltersUsers = inActiveFiltersUsers.slice();
+            }
+
+            filterRender();
+
             modals.classList.add('_active');
             body.classList.add('_lock');
 
@@ -200,9 +240,23 @@ function clickEvent(event){
 
         }
     }
+    // закрытие фильтров без применения
     if (event.target.closest('.btn_filter_close') || event.target.classList.value.includes("modals")) {
 
         if (activeModal){
+
+            if (activeModal.closest('#filterModal')) {
+                inActiveFiltersGames = activeFiltersGames.slice();
+                inActiveFiltersTeams = activeFiltersTeams.slice();
+                nestedInActiveFiltersTeams = inActiveFiltersTeams.slice();
+                inActiveFiltersUsers = activeFiltersUsers.slice();
+                nestedInActiveFiltersUsers = inActiveFiltersUsers.slice();
+            } else if (activeModal.closest('#searchTeamModal')) {
+                nestedInActiveFiltersTeams = inActiveFiltersTeams.slice();
+            } else if (activeModal.closest('#searchUserModal')) {
+                nestedInActiveFiltersUsers = inActiveFiltersUsers.slice();
+            }
+
             activeModal.classList.remove('_active');
 
             if (hideModals.length > 0) {
@@ -214,25 +268,41 @@ function clickEvent(event){
                 modals.classList.remove('_active');
                 body.classList.remove('_lock');
             }
+            
+            filterRender();
         }
     }
+    // кнопка Применить фильры
     if (event.target.closest('.form__button') && event.target.classList.value.includes("btn")){
         if (activeModal){
             activeModal.classList.remove('_active');
 
+            if (activeModal.closest('#filterModal')) {
+                activeFiltersGames = inActiveFiltersGames.slice();
+                activeFiltersUsers = inActiveFiltersUsers.slice();
+                activeFiltersTeams = inActiveFiltersTeams.slice();
+            } else if (activeModal.closest('#searchTeamModal')) {
+                inActiveFiltersTeams = nestedInActiveFiltersTeams.slice();
+            } else if (activeModal.closest('#searchUserModal')) {
+                inActiveFiltersUsers = nestedInActiveFiltersUsers.slice();
+            }
+
             if (hideModals.length > 0) {
                 activeModal = hideModals.pop();
                 activeModal.classList.add('_active');
+
+                filterRender();
             } else {
                 activeModal = null;
                 
                 modals.classList.remove('_active');
                 body.classList.remove('_lock');
 
-                ordersFilterRender();
+                filtrationApplyed();
             }
         }
     }
+    // добавление фильра
     if (event.target.closest('.btn.filter')) {
 
         let filterItem = event.target.closest('.filters__item');
@@ -244,8 +314,7 @@ function clickEvent(event){
                 filterElement.content = filterElement.title;
                 filterElement.category = 'game';
                 if (filterElement){
-                    activeFiltersGames.push(filterElement);
-                    availableFiltersGames = availableFiltersGames.filter(filter => +filter.id !== +filterItem.dataset.id);
+                    inActiveFiltersGames.push(filterElement);
                 }
             }
             if (event.target.closest('.filter_teams')) {
@@ -255,8 +324,7 @@ function clickEvent(event){
                 filterElement.category = 'team';
 
                 if (filterElement){
-                    activeFiltersTeams.push(filterElement);
-                    availableFiltersTeams = availableFiltersTeams.filter(filter => +filter.id !== +filterItem.dataset.id);
+                    nestedInActiveFiltersTeams.push(filterElement);
                 }
             }
             if (event.target.closest('.filter_users')) {
@@ -266,8 +334,7 @@ function clickEvent(event){
                 filterElement.category = 'user';
 
                 if (filterElement){
-                    activeFiltersUsers.push(filterElement);
-                    availableFiltersUsers = availableFiltersUsers.filter(filter => +filter.id !== +filterItem.dataset.id);
+                    nestedInActiveFiltersUsers.push(filterElement);
                 }
             }
         }
@@ -275,38 +342,42 @@ function clickEvent(event){
         if (event.target.closest('.active_filters') || event.target.closest('.orders_filters')) {
             if (filterItem.dataset.category) {
                 if (filterItem.dataset.category === "game") {
-                    let filterElement = activeFiltersGames.find(filter => +filter.id === +filterItem.dataset.id);
-                    filterElement.content = filterElement.title;
-                    filterElement.category = '';
+                    let filterElement = inActiveFiltersGames.find(filter => +filter.id === +filterItem.dataset.id);
+
                     if (filterElement){
-                        availableFiltersGames.push(filterElement);
-                        activeFiltersGames = activeFiltersGames.filter(filter => +filter.id !== +filterItem.dataset.id);
+                        inActiveFiltersGames = inActiveFiltersGames.filter(filter => +filter.id !== +filterItem.dataset.id);
                     }
                 }
                 if (filterItem.dataset.category === "team") {
-                    let filterElement = activeFiltersTeams.find(filter => +filter.id === +filterItem.dataset.id);
-                    filterElement.content = '';
-                    filterElement.category = '';
+                    let filterElement = nestedInActiveFiltersTeams.find(filter => +filter.id === +filterItem.dataset.id);
     
                     if (filterElement){
-                        availableFiltersTeams.push(filterElement);
-                        activeFiltersTeams = activeFiltersTeams.filter(filter => +filter.id !== +filterItem.dataset.id);
+                        nestedInActiveFiltersTeams = nestedInActiveFiltersTeams.filter(filter => +filter.id !== +filterItem.dataset.id);
                     }
                 }
                 if (filterItem.dataset.category === "user") {
-                    let filterElement = activeFiltersUsers.find(filter => +filter.id === +filterItem.dataset.id);
+                    let filterElement = nestedInActiveFiltersUsers.find(filter => +filter.id === +filterItem.dataset.id);
                     filterElement.content = '';
                     filterElement.category = '';
     
                     if (filterElement){
-                        availableFiltersUsers.push(filterElement);
-                        activeFiltersUsers = activeFiltersUsers.filter(filter => +filter.id !== +filterItem.dataset.id);
+                        nestedInActiveFiltersUsers = nestedInActiveFiltersUsers.filter(filter => +filter.id !== +filterItem.dataset.id);
                     }
                 }
             }
         }
+        
+        if (event.target.closest('.orders_filters')){
+            activeFiltersGames = inActiveFiltersGames.slice();
+            inActiveFiltersTeams = nestedInActiveFiltersTeams.slice();
+            activeFiltersTeams = inActiveFiltersTeams.slice();
+            inActiveFiltersUsers = nestedInActiveFiltersUsers.slice();
+            activeFiltersUsers = inActiveFiltersUsers.slice();
 
-        filtrationRendering();
+            filtrationApplyed();
+        } else {
+            filterRender();
+        }
     }
     if (event.target.closest('.search_header_btn')) {
         const searchBtn = event.target.closest('.search_header_btn');
