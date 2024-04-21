@@ -2,7 +2,6 @@
 
 from django.conf import settings
 from django.db import migrations, models
-import streetsport.deletion
 
 
 class Migration(migrations.Migration):
@@ -20,7 +19,7 @@ class Migration(migrations.Migration):
                 blank=True,
                 help_text="lead_field_help",
                 null=True,
-                on_delete=streetsport.deletion.delete_or_set_next_lead,
+                on_delete=models.SET_NULL,
                 related_name="lead_teams",
                 related_query_name="lead_teams",
                 to=settings.AUTH_USER_MODEL,

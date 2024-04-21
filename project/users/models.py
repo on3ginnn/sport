@@ -6,6 +6,7 @@ import django.db.models
 from django.utils.translation import gettext_lazy as _
 import sorl.thumbnail
 
+import streetsport.models
 import users.models
 import users.validators
 
@@ -111,6 +112,27 @@ class User(django.contrib.auth.models.AbstractUser):
         _("rating"),
         help_text=_("rating_field_help"),
         default=0,
+    )
+
+    lead_team = django.db.models.OneToOneField(
+        streetsport.models.Team,
+        on_delete=django.db.models.SET_NULL,
+        verbose_name=_("lead_team"),
+        help_text=_("lead__team_field_help"),
+        related_name="lead",
+        related_query_name="lead",
+        blank=True,
+        null=True,
+    )
+    team = django.db.models.ForeignKey(
+        streetsport.models.Team,
+        on_delete=django.db.models.SET_NULL,
+        verbose_name=_("team"),
+        help_text=_("team_field_help"),
+        related_name="teammates",
+        related_query_name="teammates",
+        blank=True,
+        null=True,
     )
 
     def get_image_preview_x100(self, obj=None):
