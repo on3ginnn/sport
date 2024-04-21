@@ -59,10 +59,15 @@
 .match-team {
     flex: 0 1 50%;
     padding: 5px;
-    padding-left: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+.match-team.team-two {
+    padding-left: 10px;
+}
+.match-team.team-one {
+    padding-right: 10px;
 }
 .match__content{
     display: flex;

@@ -27,6 +27,13 @@
               </a>
             </li>
             {% if is_auth %}
+            {% if user.is_superuser %}
+              <li class="navbar__item item">
+                <a class="navbar__link" href="{% url 'admin:index' %}">
+                  {% trans "admin"|capfirst %}
+                </a>
+              </li>
+            {% endif %}
             <li class="navbar__item item">
               <a class="navbar__link {% if view_name == 'users:profile:profile-current' %}_active{% endif %}" href="{% url 'users:profile' pk=request.user.id %}">
                 {% trans "profile"|capfirst %}

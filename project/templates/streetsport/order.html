@@ -42,7 +42,7 @@
           <img src="{% static 'img/stub/map.jpg' %}" alt="{% trans 'order_map'|capfirst %}">
         </div>
         <div class="order__info info_content">
-          <h1><a href="{% url 'streetsport:team' pk=order.team_one.id %}" class="color_blue">{{ order.team_one.title }}</a> & <a href="{% url 'streetsport:team' pk=order.team_two.id %}" class="color_blue">{{ order.team_one.title }}</a></h1>
+          <h1><a href="{% url 'streetsport:team' pk=order.team_one.id %}" class="color_blue">{{ order.team_one.title }}</a> & <a href="{% url 'streetsport:team' pk=order.team_two.id %}" class="color_blue">{{ order.team_two.title }}</a></h1>
           <div class="order__datetime matches__datetime">
             <span class="text_bold">{{ order.start|date:"H:i" }}</span>, {{ order.start|date:"d.m.Y" }}
           </div>
