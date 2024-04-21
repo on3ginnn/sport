@@ -3,6 +3,7 @@ import re
 
 import django.core.exceptions
 import django.db.models
+import django.middleware
 from django.utils.translation import gettext as _
 import slugify
 import sorl.thumbnail
@@ -76,6 +77,34 @@ class Game(django.db.models.Model):
         return self.title
 
 
+class TeamManager(django.db.models.Manager):
+    def detail(self):
+        return (
+            self.get_queryset()
+            .select_related(Team.game.field.name, Team.lead.field.name)
+            .only(
+                Team.id.field.name,
+                Team.avatar.field.name,
+                Team.rating.field.name,
+                Team.title.field.name,
+                f"{Team.game.field.name}__{Game.id.field.name}",
+                f"{Team.game.field.name}__{Game.icon.field.name}",
+                f"{Team.game.field.name}__{Game.title.field.name}",
+                f"{Team.lead.field.name}__{users.models.User.id.field.name}",
+            )
+        )
+
+    def delete_view(self):
+        return (
+            self.get_queryset()
+            .select_related(Team.lead.field.name)
+            .only(
+                Team.id.field.name,
+                f"{Team.lead.field.name}__{users.models.User.id.field.name}",
+            )
+        )
+
+
 class Team(django.db.models.Model):
     def get_path_image(self, filename):
         ext = pathlib.Path(filename).suffix
@@ -84,6 +113,8 @@ class Team(django.db.models.Model):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.__original_lead = self.lead
+
+    objects = TeamManager()
 
     title = django.db.models.CharField(
         _("title"),
@@ -98,7 +129,7 @@ class Team(django.db.models.Model):
         null=True,
         blank=True,
     )
-    lead = django.db.models.ForeignKey(
+    lead = django.db.models.OneToOneField(
         users.models.User,
         on_delete=streetsport.deletion.delete_or_set_next_lead,
         verbose_name=_("lead"),
