@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+{% trans "profile_title"|capfirst %}
+{% endblock title %}
+
+{% block content %}
+{% get_media_prefix as media %}
+<section class="profile" data-media-url="{% get_media_prefix %}">
+  <div class="matches__body _container">
+    <div class="section__title">
+      <h1>
+        {% trans "profile_title"|capfirst %}
+      </h1>
+      <div class="section__title-btns">
+        <div class="section__title-btn btn_delete">
+          {% url 'auth:user-delete' as url %}
+          {% include 'includes/btn.html' with value='Удалить аккаунт' url=url %}
+        </div>
+        <div class="section__title-btn btn_edit icon_btn">
+          {% url 'auth:user-edit' as url %}
+          {% include 'includes/btn.html' with value='Редактировать' url=url %}
+        </div>
+      </div>
+    </div>
+    <div class="section__content profile__content">
+      <div class="profile__wrapper info_wrapper">
+        <div class="profile__map info_img">
+          <img src="{% static 'img/stub/avatar1.jpg' %}" alt="{% trans 'avatar_img'|capfirst %}">
+          <div class="profile__tabs tabs">
+            <ul class="tabs__items items">
+              <li class="tabs__item item">
+                <a href="{% url 'leaderboard:users' %}" class="tab single_top">
+                  <div class="tab__wrapper">
+                    <div class="tab__title">
+                      single top
+                    </div>
+                    <div class="tab__content">
+                      <div class="tab__text filter_link filter">
+                        #43
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li class="tabs__item item">
+                <a href="{% url 'leaderboard:teams' %}" class="tab team_top">
+                  <div class="tab__wrapper">
+                    <div class="tab__title">
+                      team top
+                    </div>
+                    <div class="tab__content">
+                      <div class="tab__text filter_link filter">
+                        #3
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li class="tabs__item item">
+                <a href="{% url 'streetsport:team' %}" class="tab team_tab">
+                  <div class="tab__wrapper">
+                    <div class="tab__title">
+                      team
+                    </div>
+                    <div class="tab__content">
+                      <div class="tab__text filter_link filter">
+                        sportiki
+                      </div>
+                    </div>
+                  </div>
+                </a>                
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="profile__info info_content">
+          <div class="profile__field form__field info_field">
+            <label for="">ник</label>
+            <div class="profile__description info_text">
+              someusername
+            </div>
+          </div>
+          <div class="profile__field form__field info_field">
+            <label for="">почта</label>
+            <a href="mailto:example@example.com" class="profile__description info_text color_blue">
+              example@example.com
+            </a>
+          </div>
+          <div class="profile__field form__field info_field">
+            <label for="">имя</label>
+            <div class="profile__description info_text">
+              Анатолий
+            </div>
+          </div>
+          <div class="profile__field form__field info_field">
+            <label for="">фамилия</label>
+            <div class="profile__description info_text">
+              Анатолиев
+            </div>
+          </div>
+          <div class="profile__field form__field info_field">
+            <label for="">день рождения</label>
+            <div class="profile__description info_text">
+              11.11.1111
+            </div>
+          </div>
+          <div class="profile__field form__field info_field">
+            <label for="">о себе</label>
+            <div class="profile__description info_text">
+              lorem ipsumlorem ipsumlorem ipsumlorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum 
+            </div>
+          </div>
+          <div class="profile__field form__field info_field">
+            <label for="">Telegram</label>
+            <a href="https://t.me/someone" class="profile__description info_text color_blue">
+              t.me/someone
+            </a>
+          </div>
+          <div class="profile__field form__field info_field">
+            <div class="section__title-btn btn_add icon_btn">
+              {% url 'auth:team-add' as url %}
+              {% include 'includes/btn.html' with value='Пригласить в команду' url=url %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}

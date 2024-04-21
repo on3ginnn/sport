@@ -13,12 +13,7 @@ app_name = "users"
 urlpatterns = [
     django.urls.path(
         "profile/",
-        django.contrib.auth.views.LoginView.as_view(
-            template_name="users/login.html",
-            authentication_form=users.forms.custom_auth_form(
-                django.contrib.auth.forms.AuthenticationForm,
-            ),
-        ),
+        users.views.ProfileTemplateView.as_view(),
         name="profile",
     ),
     django.urls.path(

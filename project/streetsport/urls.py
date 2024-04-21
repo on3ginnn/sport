@@ -26,4 +26,9 @@ urlpatterns = [
         streetsport.views.GamesListView.as_view(),
         name="leaderboard",
     ),
+    django.urls.path(
+        "",
+        streetsport.views.GamesListView.as_view(),
+        name="team",
+    ),
 ]

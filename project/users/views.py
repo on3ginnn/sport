@@ -66,6 +66,10 @@ class SignupFormView(django.views.generic.FormView):
         return super().form_valid(form)
 
 
+class ProfileTemplateView(django.views.generic.TemplateView):
+    template_name = "users/profile.html"
+
+
 class ActivateRedirectView(django.views.generic.RedirectView):
     django.views.generic.TemplateView
     url = django.urls.reverse_lazy("homepage:main")

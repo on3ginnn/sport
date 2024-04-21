@@ -1,3 +1,5 @@
+__all__ = []
+
 import django.urls
 
 import leaderboard.apps
@@ -10,5 +12,15 @@ urlpatterns = [
         "",
         leaderboard.views.LeaderboardListView.as_view(),
         name="main",
-    )
+    ),
+    django.urls.path(
+        "",
+        leaderboard.views.LeaderboardListView.as_view(),
+        name="users",
+    ),
+    django.urls.path(
+        "",
+        leaderboard.views.LeaderboardListView.as_view(),
+        name="teams",
+    ),
 ]

@@ -26,27 +26,27 @@
         </div>
       </h1>
       <div class="section__title-btns">
-        <div class="section__title-btn btn_order_delete">
+        <div class="section__title-btn btn_delete">
           {% url 'streetsport:order-create' as url %}
           {% include 'includes/btn.html' with value='Удалить игру' url=url %}
         </div>
-        <div class="section__title-btn btn_order_edit icon_btn">
+        <div class="section__title-btn btn_edit icon_btn">
           {% url 'streetsport:order-create' as url %}
           {% include 'includes/btn.html' with value='Редактировать' url=url %}
         </div>
       </div>
     </div>
     <div class="section__content order__content">
-      <div class="order__wrapper">
-        <div class="order__map">
+      <div class="order__wrapper info_wrapper">
+        <div class="order__map info_img">
           <img src="{% static 'img/stub/map.jpg' %}" alt="{% trans 'order_map'|capfirst %}">
         </div>
-        <div class="order__info">
+        <div class="order__info info_content">
           <h1><a href="{# url 'streetsport:team' pk=order.team_one.id #}" class="color_blue">{{ order.team_one.title }}</a> & <a href="{# url 'streetsport:team' pk=order.team_two.id #}" class="color_blue">{{ order.team_one.title }}</a></h1>
           <div class="order__datetime matches__datetime">
             <span class="text_bold">{{ order.start|date:"H:i" }}</span>, {{ order.start|date:"d.m.Y" }}
           </div>
-          <div class="order__description">
+          <div class="order__description info_text">
             {{ order.description }}
           </div>
         </div>

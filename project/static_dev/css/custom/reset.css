@@ -77,6 +77,8 @@ main{
 
 /*---------base-----------*/
 :root {
+    --color-yellow: #FEEC4A;
+    --color-magenta: #FF3FC9;
     --color-red: #FE3E32;
     --color-blue: #2796FD;
     --color-orange: #FFA34E;

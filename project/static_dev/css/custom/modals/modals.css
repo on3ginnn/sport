@@ -63,8 +63,9 @@
     right: 10px;
     position: absolute;
 }
-.filter.filter_link::before{
+.filter_link::before{
     content: url(../../../img/icons/link.svg);
+    
 }
 .available_filters .filter::before{
     content: url(../../../img/icons/add_filter.svg);
