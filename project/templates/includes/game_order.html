@@ -17,20 +17,9 @@
 			</div>
 			<div class="match-team__teammates team-teammates">
 				<ul class="team-teammates__items items">
-					<li class="team-teammates__item item team-teammate">
-						<div class="team-teammate__item">
-							<div class="team-teammate__img">
-								{% if order.team_one.lead.avatar %}
-								<img src="{{ order.team_one.lead.get_image_preview_x100.url }}" alt="{% trans 'avatar_img'|capfirst %}">
-								{% else %}
-								<img src="{% static 'img/default/avatar.png' %}" alt="{% trans 'default_avatar_img'|capfirst %}">
-								{% endif %}
-							</div>
-						</div>
-					</li>
 					{% with team_teammates=order.team_one.teammates.all %}
-						{% for teammate in team_teammates|slice:":2" %}
-							<li class="team-teammates__item item team-teammate">
+						{% for teammate in team_teammates|slice:":3" %}
+							<li class="team-teammates__item teammates__item item team-teammate">
 								<div class="team-teammate__item">
 									<div class="team-teammate__img">
 										{% if teammate.avatar %}
@@ -42,13 +31,16 @@
 								</div>
 							</li>
 						{% endfor %}
-						{% if team_teammates|length|add:"-2" > 0 %}
+						{% if team_teammates|length|add:"-3" > 0 %}
 						<li class="team-teammates__item item teammates_count">
 							<div class="team-teammate__item">
-								+{{ team_teammates|length|add:"-2" }}
+								+{{ team_teammates|length|add:"-3" }}
 							</div>
 						</li>
 						{% endif %}
+						{% for teammate in team_teammates %}
+							<li data-username="{{ teammate.username }}" class="team__teammates-hidden team_teammates_hidden" hidden></li>
+						{% endfor %}
 
 					{% endwith %}
 				</ul>
@@ -91,19 +83,8 @@
 			</div>
 			<div class="match-team__teammates team-teammates">
 				<ul class="team-teammates__items items">
-					<li class="team-teammates__item item team-teammate">
-						<div class="team-teammate__item">
-							<div class="team-teammate__img">
-								{% if order.team_two.lead.avatar %}
-								<img src="{{ order.team_two.lead.get_image_preview_x100.url }}" alt="{% trans 'avatar_img'|capfirst %}">
-								{% else %}
-								<img src="{% static 'img/default/avatar.png' %}" alt="{% trans 'default_avatar_img'|capfirst %}">
-								{% endif %}
-							</div>
-						</div>
-					</li>
 					{% with team_teammates=order.team_two.teammates.all %}
-						{% for teammate in team_teammates|slice:":2" %}
+						{% for teammate in team_teammates|slice:":3" %}
 							<li class="team-teammates__item item team-teammate">
 								<div class="team-teammate__item">
 									<div class="team-teammate__img">
@@ -116,13 +97,16 @@
 								</div>
 							</li>
 						{% endfor %}
-						{% if team_teammates|length|add:"-2" > 0 %}
+						{% if team_teammates|length|add:"-3" > 0 %}
 						<li class="team-teammates__item item teammates_count">
 							<div class="team-teammate__item">
-								+{{ team_teammates|length|add:"-2" }}
+								+{{ team_teammates|length|add:"-3" }}
 							</div>
 						</li>
 						{% endif %}
+						{% for teammate in team_teammates %}
+							<li data-username="{{ teammate.username }}" class="team__teammates-hidden team_teammates_hidden" hidden></li>
+						{% endfor %}
 
 					{% endwith %}
 				</ul>

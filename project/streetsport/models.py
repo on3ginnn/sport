@@ -10,7 +10,6 @@ import sorl.thumbnail
 
 import streetsport.validators
 
-
 __all__ = []
 
 

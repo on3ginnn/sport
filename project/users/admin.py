@@ -19,7 +19,10 @@ class ImageInline(
 
 @django.contrib.admin.register(users.models.User)
 class UserAdmin(django.contrib.auth.admin.UserAdmin):
-    list_display = (users.models.User.username.field.name,)
+    list_display = (
+        users.models.User.id.field.name,
+        users.models.User.username.field.name,
+    )
     avatar_field = (
         users.models.User.avatar.field.name,
         "avatar_preview",

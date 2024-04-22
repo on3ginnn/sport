@@ -8,6 +8,7 @@ __all__ = []
 @django.contrib.admin.register(streetsport.models.Team)
 class TeamAdmin(django.contrib.admin.ModelAdmin):
     list_display = (streetsport.models.Team.title.field.name,)
+    # TODO: отобразить всех участников команды в админке
 
 
 @django.contrib.admin.register(streetsport.models.Game)

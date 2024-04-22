@@ -7,7 +7,6 @@ from django.utils.translation import gettext_lazy as _
 import sorl.thumbnail
 
 import streetsport.models
-import users.models
 import users.validators
 
 __all__ = []

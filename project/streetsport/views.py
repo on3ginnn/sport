@@ -35,6 +35,8 @@ class TeamDetailView(django.views.generic.DetailView):
     context_object_name = "team"
 
     def get_context_data(self, **kwargs):
+        # TODO: в teammates загрузить всех участников команды (поля: id, username, avatar, single_top, lead_status(lead or not))
+
         kwargs.update(
             self.queryset.aggregate(
                 team_top=django.db.models.Count(
@@ -45,9 +47,12 @@ class TeamDetailView(django.views.generic.DetailView):
                 )
             )
         )
+        self.extra_context = {
+            "teammates": users.models.User.objects.filter(
+                team__id=self.queryset
+            ).order_by("-rating")
+        }
         return super().get_context_data(**kwargs)
-
-    extra_context = {"teams": streetsport.models.Team.objects.all()}
 
 
 class TeamUpdateView(django.views.generic.UpdateView):

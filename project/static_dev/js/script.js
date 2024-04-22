@@ -160,12 +160,48 @@ function filterRender(
     rendering();
 }
 
+function ordersFiltration(){
+    let orderItems = document.querySelectorAll(".matches.match_orders .matches__item");
+    orderItems.forEach(orderItem => {
+        const order = orderItem.querySelector(".match");
+        orderItem.style.display = "block";
+
+        // фильрация ордеров по игре
+        let activeFiltersGamesTitle = activeFiltersGames.map(filter => filter.normalize_title);
+        if (activeFiltersGamesTitle.length > 0 && !activeFiltersGamesTitle.includes(order.dataset.game)){
+            
+            orderItem.style.display = 'none';
+        }
+    
+        // фильрация ордеров по команде
+        let activeFiltersTeamsTitle = activeFiltersTeams.map(filter => filter.normalize_title);
+        if (activeFiltersTeamsTitle.length > 0 && !(activeFiltersTeamsTitle.includes(order.dataset.teamOne) || activeFiltersTeamsTitle.includes(order.dataset.teamTwo))){
+            orderItem.style.display = 'none';
+        }
+
+        // фильрация ордеров по игрокам
+        let orderTeamOneTeammatesItems = Object.values(orderItem.querySelectorAll(".team-one .team_teammates_hidden"));
+        let orderTeamTwoTeammatesItems = Object.values(orderItem.querySelectorAll(".team-two .team_teammates_hidden"));
+        let activeFiltersUsersTitle = activeFiltersUsers.map(filter => filter.username);
+        let teamOneTeammatesSome = orderTeamOneTeammatesItems.some(userItem => activeFiltersUsersTitle.includes(userItem.dataset.username));
+        let teamTwoTeammatesSome = orderTeamTwoTeammatesItems.some(userItem => activeFiltersUsersTitle.includes(userItem.dataset.username));
+        if (activeFiltersUsersTitle.length > 0 && !(teamOneTeammatesSome || teamTwoTeammatesSome)){
+            orderItem.style.display = 'none';
+        }
+    });
+
+};
+
 // запуск рендеринга фильтров (для принятия всех фильтров)
 function filtrationApplyed(
 ){
-
     filterRender();
     ordersFilterRender();
+
+    // TODO: применение фильтров
+
+    ordersFiltration();
+
 }
 
 // событие замены сотояния
