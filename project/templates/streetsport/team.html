@@ -123,7 +123,7 @@
                       <img src="{% static 'img/default/avatar.svg' %}" alt="{% trans 'default_avatar_img'|capfirst %}">
                       {% endif %}
                     </div>
-                    <a href="{# url 'users:profile' pk=user.id #}" class="table__text color_blue">
+                    <a href="{% url 'streetsport:team' pk=team.id %}" class="table__text color_blue">
                       {{ user.username }}
                     </a>
                   </div>

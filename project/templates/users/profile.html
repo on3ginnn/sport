@@ -14,7 +14,12 @@
       <h1>
         {% trans "profile_title"|capfirst %}
       </h1>
+      {% if request.user == user %}
       <div class="section__title-btns">
+        <div class="section__title-btn btn_logout icon_btn">
+          {% url 'users:logout' as url %}
+          {% include 'includes/btn.html' with value='Выйти' url=url %}
+        </div>
         <div class="section__title-btn btn_delete">
           {% url 'users:user-delete' as url %}
           {% include 'includes/btn.html' with value='Удалить аккаунт' url=url %}
@@ -24,6 +29,7 @@
           {% include 'includes/btn.html' with value='Редактировать' url=url %}
         </div>
       </div>
+      {% endif %}
     </div>
     <div class="section__content profile__content">
       <div class="profile__wrapper info_wrapper">
@@ -157,12 +163,22 @@
                 -
               {% endif %}
           </div>
+          {% if user.team %}
           <div class="profile__field form__field info_field">
             <div class="section__title-btn btn_add icon_btn">
               {% url 'streetsport:team-add' pk=user.id as url %}
               {% include 'includes/btn.html' with value='Пригласить в команду' url=url %}
             </div>
           </div>
+          {% else %}
+          <div class="profile__field form__field info_field">
+            <div class="section__title-btn">
+              {% url 'streetsport:team-create' as url %}
+              {% include 'includes/btn.html' with value='Создать команду' url=url %}
+            </div>
+          </div>
+          {% endif %}
+
         </div>
       </div>
     </div>

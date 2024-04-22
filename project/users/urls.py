@@ -16,10 +16,9 @@ urlpatterns = [
         users.views.ProfileDetailView.as_view(),
         name="profile",
     ),
-    # TODO: сделать доступ к профилю без pk, т.к после редактирования профиля должен быть редирект на профиль текущего
     django.urls.path(
         "profile/",
-        users.views.ProfileDetailView.as_view(),
+        users.views.ProfileTemplateView.as_view(),
         name="profile-current",
     ),
     django.urls.path(

@@ -27,11 +27,11 @@
       </h1>
       <div class="section__title-btns">
         <div class="section__title-btn btn_delete">
-          {% url 'streetsport:order-create' as url %}
+          {% url 'streetsport:order-delete' as url %}
           {% include 'includes/btn.html' with value='Удалить игру' url=url %}
         </div>
         <div class="section__title-btn btn_edit icon_btn">
-          {% url 'streetsport:order-create' as url %}
+          {% url 'streetsport:order-edit' pk=order.id as url %}
           {% include 'includes/btn.html' with value='Редактировать' url=url %}
         </div>
       </div>

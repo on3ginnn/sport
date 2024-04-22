@@ -29,6 +29,12 @@ class TeamDeleteView(
     queryset = streetsport.models.Team.objects.all()
 
 
+class TeamCreateView(django.views.generic.CreateView):
+    form_class = streetsport.forms.TeamEditForm
+    template_name = "streetsport/team_edit.html"
+    
+
+
 class TeamDetailView(django.views.generic.DetailView):
     template_name = "streetsport/team.html"
     queryset = streetsport.models.Team.objects.detail()
@@ -47,6 +53,7 @@ class TeamDetailView(django.views.generic.DetailView):
                 )
             )
         )
+        # TODO: error: The QuerySet value for an exact lookup must be limited to one result using slicing.
         self.extra_context = {
             "teammates": users.models.User.objects.filter(
                 team__id=self.queryset
@@ -60,7 +67,6 @@ class TeamUpdateView(django.views.generic.UpdateView):
     form_class = streetsport.forms.TeamEditForm
     template_name = "streetsport/team_edit.html"
 
-    # TODO: нужно получить команду текущего юзера (переделать связь команды и игрока с ManyToMany на OneToMany (игрок только в одной команде, в команде много игроков))
     def get_object(self, *args, **kwargs):
         self.success_url = django.urls.reverse_lazy(
             "streetsport:team", kwargs={"pk": self.request.user.teams.id}
@@ -108,6 +114,23 @@ class GamesListView(django.views.generic.ListView):
             default=str,
         )
         return context
+
+
+class GamesDeleteView(django.views.generic.DeleteView):
+    # TODO: сделать удаление ордера streetport:order-delete
+    pass
+
+
+class GamesEditView(
+    django.contrib.auth.mixins.LoginRequiredMixin,
+    django.views.generic.edit.UpdateView,
+):
+    form_class = streetsport.forms.StreetsportOrderModelForm
+    template_name = "streetsport/order_create.html"
+    queryset = streetsport.models.Order.objects.all()
+
+    def get_success_url(self):
+        return django.urls.reverse_lazy("streetsport:order", kwargs={"pk":self.kwargs['pk']})
 
 
 class GamesCreateView(

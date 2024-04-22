@@ -7,17 +7,27 @@ app_name = streetsport.apps.StreetsportConfig.name
 
 urlpatterns = [
     django.urls.path(
-        "",
+        "orders/",
         streetsport.views.GamesListView.as_view(),
         name="orders",
     ),
     django.urls.path(
-        "create/",
+        "order/create/",
         streetsport.views.GamesCreateView.as_view(),
         name="order-create",
     ),
     django.urls.path(
-        "<int:pk>/",
+        "order/<int:pk>/edit/",
+        streetsport.views.GamesEditView.as_view(),
+        name="order-edit",
+    ),
+    django.urls.path(
+        "order/<int:pk>/delete/",
+        streetsport.views.GamesDeleteView.as_view(),
+        name="order-delete",
+    ),
+    django.urls.path(
+        "order/<int:pk>/",
         streetsport.views.GamesDetailView.as_view(),
         name="order",
     ),
@@ -25,6 +35,11 @@ urlpatterns = [
         "team/<int:pk>/",
         streetsport.views.TeamDetailView.as_view(),
         name="team",
+    ),
+    django.urls.path(
+        "team/create/",
+        streetsport.views.TeamCreateView.as_view(),
+        name="team-create",
     ),
     django.urls.path(
         "team/<int:pk>/edit/",

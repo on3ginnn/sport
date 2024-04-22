@@ -51,7 +51,7 @@
                     <img src="{% static 'img/default/team.svg' %}" alt="{% trans 'default_team_img'|capfirst %}">
                     {% endif %}
                   </div>
-                  <a href="{# url 'users:profile' pk=team.id #}" class="table__text color_blue">
+                  <a href="{% url 'streetsport:team' pk=team.id %}" class="table__text color_blue">
                     {{ team.title }}
                   </a>
                 </div>
@@ -64,7 +64,7 @@
               <td class="table__data">
                 <div class="table__content">
                   {% if false %}
-                  <a href="{# url 'streetsport:order' pk=1 #}" class="table__text color_blue">
+                  <a href="{% url 'streetsport:order' pk=1 %}" class="table__text color_blue">
                     team.title
                   </a>
                   {% else %}

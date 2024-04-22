@@ -146,8 +146,22 @@ h1{
 .icon_btn .btn{
     padding-left: 55px;
 }
+
 .btn:hover{
     filter: brightness(.95);
+}
+.btn_logout .btn{
+    background: var(--color-gray);
+    color: black;
+}
+.btn_logout .btn::before{
+    content: url(../../img/icons/logout.svg);
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
 }
 .navbar__link._active,
 .navbar__item._active .navbar__link,
