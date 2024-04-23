@@ -23,7 +23,7 @@ urlpatterns = [
     ),
     django.urls.path(
         "order/<int:pk>/delete/",
-        streetsport.views.GamesDeleteView.as_view(),
+        streetsport.views.GamesRedirectView.as_view(),
         name="order-delete",
     ),
     django.urls.path(
@@ -53,8 +53,7 @@ urlpatterns = [
     ),
     django.urls.path(
         "user/<int:pk>/add/",
-        # TODO: добавить view для добавления юзера в команду текущего юзера(лида)
-        streetsport.views.TeamDetailView.as_view(),
+        streetsport.views.TeammateAddRedirectView.as_view(),
         name="team-add",
     ),
     django.urls.path(

@@ -49,8 +49,8 @@
                     </div>
                     <div class="tab__content">
                       <div class="tab__text filter_link filter">
-                        {% if user.single_top %}
-                          #{{ user.single_top }}
+                        {% if user_top %}
+                          #{{ user_top }}
                         {% else %}
                           -
                         {% endif %}
@@ -67,8 +67,8 @@
                     </div>
                     <div class="tab__content">
                       <div class="tab__text filter_link filter">
-                        {% if user.team_top %}
-                          #{{ user.team_top }}
+                        {% if team_top %}
+                          #{{ team_top }}
                         {% else %}
                           -
                         {% endif %}

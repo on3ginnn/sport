@@ -28,8 +28,6 @@ class TeamEditForm(django.forms.ModelForm):
         for field in self.visible_fields():
             field.field.widget.attrs["class"] = "form__input"
 
-        # self.fields["avatar"].widget.attr["class"] = "form__input input_file"
-
     class Meta:
         model = streetsport.models.Team
         exclude = []

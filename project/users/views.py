@@ -1,8 +1,10 @@
 import django.conf
 import django.contrib.auth
+import django.contrib.auth.mixins
 import django.contrib.messages
 import django.core.mail
 import django.core.signing
+import django.db.models
 import django.forms
 import django.http
 import django.template.loader
@@ -10,6 +12,7 @@ import django.urls
 from django.utils.translation import gettext_lazy as _
 import django.views.generic
 
+import streetsport.models
 import users.forms
 import users.models
 
@@ -76,25 +79,69 @@ class SignupFormView(django.views.generic.FormView):
         return super().form_valid(form)
 
 
-class ProfileTemplateView(django.views.generic.TemplateView):
-    template_name = 'users/profile.html'
-    # TODO: получить место игрока(single_top) в топе( order_by("-raging", "-teams__rating")  и его команды(team_top) в топе( order_by("-raging", "title") )
-    
+class ProfileTemplateView(
+    django.contrib.auth.mixins.LoginRequiredMixin,
+    django.views.generic.TemplateView,
+):
+    template_name = "users/profile.html"
+
     def get_context_data(self, **kwargs):
+        user = self.request.user
+        user_top = users.models.User.objects.aggregate(
+            user_top=django.db.models.Count(
+                "id",
+                filter=django.db.models.Q(rating__gte=user.rating),
+            ),
+        )
+        if user.team:
+            team_top = streetsport.models.Team.objects.aggregate(
+                team_top=django.db.models.Count(
+                    "id",
+                    filter=django.db.models.Q(rating__gte=user.team.rating),
+                ),
+            )
+            kwargs.update(team_top)
+
+        kwargs.update(user_top)
         context = super().get_context_data(**kwargs)
-        context['user'] = self.request.user
+        context["user"] = user
         return context
 
 
 class ProfileDetailView(django.views.generic.DetailView):
     template_name = "users/profile.html"
     queryset = users.models.User.objects.all()
-    # TODO: получить место игрока(single_top) в топе( order_by("-raging", "-teams__rating")  и его команды(team_top) в топе( order_by("-raging", "title") )
+
+    def get_context_data(self, **kwargs):
+        user = kwargs.get("object")
+        user_top = self.queryset.aggregate(
+            user_top=django.db.models.Count(
+                "id",
+                filter=django.db.models.Q(rating__gte=user.rating),
+            ),
+        )
+        if user.team:
+            team_top = streetsport.models.Team.objects.aggregate(
+                team_top=django.db.models.Count(
+                    "id",
+                    filter=django.db.models.Q(rating__gte=user.team.rating),
+                ),
+            )
+            kwargs.update(team_top)
+
+        kwargs.update(user_top)
+        return super().get_context_data(**kwargs)
 
 
-class UserDeleteView(django.views.generic.DeleteView):
-    # TODO: оптимизировать запрос и сделать чтобы работало
-    queryset = users.models.User.objects.all()
+class UserDeleteView(
+    django.contrib.auth.mixins.LoginRequiredMixin,
+    django.views.generic.RedirectView,
+):
+    url = django.urls.reverse_lazy("homepage:main")
+
+    def get(self, request, *args, **kwargs):
+        request.user.delete()
+        return super().get(request, *args, **kwargs)
 
 
 class ActivateRedirectView(django.views.generic.RedirectView):
