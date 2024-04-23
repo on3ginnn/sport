@@ -3,6 +3,7 @@ import json
 import django.contrib.auth.mixins
 import django.db.models
 import django.http
+import django.urls
 from django.utils.translation import gettext_lazy as _
 import django.views.generic
 
@@ -33,6 +34,9 @@ class TeamCreateView(django.views.generic.CreateView):
     form_class = streetsport.forms.TeamEditForm
     template_name = "streetsport/team_edit.html"
     
+    def get_success_url(self):
+        # TODO: получить только что созданную команду и вывести ее
+        return django.urls.reverse_lazy("streetsport:team", kwargs={"pk":2})
 
 
 class TeamDetailView(django.views.generic.DetailView):
@@ -130,7 +134,9 @@ class GamesEditView(
     queryset = streetsport.models.Order.objects.all()
 
     def get_success_url(self):
-        return django.urls.reverse_lazy("streetsport:order", kwargs={"pk":self.kwargs['pk']})
+        return django.urls.reverse_lazy(
+            "streetsport:order", kwargs={"pk": self.kwargs["pk"]}
+        )
 
 
 class GamesCreateView(

@@ -77,12 +77,12 @@ class SignupFormView(django.views.generic.FormView):
 
 
 class ProfileTemplateView(django.views.generic.TemplateView):
-    template_name = 'users/profile.html'
+    template_name = "users/profile.html"
     # TODO: получить место игрока(single_top) в топе( order_by("-raging", "-teams__rating")  и его команды(team_top) в топе( order_by("-raging", "title") )
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['user'] = self.request.user
+        context["user"] = self.request.user
         return context
 
 
