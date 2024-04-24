@@ -33,6 +33,7 @@ class TeamDeleteView(
 
 class TeamCreateView(django.views.generic.CreateView):
     form_class = streetsport.forms.TeamEditForm
+    success_url = django.urls.reverse_lazy("homepage:main")
     template_name = "streetsport/team_edit.html"
 
 
