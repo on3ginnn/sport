@@ -59,6 +59,7 @@
                   </div>
                 </a>
               </li>
+              {% if user.team %}
               <li class="tabs__item item">
                 <a href="{% url 'leaderboard:teams' %}" class="tab team_top">
                   <div class="tab__wrapper">
@@ -77,7 +78,6 @@
                   </div>
                 </a>
               </li>
-              {% if user.team %}
               <li class="tabs__item item">
                 <a href="{% url 'streetsport:team' 1 %}" class="tab team_tab">
                   <div class="tab__wrapper">
@@ -163,14 +163,15 @@
                 -
               {% endif %}
           </div>
-          {% if user.team %}
+          {% if user.team and user != request.user%}
           <div class="profile__field form__field info_field">
             <div class="section__title-btn btn_add icon_btn">
               {% url 'streetsport:team-add' pk=user.id as url %}
               {% include 'includes/btn.html' with value='Пригласить в команду' url=url %}
             </div>
           </div>
-          {% else %}
+          {% endif %}
+          {% if not user.team %}
           <div class="profile__field form__field info_field">
             <div class="section__title-btn">
               {% url 'streetsport:team-create' as url %}
