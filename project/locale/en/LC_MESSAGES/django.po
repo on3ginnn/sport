@@ -20,321 +20,158 @@ msgstr ""
 
 #: .\feedback\models.py:11
 msgid "new_status"
-msgstr ""
-
+msgstr "New status"
 #: .\feedback\models.py:12
 msgid "pending_status"
-msgstr ""
-
+msgstr "Pending status"
 #: .\feedback\models.py:13
 msgid "complete_status"
-msgstr ""
-
+msgstr "Complete status"
 #: .\feedback\views.py:42
 msgid "message_form_success"
-msgstr ""
-
+msgstr "Message form submitted successfully"
 #: .\project\settings.py:140
 msgid "Russian"
-msgstr ""
-
+msgstr "Russian"
 #: .\project\settings.py:141
 msgid "English"
-msgstr ""
+msgstr "English"
 
 #: .\streetsport\apps.py:10
 msgid "streetsport app"
-msgstr ""
-
+msgstr "Streetsport app"
 #: .\streetsport\models.py:23 .\streetsport\models.py:55
 msgid "title"
-msgstr ""
-
+msgstr "Title"
 #: .\streetsport\models.py:24 .\streetsport\models.py:56
 msgid "title_field_help"
-msgstr ""
-
+msgstr "Help text for title field"
 #: .\streetsport\models.py:29 .\streetsport\models.py:89
 msgid "normalize_title"
-msgstr ""
-
+msgstr "Normalize title"
 #: .\streetsport\models.py:32 .\streetsport\models.py:92
 msgid "normalize_title_field_help"
-msgstr ""
-
+msgstr "Help text for normalize title field"
 #: .\streetsport\models.py:43 .\streetsport\models.py:108
 msgid "normalize_title_validation_error"
-msgstr ""
-
+msgstr "Normalization title validation error"
 #: .\streetsport\models.py:49 .\streetsport\models.py:81
 msgid "game"
-msgstr ""
-
+msgstr "Game"
 #: .\streetsport\models.py:50
 msgid "games"
-msgstr ""
-
+msgstr "Games"
 #: .\streetsport\models.py:63
 msgid "lead"
-msgstr ""
-
+msgstr "Lead"
 #: .\streetsport\models.py:64
 msgid "lead_field_help"
-msgstr ""
-
+msgstr "Help text for lead field"
 #: .\streetsport\models.py:72
 msgid "teammates"
-msgstr ""
-
+msgstr "Teammates"
 #: .\streetsport\models.py:73
 msgid "teammates_field_help"
-msgstr ""
-
+msgstr "Help text for teammates field"
 #: .\streetsport\models.py:82
 msgid "game_field_help"
-msgstr ""
-
+msgstr "Help text for game field"
 #: .\streetsport\models.py:95 .\users\models.py:72
 msgid "rating"
-msgstr ""
-
+msgstr "Rating"
 #: .\streetsport\models.py:96 .\users\models.py:73
 msgid "rating_field_help"
-msgstr ""
-
+msgstr "Help text for rating field"
 #: .\streetsport\models.py:121
 msgid "team"
-msgstr ""
-
+msgstr "Team"
 #: .\streetsport\models.py:122
 msgid "teams"
-msgstr ""
-
+msgstr "Teams"
 #: .\streetsport\models.py:129 .\streetsport\models.py:137
 msgid "team_one"
-msgstr ""
-
+msgstr "Team one"
 #: .\streetsport\models.py:130 .\streetsport\models.py:138
 msgid "team_one_field_help"
-msgstr ""
-
+msgstr "Help text for team one field"
 #: .\streetsport\models.py:143
 msgid "start"
-msgstr ""
-
+msgstr "Start"
 #: .\streetsport\models.py:144
 msgid "start_field_help"
-msgstr ""
-
+msgstr "Help text for start field"
 #: .\streetsport\models.py:150
 msgid "description"
-msgstr ""
-
+msgstr "Description"
 #: .\streetsport\models.py:152
 msgid "description_field_help"
-msgstr ""
-
+msgstr "Help text for description field"
 #: .\streetsport\models.py:158
 msgid "location"
-msgstr ""
-
+msgstr "Location"
 #: .\streetsport\models.py:160
 msgid "location_field_help"
-msgstr ""
-
+msgstr "Help text for location field"
 #: .\streetsport\models.py:168
 msgid "team_equal_validation_error"
-msgstr ""
-
+msgstr "Team equal validation error"
 #: .\streetsport\models.py:172
 msgid "order"
-msgstr ""
-
+msgstr "Order"
 #: .\streetsport\models.py:173
 msgid "orders"
-msgstr ""
-
+msgstr "Orders"
 #: .\streetsport\validators.py:11
 msgid "start_validation_error"
-msgstr ""
-
+msgstr "Start validation error"
 #: .\templates\about\description.html:6 .\templates\about\description.html:10
 msgid "about_title"
-msgstr ""
-
+msgstr "About Title"
 #: .\templates\about\description.html:13
 msgid "about_text"
-msgstr ""
-
+msgstr "About text"
 #: .\templates\feedback\feedback.html:6
 msgid "feedback_title"
-msgstr ""
-
+msgstr "Feedback Title"
 #: .\templates\homepage\index.html:6
 msgid "homepage_title"
-msgstr ""
-
+msgstr "Homepage Title"
 #: .\templates\includes\form.html:37
 msgid "submit"
-msgstr ""
-
+msgstr "Submit"
 #: .\templates\users\login.html:5 .\templates\users\signup.html:5
 msgid "login_title"
-msgstr ""
-
+msgstr "Login Title"
 #: .\templates\users\login.html:26
 msgid "forgot_password"
-msgstr ""
-
+msgstr "Forgot Password?"
 #: .\templates\users\login.html:27
 msgid "no_account"
-msgstr ""
-
+msgstr "Don’t have an account?"
 #: .\templates\users\password_change.html:5
 msgid "password_change_title"
-msgstr ""
-
-#: .\templates\users\password_change_done.html:5
-#: .\templates\users\password_reset_complete.html:5
+msgstr "Password Change Title"
+#: .\templates\users\password_change_done.html:5#: .\templates\users\password_reset_complete.html:5
 #: .\templates\users\password_reset_done.html:5
 msgid "success"
-msgstr ""
-
+msgstr "Success"
 #: .\templates\users\password_change_done.html:12
 msgid "password_change_done_text"
-msgstr ""
-
-#: .\templates\users\password_change_done.html:13
-#: .\templates\users\password_reset_complete.html:12
+msgstr "Your password has been changed successfully"
+#: .\templates\users\password_change_done.html:13#: .\templates\users\password_reset_complete.html:12
 #: .\templates\users\password_reset_done.html:12
 msgid "home"
-msgstr ""
-
-#: .\templates\users\password_reset.html:5
-#: .\templates\users\password_reset_confirm.html:5
+msgstr "Home"
+#: .\templates\users\password_reset.html:5#: .\templates\users\password_reset_confirm.html:5
 msgid "reset_title"
-msgstr ""
-
+msgstr "Reset Title"
 #: .\templates\users\password_reset_complete.html:11
 msgid "password_reset_complite_text"
-msgstr ""
-
+msgstr "Your password has been reset successfully"
 #: .\templates\users\password_reset_done.html:11
 msgid "password_reset_done_text"
-msgstr ""
-
+msgstr "Password reset is done. Check your email."
 #: .\templates\users\signup_email.html:2
 msgid "activate_email_title"
-msgstr ""
-
-#: .\templates\users\signup_email.html:4
-msgid "activate_email_text"
-msgstr ""
-
-#: .\users\admin.py:28
-msgid "profile"
-msgstr ""
-
-#: .\users\apps.py:10
-msgid "users"
-msgstr ""
-
-#: .\users\models.py:20
-msgid "username"
-msgstr ""
-
-#: .\users\models.py:24
-msgid "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
-msgstr ""
-
-#: .\users\models.py:31
-msgid "A user with that username already exists."
-msgstr ""
-
-#: .\users\models.py:35
-msgid "biography"
-msgstr ""
-
-#: .\users\models.py:37
-msgid "bio_field_help"
-msgstr ""
-
-#: .\users\models.py:42
-msgid "birthday"
-msgstr ""
-
-#: .\users\models.py:43
-msgid "birthday_field_help"
-msgstr ""
-
-#: .\users\models.py:49
-msgid "avatar"
-msgstr ""
-
-#: .\users\models.py:50
-msgid "avatar_field_help"
-msgstr ""
-
-#: .\users\models.py:56
-msgid "tg_link"
-msgstr ""
-
-#: .\users\models.py:58
-msgid "tg_link_field_help"
-msgstr ""
-
-#: .\users\models.py:64
-msgid "inst_link"
-msgstr ""
-
-#: .\users\models.py:66
-msgid "inst_link_field_help"
-msgstr ""
-
-#: .\users\models.py:89
-msgid "user"
-msgstr ""
-
-#: .\users\models.py:90
-msgid "user_field_help"
-msgstr ""
-
-#: .\users\models.py:95
-msgid "image"
-msgstr ""
-
-#: .\users\models.py:97
-msgid "image_field_help"
-msgstr ""
-
-#: .\users\models.py:101
-msgid "user_image"
-msgstr ""
-
-#: .\users\models.py:102
-msgid "user_images"
-msgstr ""
-
-#: .\users\validators.py:13
-msgid "birthday_validation_error"
-msgstr ""
-
-#: .\users\validators.py:19
-msgid "tg_link_validation_error"
-msgstr ""
-
-#: .\users\validators.py:25
-msgid "inst_link_validation_error"
-msgstr ""
-
-#: .\users\views.py:45
-msgid "message_signup_success"
-msgstr ""
-
-#: .\users\views.py:65
-msgid "message_activate_error"
-msgstr ""
-
-#: .\users\views.py:73
-msgid "message_activate_success"
-msgstr ""
+msgstr "Activate Email Title"
+#: .

@@ -84,7 +84,7 @@
           </div>
           <div class="profile__field form__field info_field vs_field">
             <div class="section__title-btn btn_vs icon_btn">
-              {% url 'streetsport:team-vs' as url %}
+              {% url 'streetsport:team-vs' pk=team.id as url %}
               {% include 'includes/btn.html' with value='Бросить вызов' url=url %}
             </div>
           </div>
