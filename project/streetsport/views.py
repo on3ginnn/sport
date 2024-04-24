@@ -31,10 +31,20 @@ class TeamDeleteView(
     queryset = streetsport.models.Team.objects.all()
 
 
-class TeamCreateView(django.views.generic.CreateView):
+class TeamCreateView(
+    django.contrib.auth.mixins.LoginRequiredMixin,
+    django.views.generic.CreateView,
+):
     form_class = streetsport.forms.TeamEditForm
     success_url = django.urls.reverse_lazy("homepage:main")
     template_name = "streetsport/team_edit.html"
+
+    def form_valid(self, form):
+        form.save()
+        self.request.user.lead_team = form.instance
+        self.request.user.team = form.instance
+        self.request.user.save()
+        return super().form_valid(form)
 
 
 class TeamDetailView(django.views.generic.DetailView):
