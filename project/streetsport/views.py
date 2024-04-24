@@ -34,10 +34,7 @@ class TeamDeleteView(
 class TeamCreateView(django.views.generic.CreateView):
     form_class = streetsport.forms.TeamEditForm
     template_name = "streetsport/team_edit.html"
-    
-    def get_success_url(self):
-        # TODO: получить только что созданную команду и вывести ее
-        return django.urls.reverse_lazy("streetsport:team", kwargs={"pk":2})
+
 
 
 class TeamDetailView(django.views.generic.DetailView):
