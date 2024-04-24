@@ -164,3 +164,23 @@ class TeammateAddRedirectView(
             raise django.http.Http404
 
         return super().get(request, *args, **kwargs)
+
+
+class OrderCreateView(
+    django.contrib.auth.mixins.LoginRequiredMixin,
+    django.views.generic.CreateView,
+):
+    form_class = streetsport.forms.StreetsportOrderModelForm
+    template_name = "streetsport/order_create.html"
+    success_url = django.urls.reverse_lazy("homepage:main")
+
+    def get(self, request, *args, **kwargs):
+        if not self.request.user.lead_team:
+            raise django.http.Http404
+
+        return super().get(request, *args, **kwargs)
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs["initial"]["team_one"] = self.request.user.lead_team
+        return kwargs

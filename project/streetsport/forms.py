@@ -30,4 +30,4 @@ class TeamEditForm(django.forms.ModelForm):
 
     class Meta:
         model = streetsport.models.Team
-        exclude = []
+        exclude = [streetsport.models.Team.rating.field.name]

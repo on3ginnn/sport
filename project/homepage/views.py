@@ -8,5 +8,10 @@ __all__ = []
 class HomeView(django.views.generic.ListView):
     model = streetsport.models.Order
     context_object_name = "orders"
-    queryset = reversed(streetsport.models.Order.objects.homepage())
+    queryset = streetsport.models.Order.objects.homepage()
+
+    def get_queryset(self):
+
+        return reversed(super().get_queryset())
+
     template_name = "homepage/index.html"

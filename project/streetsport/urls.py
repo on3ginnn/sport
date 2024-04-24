@@ -58,8 +58,7 @@ urlpatterns = [
     ),
     django.urls.path(
         "team/<int:pk>/vs/",
-        # TODO: добавить view для создания матча с этой командой(только для лида)
-        streetsport.views.TeamDetailView.as_view(),
+        streetsport.views.OrderCreateView.as_view(),
         name="team-vs",
     ),
 ]
