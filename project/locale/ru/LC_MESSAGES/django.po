@@ -90,9 +90,13 @@ msgstr "команда"
 #: .\streetsport\models.py:122
 msgid "teams"
 msgstr "команды"
-#: .\streetsport\models.py:129 .\streetsport\models.py:137
+
 msgid "team_one"
-msgstr "команда один"
+msgstr "первая команда"
+
+msgid "team_two"
+msgstr "вторая команда"
+
 #: .\streetsport\models.py:130 .\streetsport\models.py:138
 msgid "team_one_field_help"
 msgstr "помощь по полю команды один"
@@ -135,7 +139,7 @@ msgid "about_text"
 msgstr "текст о нас"
 #: .\templates\feedback\feedback.html:6
 msgid "feedback_title"
-msgstr "заголовок обратной связи"
+msgstr "обратная связь"
 #: .\templates\homepage\index.html:6
 msgid "homepage_title"
 msgstr "главная страница"
@@ -147,10 +151,10 @@ msgid "login_title"
 msgstr "вход"
 #: .\templates\users\login.html:26
 msgid "forgot_password"
-msgstr "забыли пароль?"
+msgstr "забыли пароль"
 #: .\templates\users\login.html:27
 msgid "no_account"
-msgstr "нет аккаунта?"
+msgstr "нет аккаунта"
 #: .\templates\users\password_change.html:5
 msgid "password_change_title"
 msgstr "изменение пароля"
@@ -191,3 +195,30 @@ msgstr "Поиск игрока"
 
 msgid "profile_title"
 msgstr "Поиск игрока"
+
+msgid "search_title"
+msgstr "Поиск игрока"
+
+msgid "leaderboard_title"
+msgstr "Лидерборд"
+
+msgid "login"
+msgstr "Войти"
+
+msgid "signup"
+msgstr "регистрация"
+
+msgid "register_title"
+msgstr "регистрация"
+
+msgid "has_account"
+msgstr "Есть аккаунт"
+
+msgid "login_text"
+msgstr "Войти"
+
+msgid "register_text"
+msgstr "зарегистрироваться"
+
+msgid "reset_password_text"
+msgstr "сбросить пароль"
