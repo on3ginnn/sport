@@ -295,7 +295,7 @@ class Order(django.db.models.Model):
     team_two = django.db.models.ForeignKey(
         Team,
         on_delete=django.db.models.CASCADE,
-        verbose_name=_("team_one"),
+        verbose_name=_("team_two"),
         help_text=_("team_one_field_help"),
         related_name="orders_two",
         related_query_name="orders_two",
