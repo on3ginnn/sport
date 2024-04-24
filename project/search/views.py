@@ -5,6 +5,8 @@ import django.views
 import django.views.generic
 
 import search.forms
+import streetsport.models
+import users.models
 
 
 class SearchListView(django.views.generic.FormView):
@@ -14,8 +16,10 @@ class SearchListView(django.views.generic.FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         search_value = context["form"].data["search-header"]
-        # TODO: search_value - запрос. Найти похожие и передать в контекст 2 переменные(users, teams).
-        # TODO: Каждая перменная хранит инфу для таблицы search:search.
-        # TODO:
-        # context["form"].data["search-header"] = search_value
+        context["users"] = users.models.User.objects.search_by_username(
+            search_value,
+        )
+        context["teams"] = streetsport.models.Team.objects.search_by_title(
+            search_value,
+        )
         return context

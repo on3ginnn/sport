@@ -3,6 +3,7 @@ import json
 import django.contrib.auth.mixins
 import django.db.models
 import django.http
+import django.shortcuts
 import django.urls
 from django.utils.translation import gettext_lazy as _
 import django.views.generic
@@ -45,8 +46,6 @@ class TeamDetailView(django.views.generic.DetailView):
     context_object_name = "team"
 
     def get_context_data(self, **kwargs):
-        # TODO: в teammates загрузить всех участников команды (поля: id, username, avatar, single_top, lead_status(lead or not))
-
         kwargs.update(
             self.queryset.aggregate(
                 team_top=django.db.models.Count(
@@ -57,12 +56,6 @@ class TeamDetailView(django.views.generic.DetailView):
                 )
             )
         )
-        # TODO: error: The QuerySet value for an exact lookup must be limited to one result using slicing.
-        self.extra_context = {
-            "teammates": users.models.User.objects.filter(
-                team__id=self.queryset
-            ).order_by("-rating")
-        }
         return super().get_context_data(**kwargs)
 
 
@@ -73,9 +66,9 @@ class TeamUpdateView(django.views.generic.UpdateView):
 
     def get_object(self, *args, **kwargs):
         self.success_url = django.urls.reverse_lazy(
-            "streetsport:team", kwargs={"pk": self.request.user.teams.id}
+            "streetsport:team", kwargs={"pk": self.request.user.team.id}
         )
-        return self.request.user.teams
+        return self.request.user.team
 
 
 class GamesListView(django.views.generic.ListView):
@@ -120,9 +113,16 @@ class GamesListView(django.views.generic.ListView):
         return context
 
 
-class GamesDeleteView(django.views.generic.DeleteView):
-    # TODO: сделать удаление ордера streetport:order-delete
-    pass
+class GamesRedirectView(django.views.generic.RedirectView):
+    url = django.urls.reverse_lazy("homepage:main")
+
+    def get(self, request, *args, **kwargs):
+        order = django.shortcuts.get_object_or_404(
+            streetsport.models.Order,
+            **kwargs,
+        )
+        order.delete()
+        return super().get(request, *args, **kwargs)
 
 
 class GamesEditView(
@@ -150,3 +150,17 @@ class GamesCreateView(
 class GamesDetailView(django.views.generic.detail.DetailView):
     queryset = streetsport.models.Order.objects.all()
     template_name = "streetsport/order.html"
+
+
+class TeammateAddRedirectView(
+    django.contrib.auth.mixins.LoginRequiredMixin,
+    django.views.generic.RedirectView,
+):
+    def get(self, request, *args, **kwargs):
+        user = django.shortcuts.get_object_or_404(users.models.User, **kwargs)
+        if request.user.lead_team and not user.team:
+            user.team = request.user.lead_team
+        else:
+            raise django.http.Http404
+
+        return super().get(request, *args, **kwargs)

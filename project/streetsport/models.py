@@ -80,6 +80,17 @@ class TeamManager(django.db.models.Manager):
             self.get_queryset()
             .filter()
             .select_related(Team.game.field.name, Team.lead.related.name)
+            .prefetch_related(
+                django.db.models.Prefetch(
+                    Team.teammates.field.related_query_name(),
+                    queryset=Team.teammates.field.model.objects.only(
+                        Team.teammates.field.model.id.field.name,
+                        Team.teammates.field.model.username.field.name,
+                        Team.teammates.field.model.avatar.field.name,
+                        Team.teammates.field.model.rating.field.name,
+                    ),
+                )
+            )
             .only(
                 Team.id.field.name,
                 Team.avatar.field.name,
@@ -92,6 +103,7 @@ class TeamManager(django.db.models.Manager):
                     f"{Team.lead.related.name}"
                     f"__{Team.lead.related.model.id.field.name}"
                 ),
+                Team.teammates.field.related_query_name(),
             )
         )
 
@@ -107,6 +119,15 @@ class TeamManager(django.db.models.Manager):
                     f"__{Team.lead.related.model.id.field.name}"
                 ),
             )
+        )
+
+    def search_by_title(self, title):
+        return (
+            self.get_queryset()
+            .filter(
+                title__unaccent__icontains=title,
+            )
+            .order_by(Team.title.field.name)
         )
 
 

@@ -151,7 +151,7 @@ class User(django.contrib.auth.models.AbstractUser):
         )
 
     class Meta(django.contrib.auth.models.AbstractUser.Meta):
-        ordering = ["rating"]
+        ordering = ["rating", "username"]
         swappable = "AUTH_USER_MODEL"
 
 
