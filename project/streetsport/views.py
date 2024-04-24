@@ -37,7 +37,6 @@ class TeamCreateView(django.views.generic.CreateView):
     template_name = "streetsport/team_edit.html"
 
 
-
 class TeamDetailView(django.views.generic.DetailView):
     template_name = "streetsport/team.html"
     queryset = streetsport.models.Team.objects.detail()
