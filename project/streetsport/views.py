@@ -31,10 +31,20 @@ class TeamDeleteView(
     queryset = streetsport.models.Team.objects.all()
 
 
-class TeamCreateView(django.views.generic.CreateView):
+class TeamCreateView(
+    django.contrib.auth.mixins.LoginRequiredMixin,
+    django.views.generic.CreateView,
+):
     form_class = streetsport.forms.TeamEditForm
     success_url = django.urls.reverse_lazy("homepage:main")
     template_name = "streetsport/team_edit.html"
+
+    def form_valid(self, form):
+        form.save()
+        self.request.user.lead_team = form.instance
+        self.request.user.team = form.instance
+        self.request.user.save()
+        return super().form_valid(form)
 
 
 class TeamDetailView(django.views.generic.DetailView):
@@ -141,6 +151,21 @@ class GamesCreateView(
     django.views.generic.edit.CreateView,
 ):
     form_class = streetsport.forms.StreetsportOrderModelForm
+    success_url = django.urls.reverse_lazy("homepage:main")
+
+    def get(self, request, *args, **kwargs):
+        if not self.request.user.lead_team:
+            raise django.http.Http404
+
+        return super().get(request, *args, **kwargs)
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs["initial"][
+            streetsport.models.Order.team_one.field.name
+        ] = self.request.user.lead_team
+        return kwargs
+
     template_name = "streetsport/order_create.html"
 
 
@@ -178,6 +203,22 @@ class OrderCreateView(
         return super().get(request, *args, **kwargs)
 
     def get_form_kwargs(self):
+        team_two = django.shortcuts.get_object_or_404(
+            streetsport.models.Team,
+            **self.kwargs,
+        )
         kwargs = super().get_form_kwargs()
-        kwargs["initial"]["team_one"] = self.request.user.lead_team
+        kwargs["initial"][
+            streetsport.models.Order.team_one.field.name
+        ] = self.request.user.lead_team
+        kwargs["initial"][
+            streetsport.models.Order.team_two.field.name
+        ] = team_two
         return kwargs
+
+    def get_form(self):
+        form = super().get_form()
+        form.fields[streetsport.models.Order.team_two.field.name].disabled = (
+            True
+        )
+        return form
