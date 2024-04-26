@@ -194,3 +194,9 @@ h1{
     filter: brightness(0.95);
     background: rgba(0, 0, 0, 0.02);
 }
+
+.invalid-feedback{
+    color: var(--color-red);
+    font-size: 16px;
+    font-weight: 500;
+}

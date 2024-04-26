@@ -25,16 +25,20 @@
           </div>
         </div>
       </h1>
-      <div class="section__title-btns">
-        <div class="section__title-btn btn_delete">
-          {% url 'streetsport:order-delete' pk=order.id as url %}
-          {% include 'includes/btn.html' with value='Удалить игру' url=url %}
+      {% if request.user.is_authenticated %}
+        {% if request.user == order.team_one.lead or request.user == order.team_two.lead %}
+        <div class="section__title-btns">
+          <div class="section__title-btn btn_delete">
+            {% url 'streetsport:order-delete' pk=order.id as url %}
+            {% include 'includes/btn.html' with value='Удалить игру' url=url %}
+          </div>
+          <div class="section__title-btn btn_edit icon_btn">
+            {% url 'streetsport:order-edit' pk=order.id as url %}
+            {% include 'includes/btn.html' with value='Редактировать' url=url %}
+          </div>
         </div>
-        <div class="section__title-btn btn_edit icon_btn">
-          {% url 'streetsport:order-edit' pk=order.id as url %}
-          {% include 'includes/btn.html' with value='Редактировать' url=url %}
-        </div>
-      </div>
+        {% endif %}
+      {% endif %}
     </div>
     <div class="section__content order__content">
       <div class="order__wrapper info_wrapper">

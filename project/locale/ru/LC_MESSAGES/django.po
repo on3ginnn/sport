@@ -194,7 +194,7 @@ msgid "search_user"
 msgstr "Поиск игрока"
 
 msgid "profile_title"
-msgstr "Поиск игрока"
+msgstr "Профиль игрока"
 
 msgid "search_title"
 msgstr "Поиск игрока"
@@ -222,3 +222,9 @@ msgstr "зарегистрироваться"
 
 msgid "reset_password_text"
 msgstr "сбросить пароль"
+
+msgid "text"
+msgstr "текст"
+
+msgid "team_title"
+msgstr "Команда"

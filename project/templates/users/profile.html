@@ -163,23 +163,24 @@
                 -
               {% endif %}
           </div>
-          {% if user.team and user != request.user%}
-          <div class="profile__field form__field info_field">
-            <div class="section__title-btn btn_add icon_btn">
-              {% url 'streetsport:team-add' pk=user.id as url %}
-              {% include 'includes/btn.html' with value='Пригласить в команду' url=url %}
+          {% if request.user.is_authenticated %}
+            {% if user.team and user != request.user%}
+            <div class="profile__field form__field info_field">
+              <div class="section__title-btn btn_add icon_btn">
+                {% url 'streetsport:team-add' pk=user.id as url %}
+                {% include 'includes/btn.html' with value='Пригласить в команду' url=url %}
+              </div>
             </div>
-          </div>
-          {% endif %}
-          {% if not user.team %}
-          <div class="profile__field form__field info_field">
-            <div class="section__title-btn">
-              {% url 'streetsport:team-create' as url %}
-              {% include 'includes/btn.html' with value='Создать команду' url=url %}
+            {% endif %}
+            {% if not user.team and request.user == user %}
+            <div class="profile__field form__field info_field">
+              <div class="section__title-btn">
+                {% url 'streetsport:team-create' as url %}
+                {% include 'includes/btn.html' with value='Создать команду' url=url %}
+              </div>
             </div>
-          </div>
+            {% endif %}
           {% endif %}
-
         </div>
       </div>
     </div>

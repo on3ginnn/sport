@@ -53,6 +53,7 @@ class TeamDetailView(django.views.generic.DetailView):
     context_object_name = "team"
 
     def get_context_data(self, **kwargs):
+        # TODO: так как есть несколько команд у которых одинаковое кол-во очков, место вычисляется не точно
         kwargs.update(
             self.queryset.aggregate(
                 team_top=django.db.models.Count(
@@ -83,6 +84,9 @@ class GamesListView(django.views.generic.ListView):
     context_object_name = "orders"
     queryset = streetsport.models.Order.objects.homepage()
     template_name = "streetsport/index.html"
+
+    def get_queryset(self):
+        return reversed(super().get_queryset())
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)

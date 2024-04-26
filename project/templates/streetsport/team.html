@@ -82,12 +82,20 @@
               </div>
             </div>
           </div>
+          <div class="profile__field form__field info_field">
+            <label for="">рейтинг</label>
+            <div class="profile__description info_text">
+              {{ team.rating }}
+            </div>
+          </div>
+          {% if request.user.is_authenticated and request.user == team.lead %}
           <div class="profile__field form__field info_field vs_field">
             <div class="section__title-btn btn_vs icon_btn">
               {% url 'streetsport:team-vs' pk=team.id as url %}
               {% include 'includes/btn.html' with value='Бросить вызов' url=url %}
             </div>
           </div>
+          {% endif %}
         </div>
       </div>
     </div>
@@ -101,12 +109,6 @@
               </th>
               <th class="table__header user_header">
                 Игрок
-              </th>
-              <th class="table__header">
-                рейтинг
-              </th>
-              <th class="table__header">
-                команда
               </th>
             </tr>
             {% for user in team.teammates.all %}
@@ -122,33 +124,9 @@
                       <img src="{% static 'img/default/avatar.svg' %}" alt="{% trans 'default_avatar_img'|capfirst %}">
                       {% endif %}
                     </div>
-                    <a href="{% url 'streetsport:team' pk=team.id %}" class="table__text color_blue">
+                    <a href="{% url 'users:profile' pk=user.id %}" class="table__text color_blue">
                       {{ user.username }}
                     </a>
-                  </div>
-                </td>
-                <td class="table__data">
-                  <div class="table__content">
-                    {% if user.single_top %}
-                      <a href="{% url 'leaderboard:users' %}" class="table__text color_blue">
-                        #{{ user.single_top }}
-                      </a>
-                    {% else %}
-                      -
-                    {% endif %}
-                  </div>
-                </td>
-                <td class="table__data">
-                  <div class="table__content">
-                    {% if user.lead_status or user == request.user %}
-                      {% if user.lead_status %}
-                        лидер
-                      {% elif user == request.user %}
-                        вы
-                      {% endif %}
-                    {% else %}
-                      -
-                    {% endif %}
                   </div>
                 </td>
               </tr>
