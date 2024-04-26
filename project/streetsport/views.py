@@ -53,7 +53,6 @@ class TeamDetailView(django.views.generic.DetailView):
     context_object_name = "team"
 
     def get_context_data(self, **kwargs):
-        # TODO: так как есть несколько команд у которых одинаковое кол-во очков, место вычисляется не точно
         kwargs.update(
             self.queryset.aggregate(
                 team_top=django.db.models.Count(

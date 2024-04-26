@@ -84,8 +84,6 @@ class ProfileTemplateView(
     django.views.generic.TemplateView,
 ):
     template_name = "users/profile.html"
-    # TODO: так как есть несколько команд у которых одинаковое кол-во очков, team_top вычисляется не точно
-    # TODO: так как есть несколько юзеров у которых одинаковое кол-во очков, user_top вычисляется не точно
 
     def get_context_data(self, **kwargs):
         user = self.request.user
@@ -113,8 +111,6 @@ class ProfileTemplateView(
 class ProfileDetailView(django.views.generic.DetailView):
     template_name = "users/profile.html"
     queryset = users.models.User.objects.all()
-    # TODO: так как есть несколько команд у которых одинаковое кол-во очков, team_top вычисляется не точно
-    # TODO: так как есть несколько юзеров у которых одинаковое кол-во очков, user_top вычисляется не точно
 
     def get_context_data(self, **kwargs):
         user = kwargs.get("object")
