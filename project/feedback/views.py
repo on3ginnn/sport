@@ -30,8 +30,8 @@ class FeedbackCreateView(django.views.generic.CreateView):
         email_send = django.core.mail.EmailMessage(
             subject="Feedback",
             body=content_form.cleaned_data["text"],
-            from_email=django.conf.settings.EMAIL_ADMIN,
-            to=[author_form.cleaned_data["mail"]],
+            from_email=author_form.cleaned_data["mail"],
+            to=[django.conf.settings.EMAIL_ADMIN],
         )
         for file in files:
             email_send.attach(file.name, file.file.read(), file.content_type)
