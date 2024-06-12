@@ -228,3 +228,9 @@ msgstr "текст"
 
 msgid "team_title"
 msgstr "Команда"
+
+msgid "team_edit_title"
+msgstr "Создание команды"
+
+msgid "avatar"
+msgstr "Аватар"
