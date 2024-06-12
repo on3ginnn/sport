@@ -80,7 +80,7 @@ jobs:
       POSTGRES_PASSWORD: postgres
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
-      AMQP_URL: 'amqp://guest:guest@rabbitmq:5672 '
+      AMQP_URL: 'amqp://guest:guest@rabbitmq:5672'
       PG_HOST: postgres
       PG_DB_NAME: postgres
       PG_USER: postgres
