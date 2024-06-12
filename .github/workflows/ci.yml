@@ -62,15 +62,12 @@ jobs:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
         options: >-
-          --health-cmd "pg_isready -U $POSTGRES_USER"
+          --health-cmd pg_isready
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
       rabbitmq:
         image: rabbitmq:latest
-        env:
-          RABBITMQ_DEFAULT_USER: guest
-          RABBITMQ_DEFAULT_PASS: guest
         options: >-
           --health-cmd "rabbitmqctl status"
           --health-interval 10s
@@ -83,7 +80,7 @@ jobs:
       POSTGRES_PASSWORD: postgres
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
-      AMQP_URL: 'amqp://guest:guest@rabbitmq:5432'
+      AMQP_URL: 'amqp://guest:guest@rabbitmq:5672 '
       PG_HOST: localhost
       PG_DB_NAME: postgres
       PG_USER: postgres
@@ -102,13 +99,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements/prod.txt
           pip install parameterized==0.9.0
-
-      - name: Wait for PostgreSQL to be ready
-        run: |
-          until pg_isready -h $PG_HOST -U $PG_USER; do
-            echo "Waiting for PostgreSQL to be ready..."
-            sleep 2
-          done
 
       - name: Run migrations and tests
         run: |
