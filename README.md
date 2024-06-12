@@ -1,6 +1,8 @@
-# Django project
+# Street Sport Games
 
-## DREAM TEAM №3 [miro dashboard](https://miro.com/app/board/uXjVKYQfGw4=/)
+Our site was created for everyone who loves sports games. This could be football, basketball, tennis, etc. The site makes it possible to hold and publish matches with other teams, as well as make new acquaintances and compete in the rankings. It is worth noting that our site is accessible to everyone, anyone can play the game on the street and secure their results forever.
+
+## DREAM TEAM №3 [figma design](https://www.figma.com/design/namjyzp4WnHbNhmAHKDEwZ/Untitled?node-id=0-1)
 
 [![pipeline status](https://gitlab.crja72.ru/django/2024/spring/course/projects/team-3/badges/main/pipeline.svg)](https://gitlab.crja72.ru/django/2024/spring/course/projects/team-3/-/commits/main)
 
@@ -215,3 +217,7 @@
     сd project
     python manage.py test
     ```
+
+## RELEAS
+
+**v20.4.2024**
