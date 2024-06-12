@@ -4,7 +4,8 @@ Our site was created for everyone who loves sports games. This could be football
 
 ## DREAM TEAM №3 [figma design](https://www.figma.com/design/namjyzp4WnHbNhmAHKDEwZ/Untitled?node-id=0-1)
 
-[![pipeline status](https://gitlab.crja72.ru/django/2024/spring/course/projects/team-3/badges/main/pipeline.svg)](https://gitlab.crja72.ru/django/2024/spring/course/projects/team-3/-/commits/main)
+[![ci/cd](https://github.com/on3ginnn/sport/actions/workflows/ci.yml/badge.svg)
+](https://github.com/on3ginnn/sport/commits/main)
 
 ### Prerequisites
 
